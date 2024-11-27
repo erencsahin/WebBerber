@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBerber", "WebBerber\WebBerber.csproj", "{44D854D6-A380-4F46-9F17-3CF8C2853E91}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44D854D6-A380-4F46-9F17-3CF8C2853E91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44D854D6-A380-4F46-9F17-3CF8C2853E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44D854D6-A380-4F46-9F17-3CF8C2853E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44D854D6-A380-4F46-9F17-3CF8C2853E91}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED672D47-116C-48AF-AB51-9BADBCC553D1}
+	EndGlobalSection
+EndGlobal
