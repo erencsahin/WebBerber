@@ -21,5 +21,7 @@ namespace WebBerber.Models
         [Required(ErrorMessage ="Çalışma saatlerini giriniz.")]
         public ICollection<WorkingHour> WorkingHours { get; set; }
 
+        public ICollection<Employee> EmployeesList { get; set; }
+
     }
 }
