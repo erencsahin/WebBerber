@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>Kayıt Ol</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="Index">
+                        <div class="mb-2">
+                            <label for="firstName" class="form-label">Ad</label>
+                            <input type="text" name="FirstName" class="form-control" placeholder="Adınızı girin" required />
+                        </div>
+                        <div class="mb-2">
+                            <label for="lastName" class="form-label">Soyad</label>
+                            <input type="text" name="LastName" class="form-control" placeholder="Soyadınızı girin" required />
+                        </div>
+                        <div class="mb-2">
+                            <label for="lastName" class="form-label">Telefon Numarası</label>
+                            <input type="text" name="PhoneNumber" class="form-control" placeholder="Telefon Numaranızı girin" required />
+                        </div>
+                        <div class="mb-2">
+                            <label for="email" class="form-label">E-posta</label>
+                            <input type="email" name="Email" class="form-control" placeholder="E-posta adresinizi girin" required />
+                        </div>
+                        <div class="mb-2">
+                            <label for="password" class="form-label">Şifre</label>
+                            <input type="password" name="Password" class="form-control" placeholder="Şifrenizi girin" required />
+                        </div>
+                        <div class="mb-2">
+                            <label for="role" class="form-label">Rol</label>
+                            <select name="Role" class="form-select" required>
+                                <option value="2">Mağaza Müdürü</option>
+                                <option value="3">Müşteri</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label for="gender" class="form-label">Cinsiyet</label>
+                            <select name="Gender" class="form-select" required>
+                                <option value="1">Erkek</option>
+                                <option value="2">Kadın</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Kayıt Ol</button>
+                    </form>
+
+                    @if (ViewBag.ErrorMessage != null)
+                    {
+                        <div class="alert alert-danger mt-3">
+                            @ViewBag.ErrorMessage
+                        </div>
+                    }
+
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success mt-3">
+                            @TempData["SuccessMessage"]
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebBerber.Models
 {
@@ -20,9 +21,17 @@ namespace WebBerber.Models
         [Required]
         [EmailAddress(ErrorMessage ="Lütfen geçerli bir mail adresi giriniz.")]
         public string Email { get; set; }
-        
+
+        [Required]
+        public string Password { get; set; }
+
         [Required(ErrorMessage ="Size daha iyi yardımcı olmak adına lütfen cinsiyetinizi giriniz.")]
+        [EnumDataType(typeof(Gender))]
         public Gender Gender { get; set; }
+
+        [Required]
+        [EnumDataType(typeof(Role))]
+        public Role Role { get; set; }
 
     }
 }
@@ -32,4 +41,11 @@ public enum Gender
     Male=1,
     Female=2,
     Other=3
+}
+
+public enum Role
+{
+    Admin=1,
+    ShopOwner=2,
+    Customer=3
 }

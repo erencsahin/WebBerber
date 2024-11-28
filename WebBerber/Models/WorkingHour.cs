@@ -4,6 +4,7 @@ namespace WebBerber.Models
 {
     public class WorkingHour
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]

@@ -4,6 +4,7 @@ namespace WebBerber.Models
 {
     public class Operation
     {
+        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage ="İşlemin adını giriniz.")]

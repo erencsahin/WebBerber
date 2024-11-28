@@ -4,7 +4,7 @@ namespace WebBerber.Controllers
 {
     public class UserController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Dashboard()
         {
             return View();
         }

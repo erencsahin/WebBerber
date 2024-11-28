@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Admin Paneli";
+}
+
+<h2>Admin Paneli</h2>
+<p>Hoş geldiniz, @ViewContext.HttpContext.Session.GetString("AdminEmail")</p>
+
+<ul>
+    <li class="accordion-item"><a asp-action="ManageUsers">Kullanıcı Yönetimi</a></li>
+    <li class="accordion-item"><a asp-action="ManageShops">Dükkan Yönetimi</a></li>
+    <li class="accordion-item"><a asp-action="Logout">Çıkış Yap</a></li>
+</ul>
+
+
