@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Mağaza Sil";
+}
+
+<h2>Mağaza Sil</h2>
+
+<p>Bu mağazayı silmek istediğinize emin misiniz?</p>
+
+<form method="post" asp-action="DeleteShop">
+    <button type="submit">Evet, Sil</button>
+    <a asp-action="ManageShops">İptal</a>
+</form>

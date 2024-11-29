@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebBerber.Filters;
+using WebBerber.Models;
 using WebBerber.Utils;
 
 namespace WebBerber.Controllers
@@ -9,39 +10,93 @@ namespace WebBerber.Controllers
         public readonly AppDbContext dbContext;
         public AdminController(AppDbContext appDbContext)
         {
-            this.dbContext = appDbContext;
+            dbContext = appDbContext;
         }
 
-        [AdminAuthorize]
-        public IActionResult Dashboard()
+        public IActionResult Index()
         {
-            return View();
+            return View(); 
         }
 
-        public IActionResult Login()
-        {
-            return View();
-        }
 
-        [AdminAuthorize]
         public IActionResult ManageUsers()
         {
-            var _users=dbContext.Users.ToList();
-            return View(_users);
+            var users = dbContext.Users.ToList();
+            return View(users);
         }
 
-        [AdminAuthorize]
+        public IActionResult AddUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddUser(User user) 
+        {
+            if (ModelState.IsValid) 
+            {
+                dbContext.Users.Add(user);
+                dbContext.SaveChanges();
+                return RedirectToAction("ManageUsers");
+            }
+            return View(user);
+        }
+
+        public IActionResult DeleteUser(int id)
+        {
+            var user = dbContext.Users.Find(id);
+            if (user != null) 
+            {
+                dbContext.Users.Remove(user);
+                dbContext.SaveChanges();
+            }
+            return RedirectToAction("ManageUsers");
+        }
+
+
+
+
         public IActionResult ManageShops()
         {
-            var _shops=dbContext.Shops.ToList();
-            return View(_shops);
+            var shops = dbContext.Shops.ToList();
+            return View(shops);
         }
 
-
-        public IActionResult Logout()
+        public IActionResult AddShop()
         {
-            HttpContext.Session.Remove("AdminEmail");
-            return RedirectToAction("Index","Login");
+            return View();
         }
+
+        [HttpPost]
+        public IActionResult AddShop(Shop shop,List<WorkingHour> workingHours)
+        {
+            if (ModelState.IsValid)
+            {
+                dbContext.Shops.Add(shop);
+                dbContext.SaveChanges();
+
+                foreach (var hour in workingHours)
+                {
+                    hour.ShopId = shop.Id;
+                    dbContext.WorkHours.Add(hour);
+                }
+                dbContext.SaveChanges();
+
+                return RedirectToAction("ManageShops");
+            }
+            return View(shop);
+        }
+
+        public IActionResult DeleteShop(int id)
+        {
+            var shop = dbContext.Shops.Find(id);
+            if (shop != null)
+            {
+                dbContext.Shops.Remove(shop);
+                dbContext.SaveChanges();
+            }
+            return RedirectToAction("ManageShops");
+        }
+
     }
 }

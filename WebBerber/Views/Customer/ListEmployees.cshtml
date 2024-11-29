@@ -1,0 +1,25 @@
+﻿@model IEnumerable<WebBerber.Models.Employee>
+
+@{
+    ViewData["Title"] = "Çalışan Listesi";
+}
+
+<h2>Çalışan Listesi</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Ad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.Id</td>
+                <td>@employee.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -21,7 +21,11 @@ namespace WebBerber.Controllers
         [HttpPost]
         public IActionResult Index(string email, string password)
         {
-            var user= appDbContext.Users.FirstOrDefault(x=>x.Email==email && x.Password==password);
+
+            var hashedPass=Security.HashPassword(password);
+
+
+            var user= appDbContext.Users.FirstOrDefault(x=>x.Email==email && x.Password== hashedPass);
             if (user != null)
             {
                 HttpContext.Session.SetString("UserEmail", user.Email);
@@ -30,11 +34,11 @@ namespace WebBerber.Controllers
                 switch (user.Role)
                 {
                     case Role.Admin:
-                        return RedirectToAction("Dashboard","Admin");
+                        return RedirectToAction("Index","Admin");
                     case Role.ShopOwner:
-                        return RedirectToAction("Dashboard","ShopOwner");
+                        return RedirectToAction("PendingAppointments", "ShopOwner");
                     case Role.Customer:
-                        return RedirectToAction("Dashboard","User");
+                        return RedirectToAction("ListShops", "Customer");
                 }
             }
 

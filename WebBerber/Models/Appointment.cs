@@ -25,9 +25,9 @@ namespace WebBerber.Models
 
 
         [Required]
-        [DataType(DataType.DateTime)]
-        [FutureDate(ErrorMessage = "Randevu tarihi gelecekte bir tarih olmalıdır.")]
-        public DateTime Date { get; set; }
+        public DateTime StartTime { get; set; }
+
+        public DateTime EndTime => StartTime.AddMinutes(Duration);
 
 
         [Required]
@@ -38,6 +38,8 @@ namespace WebBerber.Models
         [Required]
         [Range(1, int.MaxValue, ErrorMessage = "Geçerli bir süre giriniz.")]
         public int Duration { get; set; }
+
+        public bool IsApproved { get; set; } = false;
     }
 
     public class FutureDateAttribute : ValidationAttribute

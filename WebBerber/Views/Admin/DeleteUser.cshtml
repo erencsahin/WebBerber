@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Kullanıcı Sil";
+}
+
+<h2>Kullanıcı Sil</h2>
+
+<p>Bu kullanıcıyı silmek istediğinize emin misiniz?</p>
+
+<form method="post" asp-action="DeleteUser">
+    <button type="submit">Evet, Sil</button>
+    <a asp-action="ManageUsers">İptal</a>
+</form>

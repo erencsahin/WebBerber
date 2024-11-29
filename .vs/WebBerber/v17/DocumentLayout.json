@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{44D854D6-A380-4F46-9F17-3CF8C2853E91}|WebBerber\\WebBerber.csproj|c:\\users\\msi-nb\\source\\repos\\webberber\\webberber\\views\\register\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{44D854D6-A380-4F46-9F17-3CF8C2853E91}|WebBerber\\WebBerber.csproj|solutionrelative:webberber\\views\\register\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44D854D6-A380-4F46-9F17-3CF8C2853E91}|WebBerber\\WebBerber.csproj|c:\\users\\msi-nb\\source\\repos\\webberber\\webberber\\controllers\\registercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44D854D6-A380-4F46-9F17-3CF8C2853E91}|WebBerber\\WebBerber.csproj|solutionrelative:webberber\\controllers\\registercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44D854D6-A380-4F46-9F17-3CF8C2853E91}|WebBerber\\WebBerber.csproj|c:\\users\\msi-nb\\source\\repos\\webberber\\webberber\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44D854D6-A380-4F46-9F17-3CF8C2853E91}|WebBerber\\WebBerber.csproj|solutionrelative:webberber\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{44D854D6-A380-4F46-9F17-3CF8C2853E91}|WebBerber\\WebBerber.csproj|c:\\users\\msi-nb\\source\\repos\\webberber\\webberber\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{44D854D6-A380-4F46-9F17-3CF8C2853E91}|WebBerber\\WebBerber.csproj|solutionrelative:webberber\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{44D854D6-A380-4F46-9F17-3CF8C2853E91}|WebBerber\\WebBerber.csproj|c:\\users\\msi-nb\\source\\repos\\webberber\\webberber\\controllers\\shopapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44D854D6-A380-4F46-9F17-3CF8C2853E91}|WebBerber\\WebBerber.csproj|solutionrelative:webberber\\controllers\\shopapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 198,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,54 +26,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RegisterController.cs",
-              "DocumentMoniker": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\Controllers\\RegisterController.cs",
-              "RelativeDocumentMoniker": "WebBerber\\Controllers\\RegisterController.cs",
-              "ToolTip": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\Controllers\\RegisterController.cs",
-              "RelativeToolTip": "WebBerber\\Controllers\\RegisterController.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAywCAAAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T17:26:38.59Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\Views\\Register\\Index.cshtml",
-              "RelativeDocumentMoniker": "WebBerber\\Views\\Register\\Index.cshtml",
-              "ToolTip": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\Views\\Register\\Index.cshtml",
-              "RelativeToolTip": "WebBerber\\Views\\Register\\Index.cshtml",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAB8AAABDAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-28T17:22:35.886Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\Models\\User.cs",
-              "RelativeDocumentMoniker": "WebBerber\\Models\\User.cs",
-              "ToolTip": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\Models\\User.cs",
-              "RelativeToolTip": "WebBerber\\Models\\User.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAUwDEAAAAOAAAA",
+              "Title": "ShopApiController.cs",
+              "DocumentMoniker": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\Controllers\\ShopApiController.cs",
+              "RelativeDocumentMoniker": "WebBerber\\Controllers\\ShopApiController.cs",
+              "ToolTip": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\Controllers\\ShopApiController.cs",
+              "RelativeToolTip": "WebBerber\\Controllers\\ShopApiController.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAYwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T17:22:11.015Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "WebBerber\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "WebBerber\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAACgAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-28T17:20:47.163Z",
+              "WhenOpened": "2024-11-29T02:05:58.536Z",
               "EditorCaption": ""
             }
           ]

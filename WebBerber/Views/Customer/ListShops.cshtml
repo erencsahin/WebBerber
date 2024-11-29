@@ -1,12 +1,10 @@
 ﻿@model IEnumerable<WebBerber.Models.Shop>
 
 @{
-    ViewData["Title"] = "Mağaza Yönetimi";
+    ViewData["Title"] = "Mağaza Listesi";
 }
 
-<h2>Mağaza Yönetimi</h2>
-
-<a asp-action="AddShop">Yeni Mağaza Ekle</a>
+<h2>Mağaza Listesi</h2>
 
 <table>
     <thead>
@@ -14,7 +12,6 @@
             <th>#</th>
             <th>Ad</th>
             <th>Adres</th>
-            <th>İşlemler</th>
         </tr>
     </thead>
     <tbody>
@@ -24,9 +21,6 @@
                 <td>@shop.Id</td>
                 <td>@shop.ShopName</td>
                 <td>@shop.Address</td>
-                <td>
-                    <a asp-action="DeleteShop" asp-route-id="@shop.Id">Sil</a>
-                </td>
             </tr>
         }
     </tbody>
