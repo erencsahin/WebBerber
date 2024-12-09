@@ -15,6 +15,7 @@ namespace WebBerber.Models
         public int Employees { get; set; }
 
 
+        [Display]
         [Required(ErrorMessage ="Dükkanın adresini giriniz.")]
         public string Address { get; set; }
 
