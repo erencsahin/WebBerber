@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebBerber.Models;
 using WebBerber.Utils;
 
 namespace WebBerber.Controllers
@@ -40,6 +41,14 @@ namespace WebBerber.Controllers
 
             return RedirectToAction("PendingAppointments");
         }
+
+        public IActionResult AddOperationToEmployee(int employeeId,int operationId)
+        {
+            
+            
+            return View();
+        }
+
 
     }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace WebBerber.Models
 {
@@ -47,5 +46,6 @@ public enum Role
 {
     Admin=1,
     ShopOwner=2,
-    Customer=3
+    Customer=3,
+    Employee=4
 }

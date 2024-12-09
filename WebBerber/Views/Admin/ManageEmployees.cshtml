@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebBerber.Models.Employee>
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Çalışan Yönetimi</h2>
+
+    <a asp-action="AddEmployee" class="btn btn-success mb-3">Yeni Çalışan Ekle</a>
+    <a asp-action="Index" class="btn btn-danger mb-3">Geri Git</a>
+
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Ad</th>
+                <th>Soyad</th>
+                <th>Mağaza</th>
+                <th>Çalışma Saatleri</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.Id</td>
+                    <td>@employee.Name</td>
+                    <td>@employee.Surname</td>
+                    <td>@employee.Shop?.ShopName</td>
+                    <td>
+                        <ul>
+                            @foreach (var hours in employee.WorkingHours)
+                            {
+                                <li>@hours.Day: @hours.StartTime - @hours.EndTime</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        <a asp-action="DeleteEmployee" asp-route-id="@employee.Id" class="btn btn-danger btn-sm">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

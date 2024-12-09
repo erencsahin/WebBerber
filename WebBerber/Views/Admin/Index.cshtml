@@ -2,13 +2,22 @@
     ViewData["Title"] = "Admin Paneli";
 }
 
-<h2>Admin Paneli</h2>
-<p>Hoş geldiniz, @ViewContext.HttpContext.Session.GetString("AdminEmail")</p>
+<div class="container mt-5">
+    <h2 class="text-center">Admin Paneli</h2>
+    <p class="text-center">Hoş geldiniz, @ViewContext.HttpContext.Session.GetString("AdminEmail")</p>
 
-<ul>
-    <li class="accordion-item"><a asp-action="ManageUsers">Kullanıcı Yönetimi</a></li>
-    <li class="accordion-item"><a asp-action="ManageShops">Dükkan Yönetimi</a></li>
-    <li class="accordion-item"><a asp-action="Logout">Çıkış Yap</a></li>
-</ul>
-
-
+    <ul class="list-group mt-4">
+        <li class="list-group-item">
+            <a asp-action="ManageUsers" class="btn btn-link">Kullanıcı Yönetimi</a>
+        </li>
+        <li class="list-group-item">
+            <a asp-action="ManageShops" class="btn btn-link">Dükkan Yönetimi</a>
+        </li>
+        <li class="list-group-item">
+            <a asp-action="ManageEmployees" class="btn btn-link">Çalışan Yönetimi</a>
+        </li>
+        <li class="list-group-item">
+            <a asp-action="Logout" class="btn btn-link text-danger">Çıkış Yap</a>
+        </li>
+    </ul>
+</div>

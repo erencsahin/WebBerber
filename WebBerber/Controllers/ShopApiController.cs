@@ -39,11 +39,5 @@ namespace WebBerber.Controllers
             }
             return Ok(shop);
         }
-
-        
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }

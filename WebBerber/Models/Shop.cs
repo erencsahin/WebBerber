@@ -18,11 +18,7 @@ namespace WebBerber.Models
         [Required(ErrorMessage ="Dükkanın adresini giriniz.")]
         public string Address { get; set; }
 
-
-        [Required(ErrorMessage ="Çalışma saatlerini giriniz.")]
-        public ICollection<WorkingHour> WorkingHours { get; set; }
-
-        public ICollection<Employee> EmployeesList { get; set; }
-
+        public ICollection<Employee>? EmployeesList { get; set; }
+        public ICollection<WorkingHour>? WorkingHours { get; set; }
     }
 }

@@ -32,15 +32,16 @@ namespace WebBerber.Controllers
             return View(employees);
         }
 
-        public IActionResult BookAppointment()
+        public IActionResult BookAppointment(int shopId)
         {
-            ViewBag.Employees=appDbContext.Employees.ToList();
+            ViewBag.Employees=appDbContext.Employees.Where(e=>e.ShopId == shopId).ToList();
             ViewBag.Operations=appDbContext.Operations.ToList();
+            ViewBag.ShopId=shopId;
             return View();
         }
 
         [HttpPost]
-        public IActionResult BookAppointment(Appointment model)
+        public IActionResult BookAppointment(Appointment model,int shopId)
         {
             var isConflict = appDbContext.Appointments.Any(x =>
                 x.EmployeeId == model.EmployeeId &&
@@ -51,13 +52,14 @@ namespace WebBerber.Controllers
             if (isConflict)
             {
                 ViewBag.ErrorMessage = "Çalışan bu saatte uygun değil.";
-                ViewBag.Employees= appDbContext.Employees.ToList();
+                ViewBag.Employees = appDbContext.Employees.Where(e => e.ShopId == shopId).ToList();
                 ViewBag.Operations = appDbContext.Operations.ToList();
+                ViewBag.ShopId = shopId;
                 return View(model);
             }
 
+            model.IsApproved = false;
 
-            var operation = appDbContext.Operations.Find(model.OperationId);
             appDbContext.Appointments.Add(model);
             appDbContext.SaveChanges();
 

@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\msi-nb\source\repos\WebBerber\WebBerber
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/msi-nb/source/repos/WebBerber/WebBerber/Views/Admin/AddEmployee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkRW1wbG95ZWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/msi-nb/source/repos/WebBerber/WebBerber/Views/Admin/AddShop.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkU2hvcC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -44,6 +48,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/msi-nb/source/repos/WebBerber/WebBerber/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/msi-nb/source/repos/WebBerber/WebBerber/Views/Admin/ManageEmployees.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFuYWdlRW1wbG95ZWVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/msi-nb/source/repos/WebBerber/WebBerber/Views/Admin/ManageShops.cshtml]

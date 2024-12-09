@@ -2,43 +2,47 @@
     ViewData["Title"] = "Kullanıcı Ekle";
 }
 
-<h2>Kullanıcı Ekle</h2>
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Kullanıcı Ekle</h2>
 
-<form method="post" asp-action="AddUser">
-    <div>
-        <label for="firstName">Ad:</label>
-        <input type="text" id="firstName" name="FirstName" required />
-    </div>
-    <div>
-        <label for="lastName">Soyad:</label>
-        <input type="text" id="lastName" name="LastName" required />
-    </div>
-    <div>
-        <label for="phoneNumber">Telefon Numarası:</label>
-        <input type="text" id="phoneNumber" name="PhoneNumber" required />
-    </div>
-    <div>
-        <label for="email">E-posta:</label>
-        <input type="email" id="email" name="Email" required />
-    </div>
-    <div>
-        <label for="role">Rol:</label>
-        <select id="role" name="Role" required>
-            <option value="2">Dükkan Sahibi</option>
-            <option value="3">Müşteri</option>
-        </select>
-    </div>
-    <div>
-        <label for="password">Ad:</label>
-        <input type="password" id="password" name="Password" required />
-    </div>
-    <div>
-        <label for="gender">Cinsiyet:</label>
-        <select id="gender" name="Gender" required>
-            <option value="1">Erkek</option>
-            <option value="2">Kadın</option>
-        </select>
-    </div>
-    <button type="submit">Kaydet</button>
-    <a asp-action="ManageShops" class="btn btn-secondary">Geri Git</a>
-</form>
+    <form method="post" asp-action="AddUser" class="p-4 border rounded bg-light shadow-sm">
+        <div class="mb-3">
+            <label for="firstName" class="form-label">Ad:</label>
+            <input type="text" id="firstName" name="FirstName" class="form-control" placeholder="Adınızı giriniz" required />
+        </div>
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Soyad:</label>
+            <input type="text" id="lastName" name="LastName" class="form-control" placeholder="Soyadınızı giriniz" required />
+        </div>
+        <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Telefon Numarası:</label>
+            <input type="text" id="phoneNumber" name="PhoneNumber" class="form-control" placeholder="Telefon numaranızı giriniz" required />
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">E-posta:</label>
+            <input type="email" id="email" name="Email" class="form-control" placeholder="E-posta adresinizi giriniz" required />
+        </div>
+        <div class="mb-3">
+            <label for="role" class="form-label">Rol:</label>
+            <select id="role" name="Role" class="form-select" required>
+                <option value="2">Dükkan Sahibi</option>
+                <option value="3">Müşteri</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Şifre:</label>
+            <input type="password" id="password" name="Password" class="form-control" placeholder="Şifrenizi giriniz" required />
+        </div>
+        <div class="mb-3">
+            <label for="gender" class="form-label">Cinsiyet:</label>
+            <select id="gender" name="Gender" class="form-select" required>
+                <option value="1">Erkek</option>
+                <option value="2">Kadın</option>
+            </select>
+        </div>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+            <a asp-action="ManageUsers" class="btn btn-secondary">Geri Git</a>
+        </div>
+    </form>
+</div>

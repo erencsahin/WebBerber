@@ -25,7 +25,8 @@ namespace WebBerber.Controllers
             var hashedPass=Security.HashPassword(password);
 
 
-            var user= appDbContext.Users.FirstOrDefault(x=>x.Email==email && x.Password== hashedPass);
+            var user = appDbContext.Users.FirstOrDefault(x => x.Email == email && x.Password == hashedPass);
+            var employee=appDbContext.Employees.FirstOrDefault(e=>e.Email==email && e.Password==hashedPass);
             if (user != null)
             {
                 HttpContext.Session.SetString("UserEmail", user.Email);
@@ -40,6 +41,10 @@ namespace WebBerber.Controllers
                     case Role.Customer:
                         return RedirectToAction("ListShops", "Customer");
                 }
+            }
+            if (employee!=null)
+            {
+                return RedirectToAction("Index", "Employee");
             }
 
             ViewBag.ErrorMessage = "Email veya şifre yanlış.";

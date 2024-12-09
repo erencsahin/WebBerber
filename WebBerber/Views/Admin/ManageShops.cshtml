@@ -4,30 +4,32 @@
     ViewData["Title"] = "Mağaza Yönetimi";
 }
 
-<h2>Mağaza Yönetimi</h2>
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Mağaza Yönetimi</h2>
 
-<a asp-action="AddShop">Yeni Mağaza Ekle</a>
+    <div class="d-flex justify-content-between mb-3">
+        <a asp-action="AddShop" class="btn btn-success">Yeni Mağaza Ekle</a>
+        <a asp-action="Index" class="btn btn-secondary">Geri</a>
+    </div>
 
-<table>
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Ad</th>
-            <th>Adres</th>
-            <th>İşlemler</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var shop in Model)
-        {
+    <table class="table table-bordered">
+        <thead>
             <tr>
-                <td>@shop.Id</td>
-                <td>@shop.ShopName</td>
-                <td>@shop.Address</td>
-                <td>
-                    <a asp-action="DeleteShop" asp-route-id="@shop.Id">Sil</a>
-                </td>
+                <th>Ad</th>
+                <th>Adres</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var shop in Model)
+            {
+                <tr>
+                    <td>@shop.ShopName</td>
+                    <td>@shop.Address</td>
+                    <td>
+                        <a asp-action="DeleteShop" asp-route-id="@shop.Id" class="btn btn-danger btn-sm">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

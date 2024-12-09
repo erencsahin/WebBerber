@@ -12,8 +12,8 @@ using WebBerber.Utils;
 namespace WebBerber.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241128132039_Userupdate")]
-    partial class Userupdate
+    [Migration("20241204140302_afa")]
+    partial class afa
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,20 +33,23 @@ namespace WebBerber.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
                     b.Property<int>("OperationId")
                         .HasColumnType("int");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -99,9 +102,6 @@ namespace WebBerber.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EmployeeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("OperationName")
                         .HasColumnType("int");
 
@@ -109,8 +109,6 @@ namespace WebBerber.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Operations");
                 });
@@ -159,6 +157,10 @@ namespace WebBerber.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -245,13 +247,6 @@ namespace WebBerber.Migrations
                     b.Navigation("Shop");
                 });
 
-            modelBuilder.Entity("WebBerber.Models.Operation", b =>
-                {
-                    b.HasOne("WebBerber.Models.Employee", null)
-                        .WithMany("Abilities")
-                        .HasForeignKey("EmployeeId");
-                });
-
             modelBuilder.Entity("WebBerber.Models.WorkingHour", b =>
                 {
                     b.HasOne("WebBerber.Models.Employee", "Employee")
@@ -269,8 +264,6 @@ namespace WebBerber.Migrations
 
             modelBuilder.Entity("WebBerber.Models.Employee", b =>
                 {
-                    b.Navigation("Abilities");
-
                     b.Navigation("WorkingHours");
                 });
 

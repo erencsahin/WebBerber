@@ -2,11 +2,12 @@
     ViewData["Title"] = "Kullanıcı Sil";
 }
 
-<h2>Kullanıcı Sil</h2>
+<div class="container mt-5">
+    <h2 class="mb-4 text-center text-danger">Kullanıcı Sil</h2>
+    <p class="text-center">Bu kullanıcıyı silmek istediğinize emin misiniz?</p>
 
-<p>Bu kullanıcıyı silmek istediğinize emin misiniz?</p>
-
-<form method="post" asp-action="DeleteUser">
-    <button type="submit">Evet, Sil</button>
-    <a asp-action="ManageUsers">İptal</a>
-</form>
+    <form method="post" asp-action="DeleteUser" class="text-center">
+        <button type="submit" class="btn btn-danger">Evet, Sil</button>
+        <a asp-action="ManageUsers" class="btn btn-secondary">İptal</a>
+    </form>
+</div>

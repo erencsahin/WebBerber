@@ -9,13 +9,13 @@ namespace WebBerber.Models
         public string Name { get; set; }
         public string Surname { get; set; }
 
-        [Required(ErrorMessage = "Çalışma saatlerini giriniz.")]
-        public ICollection<WorkingHour> WorkingHours { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
+        public string Password { get; set; }
 
-        public ICollection<Operation> Abilities { get; set; }
-
-
+        public ICollection<WorkingHour>? WorkingHours { get; set; } = new List<WorkingHour>();
+        public ICollection<Operation>? Operations { get; set; }= new List<Operation>();
         public int ShopId { get; set; }
-        public Shop Shop { get; set; }
+        public Shop? Shop { get; set; }
     }
 }

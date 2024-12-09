@@ -70,7 +70,15 @@ namespace WebBerber.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -252,28 +260,24 @@ namespace WebBerber.Migrations
             modelBuilder.Entity("WebBerber.Models.Operation", b =>
                 {
                     b.HasOne("WebBerber.Models.Employee", null)
-                        .WithMany("Abilities")
+                        .WithMany("Operations")
                         .HasForeignKey("EmployeeId");
                 });
 
             modelBuilder.Entity("WebBerber.Models.WorkingHour", b =>
                 {
-                    b.HasOne("WebBerber.Models.Employee", "Employee")
+                    b.HasOne("WebBerber.Models.Employee", null)
                         .WithMany("WorkingHours")
                         .HasForeignKey("EmployeeId");
 
-                    b.HasOne("WebBerber.Models.Shop", "Shop")
+                    b.HasOne("WebBerber.Models.Shop", null)
                         .WithMany("WorkingHours")
                         .HasForeignKey("ShopId");
-
-                    b.Navigation("Employee");
-
-                    b.Navigation("Shop");
                 });
 
             modelBuilder.Entity("WebBerber.Models.Employee", b =>
                 {
-                    b.Navigation("Abilities");
+                    b.Navigation("Operations");
 
                     b.Navigation("WorkingHours");
                 });

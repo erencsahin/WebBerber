@@ -1,0 +1,73 @@
+﻿@model WebBerber.Models.Employee
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Çalışan Ekle</h2>
+
+    <form method="post" asp-action="AddEmployee" class="p-4 border rounded bg-light shadow-sm">
+        <!-- Çalışan Bilgileri -->
+        <div class="mb-3">
+            <label for="name" class="form-label">Ad:</label>
+            <input type="text" id="name" name="Name" class="form-control" placeholder="Çalışanın adını giriniz" required />
+        </div>
+        <div class="mb-3">
+            <label for="surname" class="form-label">Soyad:</label>
+            <input type="text" id="surname" name="Surname" class="form-control" placeholder="Çalışanın soyadını giriniz" required />
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" name="Email" class="form-control" placeholder="Çalışanın mailini giriniz" required />
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Soyad:</label>
+            <input type="password" id="password" name="Password" class="form-control" placeholder="Çalışanın şifresini giriniz" required />
+        </div>
+
+        <!-- Mağaza Seçimi -->
+        <div class="mb-3">
+            <label for="shopId" class="form-label">Mağaza:</label>
+            <select id="shopId" name="ShopId" class="form-select" required>
+                @foreach (var shop in ViewBag.Shops)
+                {
+                    <option value="@shop.Id">@shop.ShopName</option>
+                }
+            </select>
+        </div>
+
+        <!-- Çalışma Saatleri -->
+        <h5 class="mt-4">Çalışma Saatleri</h5>
+        @for (int i = 0; i < 7; i++)
+        {
+            <div class="mb-4">
+                <label class="form-label d-flex justify-content-between">
+                    <span>@((DayOfWeek)i):</span>
+                    <input type="checkbox" id="disable-@i" class="form-check-input" onchange="toggleDay(@i)">
+                    <small>Bu günü devre dışı bırak</small>
+                </label>
+
+                <div id="day-@i" class="d-flex gap-2">
+                    <input type="time" name="workingHours[@i].StartTime" class="form-control" value="09:00" />
+                    <input type="time" name="workingHours[@i].EndTime" class="form-control" value="18:00" />
+                    <input type="hidden" name="workingHours[@i].Day" value="@((DayOfWeek)i)" />
+                </div>
+            </div>
+        }
+
+        <!-- Kaydet ve Geri Butonları -->
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+            <a asp-action="ManageEmployees" class="btn btn-secondary">Geri Git</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    function toggleDay(dayIndex) {
+        const dayDiv = document.getElementById(`day-${dayIndex}`);
+        const isDisabled = document.getElementById(`disable-${dayIndex}`).checked;
+        if (isDisabled) {
+            dayDiv.style.display = 'none';
+        } else {
+            dayDiv.style.display = 'flex';
+        }
+    }
+</script>
