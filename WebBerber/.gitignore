@@ -1,0 +1,115 @@
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific folders
+.vscode/
+.vs/
+.idea/
+
+# Build Folders
+bin/
+obj/
+Debug/
+Release/
+build/
+
+# Auto-generated files
+*.log
+*.tlog
+*.idb
+*.pdb
+*.ilk
+*.opendb
+*.aps
+*.ncb
+*.sbr
+
+# Visual Studio working files
+*.vssscc
+*.vspcc
+*.pfx
+*.p12
+*.cache
+*.ilk
+*.log
+*.vspscc
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Compiled DLL and executable files
+*.dll
+*.exe
+*.so
+*.dylib
+*.class
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Temporary files
+*.tmp
+*.bak
+*.old
+*.swp
+*.swo
+
+# Mac-specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node.js dependencies (if you use Node.js in your project)
+node_modules/
+npm-debug.log*
+
+# JetBrains Rider specific files
+.idea/
+*.sln.iml
+
+# ASP.NET temporary files
+**/App_Data/**
+
+# Environment Variables
+.env
+.env.*
+
+# Recycle Bin used by Visual Studio
+$RECYCLE.BIN/
+
+# Local history files (if you use JetBrains Rider)
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries/
+.idea/libraries/
+
+# Azure DevOps
+.vs
+.vspscc
+
+# Database files
+*.mdf
+*.ldf
+*.sdf
+
+# Test Results
+*.trx
+*.testsettings
+
+# Visual Studio Code
+.history/
+.settings/
+*.code-workspace
+
+# Azure App Service settings
+local.settings.json
