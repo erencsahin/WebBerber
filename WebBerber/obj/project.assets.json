@@ -4805,19 +4805,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\msi-nb\\.nuget\\packages\\": {}
+    "C:\\Users\\kafta\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\WebBerber.csproj",
+      "projectUniqueName": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\WebBerber.csproj",
       "projectName": "WebBerber",
-      "projectPath": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\WebBerber.csproj",
-      "packagesPath": "C:\\Users\\msi-nb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\obj\\",
+      "projectPath": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\WebBerber.csproj",
+      "packagesPath": "C:\\Users\\kafta\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\msi-nb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kafta\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4887,7 +4887,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
