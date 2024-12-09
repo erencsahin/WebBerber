@@ -13,6 +13,8 @@
 # Build Folders
 bin/
 obj/
+obj
+obj/Debug
 Debug/
 Release/
 build/
