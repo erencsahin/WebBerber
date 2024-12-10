@@ -10,7 +10,7 @@
     <div>
         <label for="employee">Çalışan:</label>
         <select id="employee" name="EmployeeId" required>
-            @foreach (var employee in ViewBag.Employee)
+            @foreach (var employee in ViewBag.Employees)
             {
                 <option value="@employee.Id">@employee.Name</option>
             }
@@ -21,7 +21,7 @@
         <select id="operation" name="OperationId" required>
             @foreach (var operation in ViewBag.Operations)
             {
-                <option value="@operation.Id">@operation.Name</option>
+                <option value="@operation.Id">@operation.OperationName</option>
             }
         </select>
     </div>
