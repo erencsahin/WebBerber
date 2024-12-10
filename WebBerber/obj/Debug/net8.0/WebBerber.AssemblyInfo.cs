@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebBerber")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c40434df8c9b7e271a73ee75472e6936364360e5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8a83564ec91c10b1990c8187a269dcf35600baee")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebBerber")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebBerber")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
