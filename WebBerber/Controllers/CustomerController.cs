@@ -34,11 +34,12 @@ namespace WebBerber.Controllers
 
         public IActionResult BookAppointment(int shopId)
         {
-            ViewBag.Employees=appDbContext.Employees.Where(e=>e.ShopId == shopId).ToList();
-            ViewBag.Operations=appDbContext.Operations.ToList();
-            ViewBag.ShopId=shopId;
+            ViewBag.Employees = appDbContext.Employees.Where(e => e.ShopId == shopId).ToList();
+            ViewBag.Operations = appDbContext.Operations.ToList();
+            ViewBag.ShopId = shopId;
             return View();
         }
+
 
         [HttpPost]
         public IActionResult BookAppointment(Appointment model,int shopId)
