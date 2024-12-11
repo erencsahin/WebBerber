@@ -14,7 +14,7 @@ namespace WebBerber.Models
         public string Password { get; set; }
 
         public ICollection<WorkingHour>? WorkingHours { get; set; } = new List<WorkingHour>();
-        public ICollection<Operation>? Operations { get; set; }= new List<Operation>();
+        public ICollection<EmployeeOperation>? EmployeeOperations { get; set; }
         public int ShopId { get; set; }
         public Shop? Shop { get; set; }
     }

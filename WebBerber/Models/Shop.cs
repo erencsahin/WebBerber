@@ -10,10 +10,6 @@ namespace WebBerber.Models
         [Required(ErrorMessage ="Dükkan ismi zorunludur.")]
         public string ShopName { get; set; }
 
-        [Required(ErrorMessage ="Çalışan sayınızı giriniz.")]
-        [Range(1, int.MaxValue, ErrorMessage = "Çalışan sayısı en az 1 olmalıdır.")]
-        public int Employees { get; set; }
-
 
         [Required(ErrorMessage ="Dükkanın adresini giriniz.")]
         public string Address { get; set; }

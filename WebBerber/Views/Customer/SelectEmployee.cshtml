@@ -1,0 +1,16 @@
+﻿@model IEnumerable<WebBerber.Models.Employee>
+
+
+<h2>Çalışan Seçimi</h2>
+<form method="get" action="/Appointment/CheckAvailability">
+    <label for="employee">Çalışan:</label>
+    <select id="employee" name="employeeId" required>
+        @foreach (var employee in Model)
+        {
+            <option value="@employee.Id">@employee.Name</option>
+        }
+    </select>
+    <input type="hidden" name="shopId" value="@ViewBag.ShopId" />
+    <input type="hidden" name="operationId" value="@ViewBag.OperationId" />
+    <button type="submit">Devam</button>
+</form>

@@ -1,0 +1,16 @@
+﻿@model IEnumerable<DateTime>
+
+
+<h2>Uygun Saatler</h2>
+<form method="post" action="/Appointment/BookAppointment">
+    <label for="startTime">Başlangıç Saati:</label>
+    <select id="startTime" name="startTime" required>
+        @foreach (var time in Model)
+        {
+            <option value="@time.ToString("yyyy-MM-ddTHH:mm")">@time.ToString("HH:mm")</option>
+        }
+    </select>
+    <input type="hidden" name="employeeId" value="@ViewBag.EmployeeId" />
+    <input type="hidden" name="operationId" value="@ViewBag.OperationId" />
+    <button type="submit">Randevu Al</button>
+</form>

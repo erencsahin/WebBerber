@@ -8,8 +8,10 @@ namespace WebBerber.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage ="İşlemin adını giriniz.")]
-        public int OperationName { get; set; }
+        public string OperationName { get; set; }
         public int Price { get; set; }
         public int Duration { get; set; }
+
+        public ICollection<EmployeeOperation> EmployeeOperations { get; set; }
     }
 }

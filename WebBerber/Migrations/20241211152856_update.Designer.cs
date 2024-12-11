@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebBerber.Utils;
 
@@ -11,9 +12,11 @@ using WebBerber.Utils;
 namespace WebBerber.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241211152856_update")]
+    partial class update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,21 +99,6 @@ namespace WebBerber.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("WebBerber.Models.EmployeeOperation", b =>
-                {
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OperationId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EmployeeId", "OperationId");
-
-                    b.HasIndex("OperationId");
-
-                    b.ToTable("EmployeeOperations");
-                });
-
             modelBuilder.Entity("WebBerber.Models.Operation", b =>
                 {
                     b.Property<int>("Id")
@@ -122,14 +110,18 @@ namespace WebBerber.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<string>("OperationName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OperationName")
+                        .HasColumnType("int");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Operations");
                 });
@@ -260,23 +252,11 @@ namespace WebBerber.Migrations
                     b.Navigation("Shop");
                 });
 
-            modelBuilder.Entity("WebBerber.Models.EmployeeOperation", b =>
+            modelBuilder.Entity("WebBerber.Models.Operation", b =>
                 {
-                    b.HasOne("WebBerber.Models.Employee", "Employee")
-                        .WithMany("EmployeeOperations")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebBerber.Models.Operation", "Operation")
-                        .WithMany("EmployeeOperations")
-                        .HasForeignKey("OperationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-
-                    b.Navigation("Operation");
+                    b.HasOne("WebBerber.Models.Employee", null)
+                        .WithMany("Operations")
+                        .HasForeignKey("EmployeeId");
                 });
 
             modelBuilder.Entity("WebBerber.Models.WorkingHour", b =>
@@ -288,14 +268,9 @@ namespace WebBerber.Migrations
 
             modelBuilder.Entity("WebBerber.Models.Employee", b =>
                 {
-                    b.Navigation("EmployeeOperations");
+                    b.Navigation("Operations");
 
                     b.Navigation("WorkingHours");
-                });
-
-            modelBuilder.Entity("WebBerber.Models.Operation", b =>
-                {
-                    b.Navigation("EmployeeOperations");
                 });
 
             modelBuilder.Entity("WebBerber.Models.Shop", b =>

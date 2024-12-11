@@ -1,0 +1,15 @@
+﻿@model IEnumerable<WebBerber.Models.Operation>
+
+<h2>İşlem Seçimi</h2>
+<form method="get" action="/Customer/SelectEmployee">
+    <label for="operation">İşlem:</label>
+    <select id="operation" name="operationId" required>
+        @foreach (var operation in Model)
+        {
+            <option value="@operation.Id">@operation.OperationName</option>
+        }
+    </select>
+    <input type="hidden" name="shopId" value="@ViewBag.ShopId" />
+    <input type="hidden" name="operationId" value="@ViewBag.OperationId" />
+    <button type="submit">Devam</button>
+</form>

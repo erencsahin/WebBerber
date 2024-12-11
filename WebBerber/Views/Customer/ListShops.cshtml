@@ -13,12 +13,12 @@
                     </div>
 
                     <!-- Temsili Resim -->
-                    <img src="C:\Users\msi-nb\Desktop\kayahair.jpg" class="card-img-top" alt="Mağaza Fotoğrafı" />
+                    <img src="/images/kayahair.jpg" class="card-img-top" alt="Mağaza Fotoğrafı" />
 
                     <!-- Mağaza Detayları ve Randevu -->
                     <div class="card-body text-center">
                         <p class="card-text text-muted">@shop.Address</p>
-                        <a asp-action="BookAppointment" asp-route-id="@shop.Id" class="btn btn-primary">
+                        <a asp-action="SelectOperation" asp-route-shopId="@shop.Id" class="btn btn-primary">
                             Randevu Almak için Tıklayınız
                         </a>
                     </div>
