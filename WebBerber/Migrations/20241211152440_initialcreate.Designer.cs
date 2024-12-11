@@ -12,8 +12,8 @@ using WebBerber.Utils;
 namespace WebBerber.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241209111421_fixemployee")]
-    partial class fixemployee
+    [Migration("20241211152440_initialcreate")]
+    partial class initialcreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -207,17 +207,12 @@ namespace WebBerber.Migrations
                     b.Property<TimeSpan>("EndTime")
                         .HasColumnType("time");
 
-                    b.Property<int?>("ShopId")
-                        .HasColumnType("int");
-
                     b.Property<TimeSpan>("StartTime")
                         .HasColumnType("time");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
-
-                    b.HasIndex("ShopId");
 
                     b.ToTable("WorkHours");
                 });
@@ -272,10 +267,6 @@ namespace WebBerber.Migrations
                     b.HasOne("WebBerber.Models.Employee", null)
                         .WithMany("WorkingHours")
                         .HasForeignKey("EmployeeId");
-
-                    b.HasOne("WebBerber.Models.Shop", null)
-                        .WithMany("WorkingHours")
-                        .HasForeignKey("ShopId");
                 });
 
             modelBuilder.Entity("WebBerber.Models.Employee", b =>
@@ -288,8 +279,6 @@ namespace WebBerber.Migrations
             modelBuilder.Entity("WebBerber.Models.Shop", b =>
                 {
                     b.Navigation("EmployeesList");
-
-                    b.Navigation("WorkingHours");
                 });
 #pragma warning restore 612, 618
         }

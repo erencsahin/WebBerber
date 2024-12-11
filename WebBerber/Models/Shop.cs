@@ -19,6 +19,5 @@ namespace WebBerber.Models
         public string Address { get; set; }
 
         public ICollection<Employee>? EmployeesList { get; set; }
-        public ICollection<WorkingHour>? WorkingHours { get; set; }
     }
 }

@@ -97,22 +97,6 @@ namespace WebBerber.Controllers
             return View(shop);
         }
 
-
-        public IActionResult DeleteShop(int id)
-        {
-            var shop = dbContext.Shops
-                .Include(s=>s.WorkingHours)
-                .FirstOrDefault(s=>s.Id== id);
-
-            if (shop !=null)
-            {
-                dbContext.WorkHours.RemoveRange(shop.WorkingHours);
-                dbContext.Shops.Remove(shop);
-                dbContext.SaveChanges();
-            }
-            return RedirectToAction("ManageShops");
-        }
-
         
         public IActionResult AddEmployee()
         {

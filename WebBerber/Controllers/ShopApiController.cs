@@ -20,7 +20,6 @@ namespace WebBerber.Controllers
             {
                 x.ShopName,
                 x.Address,
-                x.WorkingHours
             }).ToList();
 
             return Ok(shops);
@@ -31,7 +30,7 @@ namespace WebBerber.Controllers
         public IActionResult GetShopById(int shopId) 
         {
             var shop=appDbContext.Shops.Where(x=>x.Id == shopId).
-                Select(x => new { x.ShopName, x.Address, x.WorkingHours }).FirstOrDefault();
+                Select(x => new { x.ShopName, x.Address}).FirstOrDefault();
 
             if (shop != null)
             {
