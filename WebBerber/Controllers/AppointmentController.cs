@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 using WebBerber.Models;
 using WebBerber.Utils;
 
@@ -112,24 +113,30 @@ namespace WebBerber.Controllers
 
             try
             {
-                // Mail gönderim işlemi
-                var smtpClient = new System.Net.Mail.SmtpClient("smtp.example.com")
+                var smtpClient = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587)
                 {
-                    Port = 587,
-                    Credentials = new System.Net.NetworkCredential("your_email@example.com", "your_password"),
-                    EnableSsl = true,
+                    Credentials = new System.Net.NetworkCredential("erencsahin34@gmail.com", "sifre burda: whatsapp->kendim->13aralık->22.00"),
+                    EnableSsl = true
                 };
 
-                smtpClient.Send("your_email@example.com", email, subject, body);
+                // E-posta gönderimi
+                string fromAddress = "erencsahin34@gmail.com"; 
+                string toAddress = email;
+                string mailSubject = subject;
+                string mailBody = body;
 
+                smtpClient.Send(fromAddress, toAddress, mailSubject, mailBody);
+                Console.WriteLine("E-posta gönderildi.");
                 TempData["SuccessMessage"] = "Randevu özeti e-posta ile gönderildi.";
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = $"E-posta gönderimi başarısız: {ex.Message}";
+                Console.WriteLine($"E-posta gönderimi hatası: {ex.Message}");
             }
 
-            return RedirectToAction("ListShops");
+
+            return RedirectToAction("ListShops","Customer");
         }
 
 

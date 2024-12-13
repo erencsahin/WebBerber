@@ -23,7 +23,6 @@ namespace WebBerber.Controllers
         public IActionResult ListShops()
         {
             var shops = appDbContext.Shops.ToList();
-            Console.WriteLine("Shops Count: " + shops.Count); // Mağaza sayısını logla
             return View(shops);
         }
 
