@@ -1,24 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebBerber.Models;
 using WebBerber.Utils;
 
 namespace WebBerber.Controllers
 {
-    public class ShopOwnerController : Controller
+    public class EmployeeController : Controller
     {
-
         private readonly AppDbContext dbContext;
-
-        public ShopOwnerController(AppDbContext context)
+        public EmployeeController(AppDbContext appDbContext)
         {
-            dbContext = context;
+            dbContext = appDbContext;
         }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
 
         public IActionResult PendingAppointments()
         {
@@ -41,14 +32,5 @@ namespace WebBerber.Controllers
 
             return RedirectToAction("PendingAppointments");
         }
-
-        public IActionResult AddOperationToEmployee(int employeeId,int operationId)
-        {
-            
-            
-            return View();
-        }
-
-
     }
 }

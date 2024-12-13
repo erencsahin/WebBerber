@@ -40,8 +40,6 @@ namespace WebBerber.Controllers
         }
 
 
-
-
         public IActionResult SelectEmployee(int shopId, int operationId)
         {
             var employees = appDbContext.Employees
@@ -53,53 +51,5 @@ namespace WebBerber.Controllers
             ViewBag.OperationId = operationId;
             return View(employees);
         }
-
-
-
-        public IActionResult CheckAvailability(int employeeId, int operationId)
-        {
-            var operationDuration = appDbContext.Operations
-                .Where(op => op.Id == operationId)
-                .Select(op => op.Duration)
-                .FirstOrDefault();
-
-            var appointments = appDbContext.Appointments
-                .Where(a => a.EmployeeId == employeeId)
-                .ToList();
-
-            // Uygun saatleri hesaplamak
-            var availability = CalculateAvailability(appointments, operationDuration);
-
-            ViewBag.EmployeeId = employeeId;
-            ViewBag.OperationId = operationId;
-            return View(availability);
-        }
-
-        private List<DateTime> CalculateAvailability(List<Appointment> appointments, int duration)
-        {
-            // Burada mevcut randevuları kontrol ederek uygun saatleri hesaplayabilirsiniz.
-            // Örnek olarak sabah 9'dan akşam 5'e kadar olan saatleri hesaplıyoruz:
-            List<DateTime> availableTimes = new List<DateTime>();
-            DateTime start = DateTime.Today.AddHours(9);
-            DateTime end = DateTime.Today.AddHours(17);
-
-            while (start < end)
-            {
-                bool isConflict = appointments.Any(a =>
-                    a.StartTime < start.AddMinutes(duration) &&
-                    a.StartTime.AddMinutes(a.Duration) > start);
-
-                if (!isConflict)
-                {
-                    availableTimes.Add(start);
-                }
-
-                start = start.AddMinutes(30); // Her yarım saatte bir kontrol
-            }
-
-            return availableTimes;
-        }
-
-
     }
 }

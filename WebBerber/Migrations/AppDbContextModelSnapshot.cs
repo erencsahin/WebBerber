@@ -59,7 +59,7 @@ namespace WebBerber.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Appointments");
+                    b.ToTable("Appointments", (string)null);
                 });
 
             modelBuilder.Entity("WebBerber.Models.Employee", b =>
@@ -93,7 +93,7 @@ namespace WebBerber.Migrations
 
                     b.HasIndex("ShopId");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("WebBerber.Models.EmployeeOperation", b =>
@@ -108,7 +108,7 @@ namespace WebBerber.Migrations
 
                     b.HasIndex("OperationId");
 
-                    b.ToTable("EmployeeOperations");
+                    b.ToTable("EmployeeOperations", (string)null);
                 });
 
             modelBuilder.Entity("WebBerber.Models.Operation", b =>
@@ -131,7 +131,7 @@ namespace WebBerber.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Operations");
+                    b.ToTable("Operations", (string)null);
                 });
 
             modelBuilder.Entity("WebBerber.Models.Shop", b =>
@@ -152,7 +152,7 @@ namespace WebBerber.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Shops");
+                    b.ToTable("Shops", (string)null);
                 });
 
             modelBuilder.Entity("WebBerber.Models.User", b =>
@@ -192,7 +192,7 @@ namespace WebBerber.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("WebBerber.Models.WorkingHour", b =>
@@ -219,7 +219,7 @@ namespace WebBerber.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("WorkHours");
+                    b.ToTable("WorkHours", (string)null);
                 });
 
             modelBuilder.Entity("WebBerber.Models.Appointment", b =>

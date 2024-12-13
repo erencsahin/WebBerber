@@ -1,0 +1,30 @@
+﻿@model WebBerber.Models.Appointment
+
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Randevu Özeti</h3>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">Randevu Detayları</h5>
+            <p><strong>Mağaza:</strong> @ViewBag.ShopName</p>
+            <p><strong>Çalışan:</strong> @ViewBag.EmployeeName</p>
+            <p><strong>İşlem:</strong> @ViewBag.OperationName</p>
+            <p><strong>Tarih ve Saat:</strong> @Model.StartTime.ToString("dd MMM yyyy HH:mm")</p>
+            <p><strong>Fiyat:</strong> @ViewBag.OperationPrice ₺</p>
+        </div>
+    </div>
+
+    <form method="post" action="/Appointment/SendEmail">
+        <div class="mt-4">
+            <label for="email" class="form-label">E-posta Adresi:</label>
+            <input type="email" name="Email" id="email" class="form-control" placeholder="E-posta adresinizi giriniz" required />
+        </div>
+
+        <!-- Randevu detaylarını gizli alanlarla gönderiyoruz -->
+        <input type="hidden" name="EmployeeId" value="@Model.EmployeeId" />
+        <input type="hidden" name="OperationId" value="@Model.OperationId" />
+        <input type="hidden" name="StartTime" value="@Model.StartTime.ToString("yyyy-MM-ddTHH:mm")" />
+
+        <button type="submit" class="btn btn-primary mt-3">E-posta Onayı Gönder</button>
+    </form>
+</div>

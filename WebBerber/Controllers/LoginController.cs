@@ -36,15 +36,13 @@ namespace WebBerber.Controllers
                 {
                     case Role.Admin:
                         return RedirectToAction("Index","Admin");
-                    case Role.ShopOwner:
-                        return RedirectToAction("PendingAppointments", "ShopOwner");
                     case Role.Customer:
                         return RedirectToAction("ListShops", "Customer");
                 }
             }
             if (employee!=null)
             {
-                return RedirectToAction("Index", "Employee");
+                return RedirectToAction("PendingAppointments", "Employee");
             }
 
             ViewBag.ErrorMessage = "Email veya şifre yanlış.";

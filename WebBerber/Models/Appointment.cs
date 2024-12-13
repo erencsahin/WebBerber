@@ -13,7 +13,6 @@ namespace WebBerber.Models
         public int UserId { get; set; }
         public User User { get; set; }
 
-
         [Required]
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }

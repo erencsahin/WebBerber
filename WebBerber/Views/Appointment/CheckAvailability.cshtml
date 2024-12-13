@@ -1,0 +1,44 @@
+﻿@model IEnumerable<DateTime>
+
+<div class="container mt-5">
+    <!-- Tarih Seçimi -->
+    <h3 class="mb-4">Tarih Seçimi</h3>
+    <div class="btn-group" role="group">
+        @for (int i = 0; i < 7; i++) // Bir haftalık tarih gösterimi
+        {
+            var date = DateTime.Today.AddDays(i);
+            <button type="button" class="btn @(i == 0 ? "btn-primary" : "btn-light")">
+                @date.ToString("dd MMM ddd")
+            </button>
+        }
+    </div>
+
+    <!-- Saat Seçimi -->
+    <h4 class="mt-5 mb-3">Saat Seçimi</h4>
+    @if (Model != null && Model.Any())
+    {
+        <form method="post" action="/Appointment/Summary">
+            <div class="row g-3">
+                @foreach (var time in Model)
+                {
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-success w-100" name="StartTime" value="@time.ToString("yyyy-MM-ddTHH:mm")">
+                            @time.ToString("HH:mm")
+                        </button>
+                    </div>
+                }
+            </div>
+
+            <!-- Gizli inputlar ile diğer bilgileri gönder -->
+            <input type="hidden" name="shopId" value="@ViewBag.ShopId" />
+            <input type="hidden" name="operationId" value="@ViewBag.OperationId" />
+            <input type="hidden" name="employeeId" value="@ViewBag.EmployeeId" />
+        </form>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center">
+            Uygun saat bulunmamaktadır.
+        </div>
+    }
+</div>
