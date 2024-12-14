@@ -1,5 +1,35 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<WebBerber.Models.Appointment>
+
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Bekleyen Randevu Talepleri</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>İşlem</th>
+                <th>Tarih ve Saat</th>
+                <th>Fiyat</th>
+                <th>Süre</th>
+                <th>Durum</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var appointment in Model)
+            {
+                <tr>
+                    <td>@appointment.Operation.OperationName</td>
+                    <td>@appointment.StartTime.ToString("dd MMM yyyy HH:mm")</td>
+                    <td>@appointment.Price ₺</td>
+                    <td>@appointment.Duration dk</td>
+                    <td>
+                        <form method="post" action="/Appointments/ApproveOrReject">
+                            <input type="hidden" name="appointmentId" value="@appointment.Id" />
+                            <button type="submit" name="action" value="approve" class="btn btn-success">Onayla</button>
+                            <button type="submit" name="action" value="reject" class="btn btn-danger">Reddet</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

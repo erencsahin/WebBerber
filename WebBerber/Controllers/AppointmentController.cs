@@ -75,7 +75,6 @@ namespace WebBerber.Controllers
             ViewBag.OperationName = operation?.OperationName;
             ViewBag.OperationPrice = operation?.Price;
 
-            // Randevu nesnesini View'e gönder
             var appointment = new Appointment
             {
                 EmployeeId = employeeId,
@@ -83,21 +82,18 @@ namespace WebBerber.Controllers
                 StartTime = startTime
             };
 
-            return View(appointment); // Summary.cshtml dosyasına gönder
+            return View(appointment);
         }
 
         [HttpPost]
         public IActionResult SendEmail(string email, int employeeId, int operationId, DateTime startTime)
         {
-            // Çalışanı ve bağlı olduğu mağazayı getir
             var employee = appDbContext.Employees
-                .Include(e => e.Shop) // Çalışanın mağaza bilgilerini de dahil et
+                .Include(e => e.Shop)
                 .FirstOrDefault(e => e.Id == employeeId);
 
-            // İşlem bilgilerini getir
             var operation = appDbContext.Operations.FirstOrDefault(o => o.Id == operationId);
 
-            // E-posta içeriğini oluştur
             string subject = "Randevu Onayı";
             string body = $@"
         Merhaba,
@@ -107,6 +103,7 @@ namespace WebBerber.Controllers
         - İşlem: {operation?.OperationName}
         - Tarih ve Saat: {startTime:dd MMM yyyy HH:mm}
         - Fiyat: {operation?.Price} ₺
+        - Adres: {employee?.Shop?.Address}
 
         İyi günler dileriz.
     ";
@@ -115,7 +112,7 @@ namespace WebBerber.Controllers
             {
                 var smtpClient = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587)
                 {
-                    Credentials = new System.Net.NetworkCredential("erencsahin34@gmail.com", "sifre burda: whatsapp->kendim->13aralık->22.00"),
+                    Credentials = new System.Net.NetworkCredential("erencsahin34@gmail.com", "jmef uvro bxgi wrjn"),
                     EnableSsl = true
                 };
 
@@ -126,20 +123,33 @@ namespace WebBerber.Controllers
                 string mailBody = body;
 
                 smtpClient.Send(fromAddress, toAddress, mailSubject, mailBody);
+                
+
+                //var operation = appDbContext.Operations.FirstOrDefault(o => o.Id == operationId);
+                var appointment = new Appointment
+                {
+                    EmployeeId = employeeId,
+                    OperationId = operationId,
+                    StartTime = startTime,
+                    Duration = operation?.Duration ?? 0,
+                    Price = operation?.Price ?? 0,
+                    IsApproved = false
+                };
+
+                appDbContext.Appointments.Add(appointment);
+                Console.WriteLine("**************************************DBYE KAYDEDİLDİ**************************************");
+                appDbContext.SaveChanges();
+
                 Console.WriteLine("E-posta gönderildi.");
-                TempData["SuccessMessage"] = "Randevu özeti e-posta ile gönderildi.";
+                TempData["SuccessMessage"] = "Randevu isteği başarıyla oluşturuldu ve e-posta gönderildi.";
+
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = $"E-posta gönderimi başarısız: {ex.Message}";
                 Console.WriteLine($"E-posta gönderimi hatası: {ex.Message}");
             }
-
-
             return RedirectToAction("ListShops","Customer");
         }
-
-
-
     }
 }

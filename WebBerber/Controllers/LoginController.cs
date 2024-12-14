@@ -42,6 +42,9 @@ namespace WebBerber.Controllers
             }
             if (employee!=null)
             {
+                HttpContext.Session.SetString("EmployeeEmail", employee.Email);
+                HttpContext.Session.SetInt32("EmployeeId", employee.Id);
+
                 return RedirectToAction("PendingAppointments", "Employee");
             }
 
