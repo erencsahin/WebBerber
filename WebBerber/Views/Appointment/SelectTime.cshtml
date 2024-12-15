@@ -1,18 +1,22 @@
 ﻿@model IEnumerable<DateTime>
 
 <div class="container mt-5">
+    <!-- Tarih Seçimi -->
     <h3 class="mb-4">Tarih Seçimi</h3>
     <form method="get" action="/Appointment/SelectTime">
         <div class="btn-group mb-4" role="group">
-            @for (int i = 0; i < 7; i++)
+            @for (int i = 0; i < 7; i++) 
             {
                 var date = DateTime.Today.AddDays(i);
+                bool isSelected = ViewBag.SelectedDate == date.ToString("yyyy-MM-dd");
+
                 <button type="submit" name="selectedDate" value="@date.ToString("yyyy-MM-dd")"
-                        class="btn @(date == ViewBag.SelectedDate ? "btn-primary" : "btn-light")">
+                        class="btn @(isSelected ? "btn-primary" : "btn-light")">
                     @date.ToString("dd MMM ddd")
                 </button>
             }
         </div>
+
         <input type="hidden" name="shopId" value="@ViewBag.ShopId" />
         <input type="hidden" name="operationId" value="@ViewBag.OperationId" />
         <input type="hidden" name="employeeId" value="@ViewBag.EmployeeId" />
@@ -45,7 +49,7 @@
     else
     {
         <div class="alert alert-warning text-center">
-            Uygun saat bulunmamaktadır.
+            Seçilen tarihte uygun saat bulunmamaktadır.
         </div>
     }
 </div>

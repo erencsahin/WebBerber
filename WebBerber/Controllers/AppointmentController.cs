@@ -26,7 +26,7 @@ namespace WebBerber.Controllers
                 .Where(a => a.EmployeeId == employeeId)
                 .ToList();
 
-            var availability = CalculateAvailability(appointments, operationDuration);
+            var availability = GetAvailableTimesForDay(employeeId, DateTime.Today, operationDuration);
 
             ViewBag.ShopId = shopId;
             ViewBag.OperationId = operationId;
@@ -34,27 +34,48 @@ namespace WebBerber.Controllers
             return View(availability);
         }
 
-        private List<DateTime> CalculateAvailability(List<Appointment> appointments, int duration)
+        private IEnumerable<DateTime> GetAvailableTimesForDay(int employeeId, DateTime day, int duration)
         {
-            var availableTimes = new List<DateTime>();
-            DateTime start = DateTime.Today.AddHours(9);
-            DateTime end = DateTime.Today.AddHours(17);
+            var startHour = day.Date.AddHours(9);
+            var endHour = day.Date.AddHours(19);
+            var allTimes = new List<DateTime>();
 
-            while (start < end)
+            while (startHour < endHour)
             {
-                bool isConflict = appointments.Any(a =>
-                    a.StartTime < start.AddMinutes(duration) &&
-                    a.StartTime.AddMinutes(a.Duration) > start);
-
-                if (!isConflict)
-                {
-                    availableTimes.Add(start);
-                }
-
-                start = start.AddMinutes(30);
+                allTimes.Add(startHour);
+                startHour = startHour.AddMinutes(60);
             }
 
-            return availableTimes;
+            var existingAppointments = appDbContext.Appointments
+                .Where(a => a.EmployeeId == employeeId && a.StartTime.Date == day.Date)
+                .Select(a => a.StartTime)
+                .ToList();
+
+            return allTimes.Where(t => !existingAppointments.Any(a => t < a.AddMinutes(duration) && a < t.AddMinutes(duration)));
+        }
+
+        public IActionResult SelectTime(string selectedDate, int shopId, int operationId, int employeeId)
+        {
+            if (string.IsNullOrEmpty(selectedDate))
+            {
+                selectedDate = DateTime.Today.ToString("yyyy-MM-dd");
+            }
+
+            DateTime selectedDay = DateTime.Parse(selectedDate);
+
+            int operationDuration = appDbContext.Operations
+                .Where(o => o.Id == operationId)
+                .Select(o => o.Duration)
+                .FirstOrDefault();
+
+            var availableTimes = GetAvailableTimesForDay(employeeId, selectedDay, operationDuration);
+
+            ViewBag.ShopId = shopId;
+            ViewBag.OperationId = operationId;
+            ViewBag.EmployeeId = employeeId;
+            ViewBag.SelectedDate = selectedDate;
+
+            return View("SelectTime", availableTimes);
         }
 
         public IActionResult Summary(int employeeId, int operationId, DateTime startTime)
@@ -89,19 +110,27 @@ namespace WebBerber.Controllers
 
             var operation = appDbContext.Operations.FirstOrDefault(o => o.Id == operationId);
 
+            var appointment = new Appointment
+            {
+                EmployeeId = employeeId,
+                OperationId = operationId,
+                StartTime = startTime,
+                Duration = operation?.Duration ?? 0,
+                Price = operation?.Price ?? 0,
+                IsApproved = false
+            };
+
             string subject = "Randevu Onayı";
             string body = $@"
-        Merhaba,
-        Randevu detaylarınız aşağıdadır:
-        - Mağaza: {employee?.Shop?.ShopName}
-        - Çalışan: {employee?.Name}
-        - İşlem: {operation?.OperationName}
-        - Tarih ve Saat: {startTime:dd MMM yyyy HH:mm}
-        - Fiyat: {operation?.Price} ₺
-        - Adres: {employee?.Shop?.Address}
-
-        İyi günler dileriz.
-    ";
+                Merhaba,
+                Randevu detaylarınız aşağıdadır:
+                - Mağaza: {employee?.Shop?.ShopName}
+                - Çalışan: {employee?.Name}
+                - İşlem: {operation?.OperationName}
+                - Tarih ve Saat: {startTime:dd MMM yyyy HH:mm}
+                - Fiyat: {operation?.Price} ₺
+                - Adres: {employee?.Shop?.Address}
+                İyi günler dileriz.";
 
             try
             {
@@ -111,41 +140,20 @@ namespace WebBerber.Controllers
                     EnableSsl = true
                 };
 
-                string fromAddress = "erencsahin34@gmail.com"; 
-                string toAddress = email;
-                string mailSubject = subject;
-                string mailBody = body;
-
-                smtpClient.Send(fromAddress, toAddress, mailSubject, mailBody);
-                
-
-                //var operation = appDbContext.Operations.FirstOrDefault(o => o.Id == operationId);
-                var appointment = new Appointment
-                {
-                    EmployeeId = employeeId,
-                    OperationId = operationId,
-                    StartTime = startTime,
-                    Duration = operation?.Duration ?? 0,
-                    Price = operation?.Price ?? 0,
-                    IsApproved = false
-                };
+                smtpClient.Send("erencsahin34@gmail.com", email, subject, body);
 
                 appDbContext.Appointments.Add(appointment);
-                Console.WriteLine("**************************************DBYE KAYDEDİLDİ**************************************");
                 appDbContext.SaveChanges();
 
-                Console.WriteLine("E-posta gönderildi.");
                 TempData["SuccessMessage"] = "Randevu isteği başarıyla oluşturuldu ve e-posta gönderildi.";
-
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = $"E-posta gönderimi başarısız: {ex.Message}";
-                Console.WriteLine($"E-posta gönderimi hatası: {ex.Message}");
             }
-            return RedirectToAction("ListShops","Customer");
-        }
 
+            return RedirectToAction("ListShops", "Customer");
+        }
 
         [HttpPost]
         public IActionResult ApproveOrReject(int appointmentId, string action)
@@ -155,13 +163,13 @@ namespace WebBerber.Controllers
             if (appointment == null)
             {
                 TempData["ErrorMessage"] = "Randevu bulunamadı.";
-                return RedirectToAction("PendingAppointments");
+                return RedirectToAction("PendingAppointments", "Employee");
             }
 
             if (action == "approve")
             {
                 appointment.IsApproved = true;
-                TempData["SuccessMessage"] = "Randevu onaylandı.";
+                TempData["SuccessMessage"] = "Randevu başarıyla onaylandı.";
             }
             else if (action == "reject")
             {
@@ -170,7 +178,7 @@ namespace WebBerber.Controllers
             }
 
             appDbContext.SaveChanges();
-            return RedirectToAction("PendingAppointments","Employee");
+            return RedirectToAction("PendingAppointments", "Employee");
         }
     }
 }
