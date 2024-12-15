@@ -1,12 +1,13 @@
-html {
-    font-size: 14px;
-}
-
 @media (min-width: 768px) {
     html {
         font-size: 16px;
     }
+
+    .navbar-logo {
+        height: 30px; /* Küçük ekranlarda daha küçük logo */
+    }
 }
+
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
@@ -19,140 +20,279 @@ html {
 
 body {
     margin-bottom: 60px;
+    font-family: 'Poppins', sans-serif;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
 
+h1, h5 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*-------------NAVBAR START-------------*/
 #mainNav {
-    min-height: 3.5rem;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1); /* Derinlemesine gölge */
+    transition: box-shadow 0.3s ease; /* Gölgenin geçiþ animasyonu */
+}
+
+    #mainNav:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Hover'da daha belirgin gölge */
+    }
+
+/* Navbar linkleri */
+.navbar-nav .nav-link {
+    transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #ffffff; /* Hoverda beyaz yazý */
+        background-color: #007bff; /* Arka plan mavi */
+        transform: scale(1.1); /* Hafif büyüme efekti */
+    }
+
+
+    /* Aktif sayfa linki */
+    .navbar-nav .nav-link.active {
+        color: #fff;
+        font-weight: bold;
+        border-bottom: 3px solid #007bff; /* Daha belirgin alt çizgi */
+    }
+
+
+/* Dropdown menü tasarýmý */
+.dropdown-menu {
+    opacity: 0; /* Ýlk baþta saydam */
     background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    transition: opacity 0.3s ease-in-out; /* Dropdown açýlýnca opaklýk geçiþi */
 }
 
-    #mainNav .navbar-toggler {
-        font-size: 80%;
-        padding: 0.75rem;
-        color: #64a19d;
-        border: 1px solid #64a19d;
+    .dropdown-menu.show {
+        opacity: 1; /* Görünür hale geldiðinde opaklýk */
     }
 
-        #mainNav .navbar-toggler:focus {
-            outline: none;
-        }
 
-    #mainNav .navbar-brand {
-        color: #000;
-        font-weight: 700;
-        padding: 0.9rem 0;
-    }
-
-    #mainNav .navbar-nav .nav-item:hover {
-        color: fade(#fff, 80%);
-        outline: none;
-        background-color: transparent;
-    }
-
-    #mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus {
-        outline: none;
-        background-color: transparent;
-    }
-
-@media (min-width: 992px) {
-    #mainNav {
-        padding-top: 0;
-        padding-bottom: 0;
-        border-bottom: none;
-        background-color: transparent;
-        transition: background-color 0.3s ease-in-out;
-    }
-
-        #mainNav .navbar-brand {
-            padding: 0.5rem 0;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        #mainNav .nav-link {
-            transition: none;
-            padding: 2rem 1.5rem;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-            #mainNav .nav-link:hover {
-                color: rgba(255, 255, 255, 0.75);
-            }
-
-            #mainNav .nav-link:active {
-                color: #fff;
-            }
-
-        #mainNav.navbar-shrink {
-            background-color: #fff;
-        }
-
-            #mainNav.navbar-shrink .navbar-brand {
-                color: #000;
-            }
-
-            #mainNav.navbar-shrink .nav-link {
-                color: #000;
-                padding: 1.5rem 1.5rem 1.25rem;
-                border-bottom: 0.25rem solid transparent;
-            }
-
-                #mainNav.navbar-shrink .nav-link:hover {
-                    color: #64a19d;
-                }
-
-                #mainNav.navbar-shrink .nav-link:active {
-                    color: #467370;
-                }
-
-                #mainNav.navbar-shrink .nav-link.active {
-                    color: #64a19d;
-                    outline: none;
-                    border-bottom: 0.25rem solid #64a19d;
-                }
+.dropdown-item {
+    color: #333;
 }
 
-.contact-section {
-    padding-top: 5rem;
+    .dropdown-item:hover {
+        color: #fff;
+        background-color: #0056b3; /* Mavi hover */
+    }
+
+/* Mobil için toggle ikon */
+.navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
-    .contact-section .card {
-        border: 0;
-        border-bottom: 0.25rem solid #64a19d;
+
+
+/* Logo boyutu */
+.navbar-logo {
+    width: 50px;
+    height: auto;
+}
+
+/* Responsive düzen */
+@media (max-width: 768px) {
+    .navbar-nav .nav-link {
+        font-size: 15px; /* Mobilde daha büyük yazýlar */
+    }
+}
+
+/*-------------HEADER START-------------*/
+.header {
+    background-image: url('/photos/Designer.png');
+    background-size: cover; /* Görseli ekran boyutuna uyacak þekilde ayarlýyor */
+    background-attachment: fixed;
+    background-position: center top;
+    height: 60vh; /* Yüksekliði ekranýn %60'ýna düþürdüm */
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+    .header::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4); /* Arka planý koyulaþtýr */
+        z-index: -1;
     }
 
-        .contact-section .card h4, .contact-section .card .h4 {
-            font-size: 0.8rem;
-            font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-            text-transform: uppercase;
-            letter-spacing: 0.15rem;
-        }
 
-        .contact-section .card hr {
-            opacity: 1;
-            border-color: #64a19d;
-            border-width: 0.25rem;
-            width: 3rem;
-        }
-
-    .contact-section .social {
-        margin-top: 5rem;
+    .header h1 {
+        font-size: 4rem;
+        font-weight: 700; /* Daha belirgin baþlýk */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Baþlýk için hafif gölge efekti */
     }
 
-        .contact-section .social a {
-            text-align: center;
-            height: 3rem;
-            width: 3rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 100%;
-            line-height: 3rem;
-            color: rgba(255, 255, 255, 0.3);
+    .header p {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+        font-weight: 300;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Metin için hafif gölge */
+    }
+
+
+/*-------------HEADER END-------------*/
+
+
+/*-------------FOOTER START-------------*/
+.footer {
+    background-color: #212529;
+    color: #adb5bd;
+    padding: 2rem 0;
+}
+
+    .footer h5 {
+        color: white;
+    }
+
+    .footer a {
+        color: #adb5bd;
+        text-decoration: none;
+    }
+
+        .footer a:hover {
+            color: #ffcc00; /* Hover efekti */
         }
 
-            .contact-section .social a:hover {
-                color: rgba(255, 255, 255, 0.5);
-            }
+    .footer .btn-social {
+        color: #adb5bd;
+        border-color: #adb5bd;
+    }
 
-            .contact-section .social a:active {
-                color: #fff;
-            }
+        .footer .btn-social:hover {
+            color: white;
+            border-color: white;
+        }
+
+/*-------------FOOTER END-------------*/
+}
+
+.navbar .btn:hover {
+    background-color: #e6c34b;
+}
+
+.navbar-toggler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .navbar-toggler:hover {
+        background-color: #e6c34b;
+        transform: rotate(90deg); /* Hover'da dönüþ efekti */
+    }
+
+.navbar-brand {
+    display: flex;
+    align-items: center; /* Logo ve yazýyý hizala */
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.navbar-logo {
+    height: 40px; /* Logonun yüksekliði */
+    width: auto; /* Oranlý boyutlandýrma */
+    max-height: 100%; /* Taþmayý engeller */
+    transition: transform 0.3s ease; /* Hover animasyonu */
+}
+
+    .navbar-logo:hover {
+        transform: scale(1.1); /* Hover'da büyüme efekti */
+    }
+/* Dropdown menü için stil */
+.dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.8); /* Þeffaf menü */
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.dropdown-item {
+    color: white;
+    font-weight: 400;
+    padding: 0.5rem 1.5rem;
+}
+
+    .dropdown-item:hover {
+        background-color: #ffdd57;
+        color: black;
+        border-radius: 5px; /* Köþelerde yumuþaklýk */
+    }
+
+/*-------------NAVBAR END-------------*/
+
+/*-------------HEADER START-------------*/
+.header {
+    background-image: url('/photos/Designer.png'); /* Yerel fotoðrafýn yolu */
+    background-size: cover; /* Fotoðrafýn tüm alaný kaplamasýný saðlar */
+    background-attachment: fixed; /* Paralaks efekti için */
+    background-position: center; /* Fotoðrafýn merkeze hizalanmasý */
+    height: 100vh; /* Tüm ekraný kaplar */
+    color: white; /* Metin rengini beyaz yap */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .header h1 {
+        font-size: 4rem; /* Büyük baþlýk */
+        font-weight: bold;
+    }
+
+    .header p {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+    }
+
+/*-------------HEADER END-------------*/
+
+/*-------------FOOTER START-------------*/
+.footer {
+    background-color: #212529;
+    color: #adb5bd;
+    padding: 2rem 0;
+}
+
+    .footer h5 {
+        color: white;
+    }
+
+1
+.footer a {
+    color: #adb5bd;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #ffcc00; /* Hover efekti */
+}
+
+.footer .btn-social {
+    color: #adb5bd;
+    border-color: #adb5bd;
+}
+
+    .footer .btn-social:hover {
+        color: white;
+        border-color: white;
+    }
+
+/*-------------FOOTER END-------------*/
