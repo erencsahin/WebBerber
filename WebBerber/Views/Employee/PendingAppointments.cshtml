@@ -22,7 +22,7 @@
                     <td>@appointment.Price ₺</td>
                     <td>@appointment.Duration dk</td>
                     <td>
-                        <form method="post" action="/Appointments/ApproveOrReject">
+                        <form method="post" action="/Appointment/ApproveOrReject">
                             <input type="hidden" name="appointmentId" value="@appointment.Id" />
                             <button type="submit" name="action" value="approve" class="btn btn-success">Onayla</button>
                             <button type="submit" name="action" value="reject" class="btn btn-danger">Reddet</button>

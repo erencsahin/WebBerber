@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebBerber.Models.Appointment>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Bekleyen Randevular</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">İşlem</th>
+                    <th scope="col">Tarih ve Saat</th>
+                    <th scope="col">Fiyat</th>
+                    <th scope="col">Süre</th>
+                    <th scope="col">Durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="5" class="text-muted">Bekleyen randevu yok.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var appointment in Model)
+                    {
+                        <tr>
+                            <td>@appointment.Operation.OperationName</td>
+                            <td>@appointment.StartTime.ToString("dd MMM yyyy HH:mm")</td>
+                            <td>@appointment.Price ₺</td>
+                            <td>@appointment.Duration dk</td>
+                            <td>
+                                <form method="post" action="/Appointments/ApproveOrReject" class="d-flex justify-content-center">
+                                    <input type="hidden" name="appointmentId" value="@appointment.Id" />
+                                    <button type="submit" name="action" value="approve" class="btn btn-success mx-1">
+                                        <i class="fas fa-times"></i> Onayla
+                                    </button>
+                                    <button type="submit" name="action" value="reject" class="btn btn-danger mx-1">
+                                        <i class="fas fa-times"></i> Reddet
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Geri dön düğmesi -->
+    <div class="d-flex justify-content-center mt-4">
+        <a href="/Employee/Dashboard" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Geri Dön
+        </a>
+    </div>
+</div>
+
+<!-- Bootstrap için gerekli FontAwesome CDN -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />

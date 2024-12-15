@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Admin\ManageShopOwners.cshtml" />
+    <Content Remove="Views\Appointment\ApproveOrReject.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,15 +21,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Admin\ManageShopOwners.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Appointment\ApproveOrReject.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\Admin\ManageShopOwners.cshtml" />
+    <None Include="Views\Appointment\ApproveOrReject.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Admin\ManageShopOwners.cshtml" />
+    <UpToDateCheckInput Remove="Views\Appointment\ApproveOrReject.cshtml" />
   </ItemGroup>
 
 </Project>

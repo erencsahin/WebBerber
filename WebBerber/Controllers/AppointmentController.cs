@@ -26,7 +26,6 @@ namespace WebBerber.Controllers
                 .Where(a => a.EmployeeId == employeeId)
                 .ToList();
 
-            // Uygun saatleri hesaplama (örnek)
             var availability = CalculateAvailability(appointments, operationDuration);
 
             ViewBag.ShopId = shopId;
@@ -37,7 +36,6 @@ namespace WebBerber.Controllers
 
         private List<DateTime> CalculateAvailability(List<Appointment> appointments, int duration)
         {
-            // Sabah 9'dan akşam 5'e kadar kontrol
             var availableTimes = new List<DateTime>();
             DateTime start = DateTime.Today.AddHours(9);
             DateTime end = DateTime.Today.AddHours(17);
@@ -53,7 +51,7 @@ namespace WebBerber.Controllers
                     availableTimes.Add(start);
                 }
 
-                start = start.AddMinutes(30); // Yarım saatlik dilimler
+                start = start.AddMinutes(30);
             }
 
             return availableTimes;
@@ -61,15 +59,12 @@ namespace WebBerber.Controllers
 
         public IActionResult Summary(int employeeId, int operationId, DateTime startTime)
         {
-            // Çalışanı ve bağlı olduğu mağazayı getir
             var employee = appDbContext.Employees
-                .Include(e => e.Shop) // Çalışanın mağaza bilgilerini de dahil et
+                .Include(e => e.Shop)
                 .FirstOrDefault(e => e.Id == employeeId);
 
-            // İşlem bilgilerini getir
             var operation = appDbContext.Operations.FirstOrDefault(o => o.Id == operationId);
 
-            // ViewBag ile detayları View'e gönder
             ViewBag.ShopName = employee?.Shop?.ShopName;
             ViewBag.EmployeeName = employee?.Name;
             ViewBag.OperationName = operation?.OperationName;
@@ -116,7 +111,6 @@ namespace WebBerber.Controllers
                     EnableSsl = true
                 };
 
-                // E-posta gönderimi
                 string fromAddress = "erencsahin34@gmail.com"; 
                 string toAddress = email;
                 string mailSubject = subject;
@@ -150,6 +144,33 @@ namespace WebBerber.Controllers
                 Console.WriteLine($"E-posta gönderimi hatası: {ex.Message}");
             }
             return RedirectToAction("ListShops","Customer");
+        }
+
+
+        [HttpPost]
+        public IActionResult ApproveOrReject(int appointmentId, string action)
+        {
+            var appointment = appDbContext.Appointments.FirstOrDefault(a => a.Id == appointmentId);
+
+            if (appointment == null)
+            {
+                TempData["ErrorMessage"] = "Randevu bulunamadı.";
+                return RedirectToAction("PendingAppointments");
+            }
+
+            if (action == "approve")
+            {
+                appointment.IsApproved = true;
+                TempData["SuccessMessage"] = "Randevu onaylandı.";
+            }
+            else if (action == "reject")
+            {
+                appDbContext.Appointments.Remove(appointment);
+                TempData["ErrorMessage"] = "Randevu reddedildi.";
+            }
+
+            appDbContext.SaveChanges();
+            return RedirectToAction("PendingAppointments","Employee");
         }
     }
 }

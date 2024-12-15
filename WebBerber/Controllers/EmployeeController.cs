@@ -17,40 +17,12 @@ namespace WebBerber.Controllers
         {
             int employeeId = GetLoggedInEmployeeId();
 
-            var pendingappointments = dbContext.Appointments
+            var pendingAppointments = dbContext.Appointments
                 .Where(a => a.EmployeeId == employeeId && !a.IsApproved)
                 .Include(a => a.Operation)
                 .ToList();
-            return View(pendingappointments);
+            return View(pendingAppointments);
         }
-
-
-        [HttpPost]
-        public IActionResult ApproveOrReject(int appointmentId, string action)
-        {
-            var appointment= dbContext.Appointments .FirstOrDefault(a=>a.Id == appointmentId);
-
-            if (appointment == null)
-            {
-                TempData["ErrorMessage"] = "Randevu bulunamadı.";
-                return RedirectToAction("PendingAppointments");
-            }
-
-            if (action == "approve")
-            {
-                appointment.IsApproved = true;
-                TempData["SuccessMessage"] = "Randevu onaylandı.";
-            }
-            else if (action == "reject")
-            {
-                dbContext.Appointments.Remove(appointment);
-                TempData["ErrorMessage"] = "Randevu reddedildi.";
-            }
-
-            dbContext.SaveChanges();
-            return RedirectToAction("PendingAppointments");
-        }
-
 
 
         private int GetLoggedInEmployeeId()

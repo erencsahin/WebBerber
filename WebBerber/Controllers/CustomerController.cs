@@ -7,7 +7,6 @@ namespace WebBerber.Controllers
 {
     public class CustomerController : Controller
     {
-
         private readonly AppDbContext appDbContext;
 
         public CustomerController(AppDbContext appDbContext)

@@ -96,6 +96,17 @@ namespace WebBerber.Controllers
             }
             return View(shop);
         }
+        
+        public IActionResult DeleteShop(int shopId)
+        {
+            var shop=dbContext.Shops.Find(shopId);
+            if (shop != null)
+            {
+                dbContext.Shops.Remove(shop);
+                dbContext.SaveChanges();
+            }
+            return RedirectToAction("ManageShops");
+        }
 
         
         public IActionResult AddEmployee()
@@ -137,24 +148,6 @@ namespace WebBerber.Controllers
             }
             return RedirectToAction("ManageEmployee");
         }
-        /*
-        public IActionResult AddShopOwner()
-        {
-            ViewBag.Shops=dbContext.Shops.ToList();
-            return View();
-        }
-
-
-        [HttpPost]
-        public IActionResult AddShopOwner(User user,int shopId)
-        {
-            
-            return View();
-        }*/
-
-
-
-
 
 
         public IActionResult Logout()
