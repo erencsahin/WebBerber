@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebBerber.Utils;
 
 namespace WebBerber.Controllers
 {
+    
     public class LoginController : Controller
     {
         private readonly AppDbContext appDbContext;
@@ -11,13 +13,13 @@ namespace WebBerber.Controllers
             this.appDbContext = appDbContext;
         }
 
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult Index(string email, string password)
         {

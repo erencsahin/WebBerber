@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
+using WebBerber.Filters;
 using WebBerber.Utils;
 
 namespace WebBerber.Controllers
 {
+    [EmployeeAuthorize]
     public class EmployeeController : Controller
     {
         private readonly AppDbContext dbContext;

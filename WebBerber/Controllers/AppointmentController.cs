@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
+using WebBerber.Filters;
 using WebBerber.Models;
 using WebBerber.Utils;
 
 namespace WebBerber.Controllers
 {
+    [EmployeeAuthorize]
+    [CustomerAuthorize]
+    [AdminAuthorize]
     public class AppointmentController : Controller
     {
         private readonly AppDbContext appDbContext;

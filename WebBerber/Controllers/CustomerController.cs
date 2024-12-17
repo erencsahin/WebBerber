@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using WebBerber.Models;
+using WebBerber.Filters;
 using WebBerber.Utils;
 
 namespace WebBerber.Controllers
 {
+    [CustomerAuthorize]
     public class CustomerController : Controller
     {
         private readonly AppDbContext appDbContext;

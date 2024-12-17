@@ -6,6 +6,7 @@ using WebBerber.Utils;
 
 namespace WebBerber.Controllers
 {
+    [AdminAuthorize]
     public class AdminController : Controller
     {
         public readonly AppDbContext dbContext;

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebBerber.Models;
 using WebBerber.Utils;
 
 namespace WebBerber.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
 
