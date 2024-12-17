@@ -6,9 +6,7 @@ using WebBerber.Utils;
 
 namespace WebBerber.Controllers
 {
-    [EmployeeAuthorize]
-    [CustomerAuthorize]
-    [AdminAuthorize]
+    
     public class AppointmentController : Controller
     {
         private readonly AppDbContext appDbContext;

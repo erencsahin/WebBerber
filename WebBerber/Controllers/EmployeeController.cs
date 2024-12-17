@@ -5,7 +5,6 @@ using WebBerber.Utils;
 
 namespace WebBerber.Controllers
 {
-    [EmployeeAuthorize]
     public class EmployeeController : Controller
     {
         private readonly AppDbContext dbContext;
@@ -14,6 +13,7 @@ namespace WebBerber.Controllers
             dbContext = appDbContext;
         }
 
+        //[EmployeeAuthorize]
         public IActionResult PendingAppointments()
         {
             int employeeId = GetLoggedInEmployeeId();
