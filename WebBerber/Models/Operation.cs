@@ -11,7 +11,14 @@ namespace WebBerber.Models
         public string OperationName { get; set; }
         public int Price { get; set; }
         public int Duration { get; set; }
-
+        public string Gender { get; set; }
         public ICollection<EmployeeOperation> EmployeeOperations { get; set; }
     }
 }
+
+
+/*
+ 
+    HER DUKKANDA FIYATLAR FARKLI OLABILIR.
+ 
+ */

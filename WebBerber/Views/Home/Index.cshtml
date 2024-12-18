@@ -1,5 +1,4 @@
-﻿@model IEnumerable<WebBerber.Models.Operation>
-@{
+﻿@{
     ViewData["Title"] = "Anasayfa";
 }
 
@@ -64,7 +63,22 @@
 <section class="services py-5">
     <div class="container">
         <h2 class="text-center mb-5">Hizmetlerimiz ve Ücretlerimiz</h2>
-        @Html.Partial("_OperationPartial", Model) <!-- Partial View'i çağırıyoruz -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <ul class="list-group">
+                    @foreach (var operation in Model)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-0">@operation.OperationName</h5>
+                                <small class="text-muted">@operation.Duration dk</small>
+                            </div>
+                            <span class="fw-bold">@operation.Price ₺</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
     </div>
 </section>
 

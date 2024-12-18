@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using WebBerber.Utils; // AppDbContext 
-using WebBerber.Models;
-using System.Linq;
 
 namespace WebBerber.Controllers
 {
@@ -16,7 +14,7 @@ namespace WebBerber.Controllers
 
         public IActionResult Index()
         {
-            var operations = _context.Operations.ToList(); 
+            var operations = _context.Operations.Where(o => o.Gender == "Erkek").ToList();
             return View(operations); 
         }
     }
