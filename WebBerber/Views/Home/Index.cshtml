@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<WebBerber.Models.Operation>
+@{
     ViewData["Title"] = "Anasayfa";
 }
 
@@ -60,41 +61,13 @@
 </section>
 
 
-<!-- Hizmetler Bölümü -->
 <section class="services py-5">
     <div class="container">
-        <h2 class="text-center mb-4">Hizmetlerimiz</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 text-center shadow-sm">
-                    <i class="fas fa-cut fa-3x mt-4 text-primary"></i>
-                    <div class="card-body">
-                        <h5 class="card-title">Saç Kesimi</h5>
-                        <p class="card-text">Profesyonel ve modern saç kesimi teknikleriyle tarzınızı yansıtın.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 text-center shadow-sm">
-                    <i class="fas fa-paint-brush fa-3x mt-4 text-primary"></i>
-                    <div class="card-body">
-                        <h5 class="card-title">Saç Boyama</h5>
-                        <p class="card-text">İsteğinize özel saç boyama hizmetleri ile yeni bir görünüm kazanın.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 text-center shadow-sm">
-                    <i class="fas fa-spa fa-3x mt-4 text-primary"></i>
-                    <div class="card-body">
-                        <h5 class="card-title">Bakım Hizmetleri</h5>
-                        <p class="card-text">Saç ve cilt bakım hizmetleriyle sağlıklı bir görünüm elde edin.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h2 class="text-center mb-5">Hizmetlerimiz ve Ücretlerimiz</h2>
+        @Html.Partial("_OperationPartial", Model) <!-- Partial View'i çağırıyoruz -->
     </div>
 </section>
+
 
 <!-- Yapay Zeka Önerileri Bölümü -->
 <section class="ai-suggestions py-5">
@@ -146,8 +119,23 @@
             </a>
         </div>
     </div>
+</section><!-- Galeri Bölümü -->
+<section class="gallery py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Çalışmalarımız</h2>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <img src="/photos/slide1.png" class="img-fluid rounded" alt="Saç Modeli 1">
+            </div>
+            <div class="col-md-4">
+                <img src="/photos/slide1.png" class="img-fluid rounded" alt="Saç Modeli 2">
+            </div>
+            <div class="col-md-4">
+                <img src="/photos/slide1.png" class="img-fluid rounded" alt="Saç Modeli 3">
+            </div>
+        </div>
+    </div>
 </section>
-
 
 <!-- Randevu Bölümü -->
 <section class="appointment text-center py-5">

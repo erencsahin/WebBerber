@@ -32,11 +32,12 @@ html, body {
 h1, h5 {
     font-family: 'Montserrat', sans-serif;
 }
-
+/*---------------NAVBAR START---------------*/
 .navbar-logo {
     max-width: 90px; /* Logo geniþliðini sýnýrla */
     height: auto; /* Yüksekliði orantýlý þekilde ayarla */
 }
+
 @media (max-width: 768px) {
     .navbar-logo {
         max-width: 80px; /* Mobilde logo daha küçük */
@@ -65,7 +66,40 @@ h1, h5 {
         width: 100%; /* Çizgi geniþliði */
     }
 
+.dropdown-menu {
+    background-color: #343a40; /* Koyu gri arka plan */
+    color: #fff; /* Beyaz yazý */
+    padding: 10px 0; /* Dropdown içeriklerine dikey boþluk */
+    min-width: 200px; /* Dropdown geniþliði */
+}
 
+.dropdown-item {
+    color: #ddd;
+    padding: 8px 20px; /* Dropdown öðelerine iç boþluk */
+}
+
+    .dropdown-item:hover {
+        background-color: #495057; /* Daha koyu hover efekti */
+        color: #fff;
+    }
+
+
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 16px; /* Yazý boyutunu biraz büyütün */
+}
+
+
+/* Navbar içindeki öðeler arasýnda boþluk */
+.navbar-nav .nav-item {
+    margin-left: 15px; /* Sol taraftan boþluk ekleyin */
+}
+
+.navbar-nav .nav-link {
+    padding: 10px 15px; /* Daha geniþ týklama alaný */
+}
+/*---------------NAVBAR END---------------*/
 main {
     background-color: #f8f9fa; /* Açýk gri arka plan */
     border: 1px solid #ddd; /* Kenarlýk */
@@ -130,39 +164,6 @@ footer {
         background-color: #5a6268; /* Daha koyu gri */
     }
 
-.dropdown-menu {
-    background-color: #343a40; /* Koyu gri arka plan */
-    color: #fff; /* Beyaz yazý */
-    padding: 10px 0; /* Dropdown içeriklerine dikey boþluk */
-    min-width: 200px; /* Dropdown geniþliði */
-}
-
-.dropdown-item {
-    color: #ddd;
-    padding: 8px 20px; /* Dropdown öðelerine iç boþluk */
-}
-
-    .dropdown-item:hover {
-        background-color: #495057; /* Daha koyu hover efekti */
-        color: #fff;
-    }
-
-
-.navbar {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    font-size: 16px; /* Yazý boyutunu biraz büyütün */
-}
-
-
-/* Navbar içindeki öðeler arasýnda boþluk */
-.navbar-nav .nav-item {
-    margin-left: 15px; /* Sol taraftan boþluk ekleyin */
-}
-
-.navbar-nav .nav-link {
-    padding: 10px 15px; /* Daha geniþ týklama alaný */
-}
 
 /* Hero Section */
 .hero {
@@ -182,7 +183,7 @@ footer {
     padding: 60px 0;
 }
 
-/* Slider Ýçeriði */
+/*---------------ANA SAYFA SLIDER START---------------*/
 .carousel-caption {
     position: absolute;
     top: 50%;
@@ -202,7 +203,7 @@ footer {
 .text-shadow {
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
 }
-
+/*---------------ANA SAYFA SLIDER END---------------*/
 /*---------------AI API START---------------*/
 /* Kartlarýn Gölgesi ve Köþe Yuvarlama */
 .bg-light {
@@ -223,10 +224,10 @@ footer {
     transition: all 0.3s ease-in-out; /* Geçiþ efekti */
 }
 
-.ai-suggestions .d-flex:hover {
-    transform: scale(1.05); /* Kartý büyütme */
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
-}
+    .ai-suggestions .d-flex:hover {
+        transform: scale(1.05); /* Kartý büyütme */
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
+    }
 
         /* Sol Taraftaki Ýkon Rengini Deðiþtirme */
         .ai-suggestions .d-flex:hover .bg-danger {
@@ -237,6 +238,7 @@ footer {
         .ai-suggestions .d-flex:hover .text-white {
             color: #fff !important; /* Ýkon rengini beyazda tut */
         }
+        /*---------------ANA SAYFA SLIDER END---------------*/
 
         /* Baþlýk Rengini Deðiþtirme */
         .ai-suggestions .d-flex:hover h5 {
