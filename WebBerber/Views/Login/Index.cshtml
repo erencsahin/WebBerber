@@ -2,29 +2,33 @@
     ViewData["Title"] = "Giriş Yap";
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white text-center">
-                    <h3>Giriş Yap</h3>
+<div class="container d-flex justify-content-center align-items-center vh-90">
+    <div class="row justify-content-center w-100">
+        <div class="col-md-6" data-aos="fade-up">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-dark text-white text-center">
+                    <h3 class="fw-bold">Giriş Yap</h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body bg-light">
                     <form method="post" asp-action="Index">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">E-posta</label>
-                            <input type="email" name="email" class="form-control" placeholder="E-posta adresinizi girin" required />
+                        <!-- E-Posta -->
+                        <div class="mb-4">
+                            <label for="email" class="form-label text-dark fw-bold">E-posta</label>
+                            <input type="email" name="email" id="email" class="form-control rounded-pill shadow-sm" placeholder="E-posta adresinizi girin" required />
                         </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Şifre</label>
-                            <input type="password" name="password" class="form-control" placeholder="Şifrenizi girin" required />
+                        <!-- Şifre -->
+                        <div class="mb-4">
+                            <label for="password" class="form-label text-dark fw-bold">Şifre</label>
+                            <input type="password" name="password" id="password" class="form-control rounded-pill shadow-sm" placeholder="Şifrenizi girin" required />
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>
+                        <!-- Giriş Yap Butonu -->
+                        <button type="submit" class="btn btn-dark w-100 rounded-pill shadow">Giriş Yap</button>
                     </form>
 
+                    <!-- Hata Mesajı -->
                     @if (ViewBag.ErrorMessage != null)
                     {
-                        <div class="alert alert-danger mt-3">
+                        <div class="alert alert-danger mt-4">
                             @ViewBag.ErrorMessage
                         </div>
                     }

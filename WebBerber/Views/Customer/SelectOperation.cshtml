@@ -1,15 +1,39 @@
 ﻿@model IEnumerable<WebBerber.Models.Operation>
 
-<h2>İşlem Seçimi</h2>
-<form method="get" action="/Customer/SelectEmployee">
-    <label for="operation">İşlem:</label>
-    <select id="operation" name="operationId" required>
-        @foreach (var operation in Model)
-        {
-            <option value="@operation.Id">@operation.OperationName</option>
-        }
-    </select>
-    <input type="hidden" name="shopId" value="@ViewBag.ShopId" />
-    <input type="hidden" name="operationId" value="@ViewBag.OperationId" />
-    <button type="submit">Devam</button>
-</form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6" data-aos="fade-up">
+            <div class="card shadow-lg border-0">
+                <!-- Kart Başlığı -->
+                <div class="card-header bg-dark text-white text-center py-3">
+                    <h3 class="fw-bold mb-0">İşlem Seçimi</h3>
+                </div>
+                <!-- Kart İçeriği -->
+                <div class="card-body bg-light px-4 py-4">
+                    <form method="get" action="/Customer/SelectEmployee">
+                        <!-- İşlem Seçimi -->
+                        <div class="mb-4">
+                            <label for="operation" class="form-label fw-bold text-dark">İşlem Seçiniz</label>
+                            <select id="operation" name="operationId" class="form-select rounded-pill shadow-sm" required>
+                                <option value="" disabled selected>Bir işlem seçin</option>
+                                @foreach (var operation in Model)
+                                {
+                                    <option value="@operation.Id">@operation.OperationName</option>
+                                }
+                            </select>
+                        </div>
+                        <!-- Gizli Alanlar -->
+                        <input type="hidden" name="shopId" value="@ViewBag.ShopId" />
+                        <input type="hidden" name="operationId" value="@ViewBag.OperationId" />
+                        <!-- Devam Butonu -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-dark rounded-pill shadow-sm py-2">
+                                Devam
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

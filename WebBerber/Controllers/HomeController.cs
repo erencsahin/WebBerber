@@ -14,8 +14,14 @@ namespace WebBerber.Controllers
 
         public IActionResult Index()
         {
-            var operations = _context.Operations.Where(o => o.Gender == "Erkek").ToList();
-            return View(operations); 
+            var womenServices = _context.Operations.Where(o => o.Gender == "Kadýn").ToList();
+            var menServices = _context.Operations.Where(o => o.Gender == "Erkek").ToList();
+
+            ViewData["WomenServices"] = womenServices;
+            ViewData["MenServices"] = menServices;
+
+            return View(); 
         }
+
     }
 }

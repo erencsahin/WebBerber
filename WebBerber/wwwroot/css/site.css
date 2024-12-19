@@ -21,12 +21,19 @@ html {
 body {
     margin-bottom: 60px;
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding-top: 70px;
 }
 
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+}
+
+main {
+    flex: 1; /* Ana içerik alaný esnek büyür */
 }
 
 h1, h5 {
@@ -110,13 +117,18 @@ main {
 }
 /*---------------FOOTER START---------------*/
 footer {
-    background-color: #212529;
-    color: #fff;
+    background-color: #212529; /* Koyu arka plan */
+    color: white; /* Beyaz metin */
+    padding: 20px 0; /* Üst ve alt boþluk */
+    text-align: center; /* Ortalanmýþ metin */
+    position: relative;
+    z-index: 10;
 }
 
     footer h5 {
         font-size: 1.2rem;
         font-weight: bold;
+        margin-bottom: 20px;
     }
 
     footer a {
@@ -126,21 +138,21 @@ footer {
     }
 
         footer a:hover {
-            color: #fff;
+            color: white;
             text-decoration: underline;
         }
 
     footer .form-control {
-        background-color: #333;
-        color: #fff;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
         border: none;
         border-radius: 5px;
     }
 
         footer .form-control:focus {
-            box-shadow: none;
-            background-color: #444;
-            color: #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+            outline: none;
+            color: white;
         }
 
     footer button {
@@ -150,6 +162,22 @@ footer {
 
         footer button:hover {
             background-color: #bb2d3b;
+        }
+
+    footer .btn-social {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid white;
+        color: white;
+    }
+
+        footer .btn-social:hover {
+            background-color: white;
+            color: #212529;
         }
 
 /*---------------FOOTER END---------------*/
@@ -246,3 +274,38 @@ footer {
             transition: color 0.3s ease;
         }
 /*---------------AI API END---------------*/
+/*---------------HIZMETLER START---------------*/
+.service-card {
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 20px;
+    position: relative;
+    min-height: 400px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease; /* Hover animasyonu */
+}
+
+    .service-card:hover {
+        transform: scale(1.05); /* Hover sýrasýnda büyüt */
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .service-card .overlay {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.6); /* Arka plan opaklýðý */
+        z-index: 1;
+    }
+
+    .service-card h3, .service-card ul {
+        position: relative;
+        z-index: 2;
+    }
+
+/*---------------HIZMETLER END---------------*/

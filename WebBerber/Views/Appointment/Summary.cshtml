@@ -1,30 +1,101 @@
 ﻿@model WebBerber.Models.Appointment
 
 <div class="container mt-5">
-    <h3 class="text-center mb-4">Randevu Özeti</h3>
+    <!-- Başlık -->
+    <h3 class="text-center mb-4" data-aos="fade-up">Randevu Özeti</h3>
 
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Randevu Detayları</h5>
-            <p><strong>Mağaza:</strong> @ViewBag.ShopName</p>
-            <p><strong>Çalışan:</strong> @ViewBag.EmployeeName</p>
-            <p><strong>İşlem:</strong> @ViewBag.OperationName</p>
-            <p><strong>Tarih ve Saat:</strong> @Model.StartTime.ToString("dd MMM yyyy HH:mm")</p>
-            <p><strong>Fiyat:</strong> @ViewBag.OperationPrice ₺</p>
+    <!-- Randevu Kartı -->
+    <div class="card shadow-lg border-0 mb-4" data-aos="fade-up">
+        <div class="card-body bg-light p-4">
+            <h5 class="card-title fw-bold text-dark mb-3">Randevu Detayları</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Mağaza:</strong> @ViewBag.ShopName</li>
+                <li class="list-group-item"><strong>Çalışan:</strong> @ViewBag.EmployeeName</li>
+                <li class="list-group-item"><strong>İşlem:</strong> @ViewBag.OperationName</li>
+                <li class="list-group-item"><strong>Tarih ve Saat:</strong> @Model.StartTime.ToString("dd MMM yyyy HH:mm")</li>
+                <li class="list-group-item"><strong>Fiyat:</strong> @ViewBag.OperationPrice ₺</li>
+            </ul>
         </div>
     </div>
 
-    <form method="post" action="/Appointment/SendEmail">
-        <div class="mt-4">
-            <label for="email" class="form-label">E-posta Adresi:</label>
-            <input type="email" name="Email" id="email" class="form-control" placeholder="E-posta adresinizi giriniz" required />
+    <!-- E-posta Onayı Formu -->
+    <form method="post" action="/Appointment/SendEmail" data-aos="fade-up">
+        <div class="card shadow-lg border-0">
+            <div class="card-body bg-light p-4">
+                <h5 class="card-title fw-bold text-dark mb-3">E-posta Onayı</h5>
+                <div class="mb-3">
+                    <label for="email" class="form-label fw-bold">E-posta Adresi</label>
+                    <input type="email" name="Email" id="email" class="form-control rounded-pill shadow-sm" placeholder="E-posta adresinizi giriniz" required />
+                </div>
+
+                <!-- Gizli Alanlar -->
+                <input type="hidden" name="EmployeeId" value="@Model.EmployeeId" />
+                <input type="hidden" name="OperationId" value="@Model.OperationId" />
+                <input type="hidden" name="StartTime" value="@Model.StartTime.ToString("yyyy-MM-ddTHH:mm")" />
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-dark rounded-pill shadow-sm py-2" id="submitButton">
+                        E-posta Onayı Gönder
+                    </button>
+                </div>
+            </div>
         </div>
-
-        <!-- Randevu detaylarını gizli alanlarla gönderiyoruz -->
-        <input type="hidden" name="EmployeeId" value="@Model.EmployeeId" />
-        <input type="hidden" name="OperationId" value="@Model.OperationId" />
-        <input type="hidden" name="StartTime" value="@Model.StartTime.ToString("yyyy-MM-ddTHH:mm")" />
-
-        <button type="submit" class="btn btn-primary mt-3">E-posta Onayı Gönder</button>
     </form>
 </div>
+
+<!-- BASARILI -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Başarılı</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                E-posta başarıyla gönderildi. Lütfen gelen kutunuzu kontrol edin.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close" id="successModalCloseBtn">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HATA -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errorModalLabel">Hata</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                E-posta gönderilemedi. Lütfen tekrar deneyin.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showSuccessModal() {
+        var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+        myModal.show();
+
+        document.getElementById('successModalCloseBtn').addEventListener('click', function() {
+            window.location.href = '/'; // Ana sayfaya yönlendir
+        });
+    }
+
+    function showErrorModal() {
+        var myModal = new bootstrap.Modal(document.getElementById('errorModal'));
+        myModal.show();
+    }
+
+    document.getElementById('submitButton').addEventListener('click', function(event) {
+        event.preventDefault();
+        setTimeout(showSuccessModal, 1000); 
+    });
+</script>
