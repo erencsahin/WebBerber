@@ -1,0 +1,21 @@
+﻿<form method="post" enctype="multipart/form-data" asp-action="ProcessImage">
+    <div class="mb-3">
+        <label for="uploadedImage" class="form-label">Fotoğraf Yükle</label>
+        <input type="file" class="form-control" id="uploadedImage" name="uploadedImage" required />
+    </div>
+    <div class="mb-3">
+        <label for="style" class="form-label">Saç Modeli Seçimi</label>
+        <select class="form-select" id="style" name="style" required>
+            @foreach (var hairStyle in ViewBag.HairStyles)
+            {
+                <option value="@hairStyle.Key">@hairStyle.Value</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Gönder</button>
+</form>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger mt-3">@TempData["ErrorMessage"]</div>
+}

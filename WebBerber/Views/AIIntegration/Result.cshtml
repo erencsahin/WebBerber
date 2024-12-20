@@ -1,0 +1,12 @@
+﻿<div class="container mt-5">
+    <h3>İşlenmiş Resim</h3>
+    @if (ViewBag.ProcessedImage != null)
+    {
+        <img src="@ViewBag.ProcessedImage" alt="Processed Image" class="img-fluid" />
+    }
+    else
+    {
+        <p>Resim işlenemedi.</p>
+    }
+    <a href="/" class="btn btn-secondary mt-3">Geri Dön</a>
+</div>
