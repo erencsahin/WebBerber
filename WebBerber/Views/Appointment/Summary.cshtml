@@ -1,8 +1,23 @@
 ﻿@model WebBerber.Models.Appointment
 
 <div class="container mt-5">
-    <!-- Başlık -->
     <h3 class="text-center mb-4" data-aos="fade-up">Randevu Özeti</h3>
+
+    <!-- Başarılı mesaj -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+            <div class="alert alert-success" role="alert">
+            @TempData["SuccessMessage"]
+            </div>
+    }
+
+    <!-- Hata mesajı -->
+    @if (TempData["ErrorMessage"] != null)
+    {
+            <div class="alert alert-danger" role="alert">
+            @TempData["ErrorMessage"]
+            </div>
+    }
 
     <!-- Randevu Kartı -->
     <div class="card shadow-lg border-0 mb-4" data-aos="fade-up">
@@ -43,7 +58,7 @@
     </form>
 </div>
 
-<!-- BASARILI -->
+<!-- Başarılı Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -61,7 +76,7 @@
     </div>
 </div>
 
-<!-- HATA -->
+<!-- Hata Modal -->
 <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -94,8 +109,15 @@
         myModal.show();
     }
 
-    document.getElementById('submitButton').addEventListener('click', function(event) {
-        event.preventDefault();
-        setTimeout(showSuccessModal, 1000); 
+    // Sayfa yüklendikten sonra TempData kontrolü ve modalların gösterilmesi
+    window.addEventListener('load', function() {
+        var successMessage = '@TempData["SuccessMessage"]';
+        var errorMessage = '@TempData["ErrorMessage"]';
+
+        if (successMessage) {
+            showSuccessModal();
+        } else if (errorMessage) {
+            showErrorModal();
+        }
     });
 </script>

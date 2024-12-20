@@ -3,7 +3,7 @@
 <div class="container mt-5">
     <!-- Tarih Seçimi -->
     <h3 class="text-center mb-4" data-aos="fade-up">Tarih Seçimi</h3>
-    <form method="get" action="/Appointment/SelectTime">
+    <form asp-action="SelectTime" asp-controller="Appointment" method="get">
         <div class="d-flex justify-content-center flex-wrap mb-4">
             @for (int i = 0; i < 7; i++)
             {
@@ -14,16 +14,16 @@
                 </button>
             }
         </div>
-        <input type="hidden" name="shopId" value="@ViewBag.ShopId" />
-        <input type="hidden" name="operationId" value="@ViewBag.OperationId" />
-        <input type="hidden" name="employeeId" value="@ViewBag.EmployeeId" />
+        <input type="hidden" value="@ViewBag.ShopId" name="shopId" />
+        <input type="hidden" value="@ViewBag.OperationId" name="operationId" />
+        <input type="hidden" value="@ViewBag.EmployeeId" name="employeeId" />
     </form>
 
     <!-- Saat Seçimi -->
     <h4 class="text-center mt-4 mb-3" data-aos="fade-up">Saat Seçimi</h4>
     @if (Model != null && Model.Any())
     {
-        <form method="post" action="/Appointment/Summary">
+        <form asp-action="Summary" asp-controller="Appointment" method="post">
             <div class="row g-3 justify-content-center">
                 @foreach (var time in Model)
                 {

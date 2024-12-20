@@ -2,16 +2,16 @@
 
 <div class="container mt-5">
     <!-- Tarih Seçimi -->
-    <h3 class="mb-4">Tarih Seçimi</h3>
-    <form method="get" action="/Appointment/SelectTime">
-        <div class="btn-group mb-4" role="group">
-            @for (int i = 0; i < 7; i++) 
+    <h3 class="text-center mb-4" data-aos="fade-up">Tarih Seçimi</h3>
+    <form method="get" asp-controller="Appointment" asp-action="SelectTime">
+        <div class="d-flex justify-content-center flex-wrap mb-4">
+            @for (int i = 0; i < 7; i++)
             {
                 var date = DateTime.Today.AddDays(i);
                 bool isSelected = ViewBag.SelectedDate == date.ToString("yyyy-MM-dd");
 
                 <button type="submit" name="selectedDate" value="@date.ToString("yyyy-MM-dd")"
-                        class="btn @(isSelected ? "btn-primary" : "btn-light")">
+                        class="btn mx-2 mb-2 @(isSelected ? "btn-primary" : "btn-outline-secondary") rounded-pill shadow-sm">
                     @date.ToString("dd MMM ddd")
                 </button>
             }
@@ -22,17 +22,18 @@
         <input type="hidden" name="employeeId" value="@ViewBag.EmployeeId" />
     </form>
 
-    <h4 class="mt-4 mb-3">Saat Seçimi</h4>
+    <!-- Saat Seçimi -->
+    <h4 class="text-center mt-4 mb-3" data-aos="fade-up">Saat Seçimi</h4>
     @if (Model != null && Model.Any())
     {
-        <form method="post" action="/Appointment/Summary">
-            <div class="row g-3">
+        <form method="post" asp-controller="Appointment" asp-action="Summary">
+            <div class="row g-3 justify-content-center">
                 @foreach (var time in Model)
                 {
                     bool isPastTime = time < DateTime.Now;
 
-                    <div class="col-2">
-                        <button type="submit" class="btn @(isPastTime ? "btn-secondary disabled" : "btn-success") w-100"
+                    <div class="col-auto" data-aos="zoom-in">
+                        <button type="submit" class="btn @(isPastTime ? "btn-secondary disabled" : "btn-success") w-100 rounded-pill shadow-sm"
                                 name="StartTime" value="@time.ToString("yyyy-MM-ddTHH:mm")"
                         @(isPastTime ? "disabled" : "")>
                             @time.ToString("HH:mm")
@@ -48,7 +49,7 @@
     }
     else
     {
-        <div class="alert alert-warning text-center">
+        <div class="alert alert-warning text-center" data-aos="fade-up">
             Seçilen tarihte uygun saat bulunmamaktadır.
         </div>
     }

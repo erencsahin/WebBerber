@@ -140,7 +140,6 @@ namespace WebBerber.Controllers
                     Credentials = new System.Net.NetworkCredential("erencsahin34@gmail.com", "jmef uvro bxgi wrjn"),
                     EnableSsl = true
                 };
-
                 smtpClient.Send("erencsahin34@gmail.com", email, subject, body);
 
                 appDbContext.Appointments.Add(appointment);
