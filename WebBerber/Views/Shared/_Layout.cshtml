@@ -34,13 +34,27 @@
                                 <i class="fas fa-home"></i> Anasayfa
                             </a>
                         </li>
+
+                        @if (Context.Session.GetString("UserRole") == "Customer")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Customer" asp-action="ListShops">
+                                    <i class="fas fa-calendar-check"></i> Randevu Al
+                                </a>
+                            </li>
+                        }
+                        else if (Context.Session.GetString("EmployeeEmail") !=null) {}
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link active" asp-controller="Login" asp-action="Index">
+                                    <i class="fas fa-calendar-check"></i> Randevu Al
+                                </a>
+                            </li>
+                        }
+
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="RandevuAl">
-                                <i class="fas fa-calendar-check"></i> Randevu Al
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Ekip">
+                            <a class="nav-link" asp-controller="Home" asp-action="Shops">
                                 <i class="fas fa-users"></i> Ekip
                             </a>
                         </li>
@@ -51,13 +65,39 @@
                         </li>
                         <!-- Dropdown -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user-circle"></i> Giriş Yap
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" asp-controller="Login" asp-action="Index">Giriş Yap</a></li>
-                                <li><a class="dropdown-item" asp-controller="Register" asp-action="Index">Kayıt Ol</a></li>
-                            </ul>
+                            @if (Context.Session.GetString("UserEmail") != null || Context.Session.GetString("EmployeeEmail") != null)
+                            {
+                                <!-- Kullanıcı oturum açmışsa -->
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user-circle"></i> @(Context.Session.GetString("UserEmail") ?? "Çalışan")
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Login" asp-action="Logout">
+                                            <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+                                        </a>
+                                    </li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <!-- Kullanıcı oturum açmamışsa -->
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user-circle"></i> Giriş Yap
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Login" asp-action="Index">
+                                            <i class="fas fa-sign-in-alt"></i> Giriş Yap
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Register" asp-action="Index">
+                                            <i class="fas fa-user-plus"></i> Kayıt Ol
+                                        </a>
+                                    </li>
+                                </ul>
+                            }
                         </li>
                     </ul>
                 </div>
@@ -111,7 +151,7 @@
                 <div class="col-md-4">
                     <h5 class="text-uppercase mb-4 font-weight-bold">Konum</h5>
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.8943165822852!2d30.322899075692174!3d40.74235093575757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ccaded70ee240b%3A0xd81085b5551312fd!2sFaculty%20of%20Computer%20and%20Information%20Sciences!5e0!3m2!1sen!2str!4v1734611727775!5m2!1sen!2str" 
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.8943165822852!2d30.322899075692174!3d40.74235093575757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ccaded70ee240b%3A0xd81085b5551312fd!2sFaculty%20of%20Computer%20and%20Information%20Sciences!5e0!3m2!1sen!2str!4v1734611727775!5m2!1sen!2str"
                                 width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>

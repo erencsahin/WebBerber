@@ -29,11 +29,7 @@ namespace WebBerber.Controllers
                 return View(model);
             }
 
-            if (model.Role==Role.Admin) 
-            {
-                ViewBag.ErrorMessage = "Admin olarak kayıt yapılamaz.";
-                return View();
-            }
+            model.Role = Role.Customer;
 
             if (appDbContext.Users.Any(u => u.Email == model.Email)) 
             {

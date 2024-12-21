@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebBerber.Models
 {
@@ -28,10 +29,10 @@ namespace WebBerber.Models
         [EnumDataType(typeof(Gender))]
         public Gender Gender { get; set; }
 
-        [Required]
-        [EnumDataType(typeof(Role))]
-        public Role Role { get; set; }
 
+        [EnumDataType(typeof(Role))]
+        [DefaultValue(Role.Customer)]
+        public Role Role { get; set; }
     }
 }
 

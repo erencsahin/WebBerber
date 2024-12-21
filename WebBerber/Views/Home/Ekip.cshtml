@@ -1,0 +1,37 @@
+﻿<div class="container mt-5">
+    <h2 class="text-center mb-4">@ViewBag.ShopName</h2>
+    <p class="text-center text-muted">@ViewBag.ShopAddress</p>
+
+    <div class="row">
+        @foreach (var employee in ViewBag.Employees as IEnumerable<WebBerber.Models.Employee>)
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    <!-- Çalışan İsmi -->
+                    <div class="card-header bg-success text-white">
+                        <h5 class="card-title text-center">@employee.Name @employee.Surname</h5>
+                    </div>
+
+                    <!-- Çalışan Resmi -->
+                    <img src="/path/to/employee/image.jpg" class="card-img-top" alt="@employee.Name" />
+
+                    <!-- Çalışan Becerileri -->
+                    <div class="card-body">
+                        <h6>Beceriler:</h6>
+                        <ul class="list-group list-group-flush">
+                            @foreach (var operation in (ViewBag.EmployeeOperations as IEnumerable<WebBerber.Models.EmployeeOperation>)
+                           .Where(eo => eo.EmployeeId == employee.Id)
+                           .Join(ViewBag.Operations as IEnumerable<WebBerber.Models.Operation>,
+                           eo => eo.OperationId,
+                           o => o.Id,
+                           (eo, o) => o.OperationName))
+                            {
+                                <li class="list-group-item">@operation</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

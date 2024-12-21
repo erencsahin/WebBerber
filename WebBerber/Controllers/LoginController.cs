@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebBerber.Utils;
 
@@ -39,7 +40,7 @@ namespace WebBerber.Controllers
                     case Role.Admin:
                         return RedirectToAction("Index","Admin");
                     case Role.Customer:
-                        return RedirectToAction("ListShops", "Customer");
+                        return RedirectToAction("Index", "Home");
                 }
             }
             if (employee!=null)
@@ -47,7 +48,7 @@ namespace WebBerber.Controllers
                 HttpContext.Session.SetString("EmployeeEmail", employee.Email);
                 HttpContext.Session.SetInt32("EmployeeId", employee.Id);
 
-                return RedirectToAction("PendingAppointments", "Employee");
+                return RedirectToAction("Index", "Home");   
             }
 
             ViewBag.ErrorMessage = "Email veya şifre yanlış.";
@@ -57,6 +58,7 @@ namespace WebBerber.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
+            HttpContext.SignOutAsync();
             return RedirectToAction("Index");
         }
 

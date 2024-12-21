@@ -1,0 +1,29 @@
+﻿@model IEnumerable<WebBerber.Models.Shop>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Ekiplerimiz - Dükkanlarımız</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var shop in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <!-- Mağaza İsmi -->
+                    <div class="card-header text-center bg-primary text-white">
+                        <h5 class="card-title">@shop.ShopName</h5>
+                    </div>
+
+                    <!-- Temsili Resim -->
+                    <img src="/path/to/shop/image.jpg" class="card-img-top" alt="@shop.ShopName" />
+
+                    <!-- Mağaza Detayları ve Çalışanları Görüntüleme -->
+                    <div class="card-body text-center">
+                        <p class="card-text text-muted">@shop.Address</p>
+                        <a asp-action="Ekip" asp-route-shopId="@shop.Id" class="btn btn-primary">
+                            Çalışanlarımızı Gör
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
