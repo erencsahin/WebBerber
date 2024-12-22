@@ -1,23 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Admin Paneli";
+    Layout = "_AdminLayout";
 }
 
-<div class="container mt-5">
-    <h2 class="text-center">Admin Paneli</h2>
-    <p class="text-center">Hoş geldiniz, @ViewContext.HttpContext.Session.GetString("AdminEmail")</p>
-
-    <ul class="list-group mt-4">
-        <li class="list-group-item">
-            <a asp-action="ManageUsers" class="btn btn-link">Kullanıcı Yönetimi</a>
-        </li>
-        <li class="list-group-item">
-            <a asp-action="ManageShops" class="btn btn-link">Dükkan Yönetimi</a>
-        </li>
-        <li class="list-group-item">
-            <a asp-action="ManageEmployees" class="btn btn-link">Çalışan Yönetimi</a>
-        </li>
-        <li class="list-group-item">
-            <a asp-action="Logout" class="btn btn-link text-danger">Çıkış Yap</a>
-        </li>
-    </ul>
-</div>
+<h1 class="mt-4">Admin Paneline Hoş Geldiniz!</h1>
+<p>Burada genel bilgileri görebilirsiniz. ÇALIŞAN İZLEME EKRANI EKLENECEK.</p>

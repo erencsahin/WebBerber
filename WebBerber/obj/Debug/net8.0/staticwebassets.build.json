@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "z2jbQ/P71oJjLJ4aaHicRKvn0Z1Whvk0KErgLBCHWYs=",
+  "Hash": "pgWOEduughM+U3+ArbMOVwySfXbDz9/J2p0btu2/IVY=",
   "Source": "WebBerber",
   "BasePath": "_content/WebBerber",
   "Mode": "Default",
@@ -55,6 +55,25 @@
       "OriginalItemSpec": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\WebBerber.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\wwwroot\\css\\admin.css",
+      "SourceId": "WebBerber",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\wwwroot\\",
+      "BasePath": "_content/WebBerber",
+      "RelativePath": "css/admin.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\admin.css"
+    },
+    {
       "Identity": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\wwwroot\\css\\site.css",
       "SourceId": "WebBerber",
       "SourceType": "Discovered",
@@ -91,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\wwwroot\\js\\admin.js",
+      "SourceId": "WebBerber",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\wwwroot\\",
+      "BasePath": "_content/WebBerber",
+      "RelativePath": "js/admin.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\admin.js"
     },
     {
       "Identity": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\wwwroot\\js\\site.js",

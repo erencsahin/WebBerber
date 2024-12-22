@@ -5,12 +5,20 @@
       "PackagePath": "staticwebassets\\WebBerber.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\wwwroot\\css\\admin.css",
+      "PackagePath": "staticwebassets\\css\\admin.css"
+    },
+    {
       "Id": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\wwwroot\\js\\admin.js",
+      "PackagePath": "staticwebassets\\js\\admin.js"
     },
     {
       "Id": "C:\\Users\\kafta\\Source\\Repos\\WebBerber\\WebBerber\\wwwroot\\js\\site.js",
