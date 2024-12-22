@@ -1,29 +1,46 @@
-﻿@model IEnumerable<WebBerber.Models.Shop>
+﻿@model List<Shop> // Mağaza verileri taşınır
+@{
+    ViewData["Title"] = "Mağazalarımız";
+}
 
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Ekiplerimiz - Dükkanlarımız</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        @foreach (var shop in Model)
-        {
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <!-- Mağaza İsmi -->
-                    <div class="card-header text-center bg-primary text-white">
-                        <h5 class="card-title">@shop.ShopName</h5>
-                    </div>
+<!-- Hero Section -->
+<section class="hero-section text-center py-5" style="background: linear-gradient(to bottom, #212529, #495057); color: white;">
+    <div class="container">
+        <h1 class="display-4" data-aos="fade-down">Mağazalarımız</h1>
+        <p class="lead mt-3" data-aos="fade-up">
+            Sakarya’da hizmet veren kuaförümüz siz değerli müşterilerimize hizmet vermeye ve daha iyisi için çalışmaya devam ediyor.
+        </p>
+    </div>
+</section>
 
-                    <!-- Temsili Resim -->
-                    <img src="/path/to/shop/image.jpg" class="card-img-top" alt="@shop.ShopName" />
+<!-- Shops Section -->
+<section class="shops-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4" data-aos="fade-up">Mağazalarımız</h2>
+        <div class="row">
+            @foreach (var shop in Model)
+            {
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100" >
+                    <div class="card shadow-sm h-100">
+                        <!-- Mağaza Logosu -->
+                        <img src="/photos/logo.png" alt="Logo"
+                             alt="Mağaza Logosu"
+                             class="card-img-top p-3 img-fluid"
+                             style="height: 150px; object-fit: contain;" />
 
-                    <!-- Mağaza Detayları ve Çalışanları Görüntüleme -->
-                    <div class="card-body text-center">
-                        <p class="card-text text-muted">@shop.Address</p>
-                        <a asp-action="Ekip" asp-route-shopId="@shop.Id" class="btn btn-primary">
-                            Çalışanlarımızı Gör
-                        </a>
+                        <div class="card-body">
+                            <!-- Mağaza Adı ve Adresi -->
+                            <h5 class="card-title text-center">@shop.ShopName</h5>
+                            <p class="card-text text-muted text-center">@shop.Address</p>
+
+                            <!-- Daha Fazla Butonu -->
+                            <div class="text-center mt-3">
+                                <a href="@Url.Action("Ekip", "Home", new { shopId = shop.Id })" class="btn btn-dark">Daha Fazla</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
-</div>
+</section>

@@ -1,0 +1,135 @@
+﻿@model List<WebBerber.Models.Operation>
+@{
+    ViewData["Title"] = "Hizmetlerimiz";
+
+    // Aynı ada sahip işlemleri gruplandırıyoruz.
+    var groupedOperations = Model
+        .GroupBy(op => op.OperationName)
+        .Select(group => new
+        {
+            OperationName = group.Key,
+            MinPrice = group.Min(op => op.Price),
+            MaxPrice = group.Max(op => op.Price),
+            MinDuration = group.Min(op => op.Duration),
+            MaxDuration = group.Max(op => op.Duration),
+            Gender = group.Select(op => op.Gender).Distinct().Count() > 1 ? "Kadın ve Erkek" : group.First().Gender,
+        })
+        .ToList();
+}
+
+<!-- Hero Bölümü -->
+<section class="hero-section text-center py-5" style="background: linear-gradient(to bottom, #212529, #495057); color: white;">
+    <div class="container">
+        <h1 class="display-4" data-aos="fade-down">Hizmetlerimiz</h1>
+        <p class="lead mt-3" data-aos="fade-up">
+            Sizi daha iyi hissettiren hizmetlerimizle tanışın.
+        </p>
+    </div>
+</section>
+
+<!-- Hizmetler Bölümü -->
+<section class="services-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4" data-aos="fade-up">Neler Yapıyoruz?</h2>
+        <div class="row g-4">
+            @foreach (var operation in groupedOperations)
+            {
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card custom-card shadow-lg h-100 border-0 d-flex flex-column" data-aos="fade-up" data-aos-delay="200">
+                        <!-- Hizmet Bilgileri -->
+                        <div class="card-body d-flex flex-column justify-content-between text-center">
+                            <div>
+                                <div class="icon-circle mb-2" data-aos="flip-left" data-aos-delay="300">
+                                    <i class="fa-solid fa-shop" style="font-size: 2rem; color: white;"></i>
+                                </div>
+                                <h5 class="card-title mb-2" data-aos="fade-down" data-aos-delay="400">@operation.OperationName</h5>
+                                <span class="badge bg-dark mb-2" data-aos="fade-right" data-aos-delay="500">@operation.Gender</span>
+                                <p class="card-text text-muted mb-1" data-aos="fade-up" data-aos-delay="600">
+                                    <strong class="text-success">
+                                        Ücret:
+                                        @if (operation.MinPrice == operation.MaxPrice)
+                                        {
+                                            @($"{operation.MinPrice} TL")
+                                        }
+                                        else
+                                        {
+                                            @($"{operation.MinPrice} TL - {operation.MaxPrice} TL")
+                                        }
+                                    </strong>
+                                </p>
+                            </div>
+                            <div>
+                                <p class="card-text text-muted mb-0" data-aos="fade-up" data-aos-delay="700">
+                                    <strong class="text-primary">
+                                        Süre:
+                                        @if (operation.MinDuration == operation.MaxDuration)
+                                        {
+                                            @($"{operation.MinDuration} dakika")
+                                        }
+                                        else
+                                        {
+                                            @($"{operation.MinDuration} dakika - {operation.MaxDuration} dakika")
+                                        }
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Avantajlar Bölümü -->
+<section class="advantages-section py-5" style="background: #f8f9fa;">
+    <div class="container">
+        <h2 class="text-center mb-4" data-aos="fade-up">Neden Bizi Tercih Etmelisiniz?</h2>
+        <div class="row text-center g-4">
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="advantage-card">
+                    <i class="bi bi-people-fill" style="font-size: 3rem; color: #212529;"></i>
+                    <h5 class="mt-3">Profesyonel Ekip</h5>
+                    <p class="text-muted">Deneyimli ve uzman çalışanlarımızla hizmetinizdeyiz.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="advantage-card">
+                    <i class="bi bi-cash-stack" style="font-size: 3rem; color: #212529;"></i>
+                    <h5 class="mt-3">Uygun Fiyat</h5>
+                    <p class="text-muted">Hizmetlerimiz, kaliteyi uygun fiyatlarla sunar.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                <div class="advantage-card">
+                    <i class="bi bi-award-fill" style="font-size: 3rem; color: #212529;"></i>
+                    <h5 class="mt-3">Yüksek Kalite</h5>
+                    <p class="text-muted">Müşteri memnuniyetini öncelik alıyoruz.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- CTA Bölümü -->
+<section class="cta-section text-center py-5" style="background: #212529; color: white;">
+    <div class="container">
+        <h2 class="mb-3" data-aos="fade-up">Hemen Randevunuzu Alın!</h2>
+        <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
+            Profesyonel hizmetlerimizden yararlanmak için hemen randevunuzu oluşturun.
+        </p>
+        @if (Context.Session.GetString("UserEmail") != null)
+        {
+            <!-- Kullanıcı oturum açmışsa -->
+            <a asp-controller="Customer" asp-action="ListShops" class="btn btn-outline-light btn-lg" data-aos="fade-up" data-aos-delay="200">
+                Randevu Al
+            </a>
+        }
+        else
+        {
+            <!-- Kullanıcı oturum açmamışsa -->
+            <a asp-controller="Login" asp-action="Index" class="btn btn-outline-light btn-lg" data-aos="fade-up" data-aos-delay="200">
+                Oturum Aç
+            </a>
+        }
+    </div>
+</section>

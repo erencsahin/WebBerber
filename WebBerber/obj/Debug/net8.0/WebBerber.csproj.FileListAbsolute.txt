@@ -338,3 +338,5 @@ C:\Users\msi-nb\source\repos\WebBerber\WebBerber\obj\Debug\net8.0\WebBerber.genr
 C:\Users\msi-nb\source\repos\WebBerber\WebBerber\obj\Debug\net8.0\ref\WebBerber.dll
 C:\Users\msi-nb\source\repos\WebBerber\WebBerber\bin\Debug\net8.0\RestSharp.dll
 C:\Users\msi-nb\source\repos\WebBerber\WebBerber\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\kafta\Source\Repos\WebBerber\WebBerber\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\kafta\Source\Repos\WebBerber\WebBerber\bin\Debug\net8.0\RestSharp.dll

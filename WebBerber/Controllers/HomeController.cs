@@ -59,5 +59,11 @@ namespace WebBerber.Controllers
             return View();
         }
 
+        public IActionResult Operations()
+        {
+            var ops = _context.Operations.ToList();
+            return View(ops);
+        }
+
     }
 }

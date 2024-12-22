@@ -307,5 +307,56 @@ footer {
         position: relative;
         z-index: 2;
     }
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    background: #212529;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.advantage-card {
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .advantage-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+.custom-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Kartýn tüm yüksekliðini kaplar */
+}
+
+    .custom-card .card-body {
+        padding: 15px; /* Kart içindeki gereksiz boþluklarý azaltýr */
+    }
+
+        .custom-card .card-body p:last-child {
+            margin-bottom: 0; /* Sürenin altýndaki boþluðu kaldýrýr */
+        }
 /*---------------HIZMETLER END---------------*/
+.badge {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Hafif gölge */
+    border-radius: 12px; /* Hafif yuvarlak köþeler */
+    padding: 0.7em 1.2em;
+}
+
