@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HuaXfhEbFY2TWu/g9w84gAdApC69Oe/4IHbe4p5QngA=",
+  "Hash": "pFpQdhZ4nqjZqd76o9It0GyHGESn8V5w5Ai9W8sPA6E=",
   "Source": "WebBerber",
   "BasePath": "_content/WebBerber",
   "Mode": "Default",
@@ -1269,6 +1269,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\photos\\hizmetler-kadin.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\wwwroot\\photos\\kayahair.jpg",
+      "SourceId": "WebBerber",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\wwwroot\\",
+      "BasePath": "_content/WebBerber",
+      "RelativePath": "photos/kayahair.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\photos\\kayahair.jpg"
     },
     {
       "Identity": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\wwwroot\\photos\\logo.png",

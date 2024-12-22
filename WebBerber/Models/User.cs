@@ -29,10 +29,7 @@ namespace WebBerber.Models
         [EnumDataType(typeof(Gender))]
         public Gender Gender { get; set; }
 
-
-        [EnumDataType(typeof(Role))]
-        [DefaultValue(Role.Customer)]
-        public Role Role { get; set; }
+        public Role? Role { get; set; }
     }
 }
 

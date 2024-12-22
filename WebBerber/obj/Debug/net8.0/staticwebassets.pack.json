@@ -261,6 +261,10 @@
       "PackagePath": "staticwebassets\\photos\\hizmetler-kadin.jpg"
     },
     {
+      "Id": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\wwwroot\\photos\\kayahair.jpg",
+      "PackagePath": "staticwebassets\\photos\\kayahair.jpg"
+    },
+    {
       "Id": "C:\\Users\\msi-nb\\source\\repos\\WebBerber\\WebBerber\\wwwroot\\photos\\logo.png",
       "PackagePath": "staticwebassets\\photos\\logo.png"
     },

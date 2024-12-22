@@ -33,29 +33,16 @@
         </div>
     </div>
 
-    <!-- E-posta Onayı Formu -->
-    <form method="post" action="/Appointment/SendEmail" data-aos="fade-up">
-        <div class="card shadow-lg border-0">
-            <div class="card-body bg-light p-4">
-                <h5 class="card-title fw-bold text-dark mb-3">E-posta Onayı</h5>
-                <div class="mb-3">
-                    <label for="email" class="form-label fw-bold">E-posta Adresi</label>
-                    <input type="email" name="Email" id="email" class="form-control rounded-pill shadow-sm" placeholder="E-posta adresinizi giriniz" required />
-                </div>
-
-                <!-- Gizli Alanlar -->
-                <input type="hidden" name="EmployeeId" value="@Model.EmployeeId" />
-                <input type="hidden" name="OperationId" value="@Model.OperationId" />
-                <input type="hidden" name="StartTime" value="@Model.StartTime.ToString("yyyy-MM-ddTHH:mm")" />
-
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-dark rounded-pill shadow-sm py-2" id="submitButton">
-                        E-posta Onayı Gönder
-                    </button>
-                </div>
-            </div>
-        </div>
+    <form method="post" asp-controller="Appointment" asp-action="SendEmail">
+        <input type="hidden" name="employeeId" value=@Model.EmployeeId />
+        <input type="hidden" name="operationId" value=@Model.OperationId />
+        <input type="hidden" name="startTime" value=@Model.StartTime.ToString("yyyy-MM-ddTHH:mm") />
+        <button type="submit" class="btn btn-dark rounded-pill shadow-sm py-2">
+            E-posta Onayı Gönder
+        </button>
     </form>
+
+
 </div>
 
 <!-- Başarılı Modal -->

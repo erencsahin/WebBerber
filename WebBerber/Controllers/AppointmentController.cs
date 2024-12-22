@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebBerber.Filters;
 using WebBerber.Models;
 using WebBerber.Utils;
+using System.Net.Mail;
 
 namespace WebBerber.Controllers
 {
@@ -103,13 +103,22 @@ namespace WebBerber.Controllers
         }
 
         [HttpPost]
-        public IActionResult SendEmail(string email, int employeeId, int operationId, DateTime startTime)
+        public IActionResult SendEmail(int employeeId, int operationId, DateTime startTime)
         {
             var employee = appDbContext.Employees
                 .Include(e => e.Shop)
                 .FirstOrDefault(e => e.Id == employeeId);
 
             var operation = appDbContext.Operations.FirstOrDefault(o => o.Id == operationId);
+
+            var customerEmail = HttpContext.Session.GetString("UserEmail");
+
+            if (string.IsNullOrEmpty(customerEmail)||employee==null||operation==null)
+            {
+                TempData["ErrorMessage"] = "Randevu oluşturulurken bit hata oluştu.";
+                return RedirectToAction("ListShops", "Customer");
+            }
+
 
             var appointment = new Appointment
             {
@@ -140,7 +149,23 @@ namespace WebBerber.Controllers
                     Credentials = new System.Net.NetworkCredential("erencsahin34@gmail.com", "jmef uvro bxgi wrjn"),
                     EnableSsl = true
                 };
-                smtpClient.Send("erencsahin34@gmail.com", email, subject, body);
+
+                var mailMessage = new System.Net.Mail.MailMessage
+                {
+                    From = new System.Net.Mail.MailAddress("erencsahin34@gmail.com"),
+                    Subject = subject,
+                    Body = body,
+                    IsBodyHtml = false
+                };
+
+                mailMessage.To.Add(customerEmail);
+
+                if (!string.IsNullOrEmpty(employee.Email))
+                {
+                    mailMessage.To.Add(employee.Email);
+                }
+
+                smtpClient.Send(mailMessage);
 
                 appDbContext.Appointments.Add(appointment);
                 appDbContext.SaveChanges();
