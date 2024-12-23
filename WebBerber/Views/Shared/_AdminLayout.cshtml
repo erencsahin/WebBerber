@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Kuaför Yönetim Paneli</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="/css/admin.css" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-</head>
+    <script src="/js/admin.js"></script>
+</head> 
 <body class="sb-nav-fixed">
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Logo ve Marka Adı -->
-        <a asp-controller="Home" asp-action="Index" class="navbar-brand ps-3">
+        <a asp-controller="Admin" asp-action="Index" class="navbar-brand ps-3">
             <img src="/photos/logo.png" alt="image" class="navbar-logo me-2" style="height: 40px;" />
-            Kuaför Yönetim Paneli
+            Kasap
         </a>
 
         <!-- Sidebar Toggle -->
@@ -109,12 +110,7 @@
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Kuaför Yönetim Paneli 2023</div>
-                        <div>
-                            <a href="#">Gizlilik Politikası</a>
-                            &middot;
-                            <a href="#">Şartlar ve Koşullar</a>
-                        </div>
+                        <div class="text-muted">Copyright &copy;  @DateTime.Now.Year KASAP YÖNETİM PANELİ.</div>
                     </div>
                 </div>
             </footer>

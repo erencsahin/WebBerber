@@ -13,3 +13,21 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.style.paddingTop = navbarHeight/2 + "px";
     }
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const loadingAnimation = document.getElementById("loading-animation");
+
+    // Tüm bağlantılara tıklama olayını yakala
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function (event) {
+            if (!link.href.includes("#") && link.target !== "_blank") {
+                event.preventDefault(); // Varsayılan tıklamayı durdur
+                loadingAnimation.classList.add("show"); // Animasyonu yumuşakça göster
+
+                // Yeni sayfaya yönlendir
+                setTimeout(() => {
+                    window.location.href = link.href;
+                }, 600); // Animasyonun tam görünmesi için gecikme süresi
+            }
+        });
+    });
+});

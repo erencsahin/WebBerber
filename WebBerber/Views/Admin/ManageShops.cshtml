@@ -3,35 +3,66 @@
 @{
     ViewData["Title"] = "Mağaza Yönetimi";
     Layout = "_AdminLayout";
-
 }
 
 <div class="container mt-5">
-    <h2 class="mb-4 text-center">Mağaza Yönetimi</h2>
+    <h2 class="mb-4 text-center text-primary">Mağaza Yönetimi</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
 
     <div class="d-flex justify-content-between mb-3">
-        <a asp-action="AddShop" class="btn btn-success">Yeni Mağaza Ekle</a>
-        <a asp-action="Index" class="btn btn-secondary">Geri</a>
+        <a asp-action="AddShop" class="btn btn-success">
+            <i class="fas fa-store"></i> Yeni Mağaza Ekle
+        </a>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Ana Menü
+        </a>
     </div>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Ad</th>
-                <th>Adres</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var shop in Model)
-            {
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning text-center">
+            Henüz mağaza yok.
+        </div>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped table-hover table-responsive">
+            <thead>
                 <tr>
-                    <td>@shop.ShopName</td>
-                    <td>@shop.Address</td>
-                    <td>
-                        <a asp-action="DeleteShop" asp-route-id="@shop.Id" class="btn btn-danger btn-sm">Sil</a>
-                    </td>
+                    <th>Ad</th>
+                    <th>Adres</th>
+                    <th>İşlemler</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var shop in Model)
+                {
+                    <tr>
+                        <td>@shop.ShopName</td>
+                        <td>@shop.Address</td>
+                        <td>
+                            <a asp-action="EditShop" asp-route-id="@shop.Id" class="btn btn-primary btn-sm">
+                                <i class="fas fa-edit"></i> Düzenle
+                            </a>
+                            <a asp-action="DeleteShop" asp-route-id="@shop.Id" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i> Sil
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 </div>

@@ -10,6 +10,7 @@
                 <a href="/Home/RandevuAl" class="btn btn-primary btn-lg mt-3">Hemen Randevu Al</a>
             </div>
         </div>
+
         <!-- Slide 2 -->
         <div class="carousel-item">
             <img src="/photos/slide2.png" class="d-block w-100" alt="Slide 2">
@@ -18,6 +19,7 @@
                 <p class="lead text-white text-shadow">Profesyonel ekibimizle tarzınızı yeniden keşfedin.</p>
             </div>
         </div>
+
         <!-- Slide 3 -->
         <div class="carousel-item">
             <img src="/photos/slide3.png" class="d-block w-100" alt="Slide 3">
@@ -26,6 +28,25 @@
                 <p class="lead text-white text-shadow">Sağlıklı, canlı saçlara kavuşun!</p>
             </div>
         </div>
+
+        <!-- Slide 4 -->
+        <div class="carousel-item">
+            <img src="/photos/slide4.png" class="d-block w-100" alt="Slide 4">
+            <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
+                <h1 class="display-4 fw-bold text-white text-shadow">Kişisel Bakım</h1>
+                <p class="lead text-white text-shadow">Klasik ve modern görünümler için uzman dokunuş.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="carousel-item">
+            <img src="/photos/slide5.png" class="d-block w-100" alt="Slide 5">
+            <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
+                <h1 class="display-4 fw-bold text-white text-shadow">Kaliteli Hizmet</h1>
+                <p class="lead text-white text-shadow">Kendinizi şımartmak için doğru adres!</p>
+            </div>
+        </div>
+
     </div>
 
     <!-- Carousel Controls -->
@@ -135,6 +156,19 @@
 <section class="appointment text-center py-5" data-aos="fade-up">
     <div class="container">
         <h2 class="fw-bold">Randevunuzu Hemen Oluşturun</h2>
-        <a href="/Home/RandevuAl" class="btn btn-success btn-lg">Randevu Al</a>
+        @if (Context.Session.GetString("UserEmail") != null)
+        {
+            <!-- Kullanıcı oturum açmışsa -->
+            <a asp-controller="Customer" asp-action="ListShops" class="btn btn-success btn-lg" data-aos="fade-up" data-aos-delay="200">
+                Randevu Al
+            </a>
+        }
+        else
+        {
+            <!-- Kullanıcı oturum açmamışsa -->
+            <a asp-controller="Login" asp-action="Index" class="btn btn-success btn-lg" data-aos="fade-up" data-aos-delay="200">
+                Oturum Aç
+            </a>
+        }
     </div>
 </section>

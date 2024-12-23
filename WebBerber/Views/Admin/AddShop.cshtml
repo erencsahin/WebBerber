@@ -1,30 +1,43 @@
 ﻿@{
-    ViewData["Title"] = "Admin Paneli";
+    ViewData["Title"] = "Mağaza Ekle";
     Layout = "_AdminLayout";
 }
 @model WebBerber.Models.Shop
 
 <div class="container mt-5">
-    <h2 class="mb-4 text-center">Mağaza Ekle</h2>
+    <h2 class="mb-4 text-center text-primary">Mağaza Ekle</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
 
     <form method="post" asp-action="AddShop" class="p-4 border rounded bg-light shadow-sm">
         <div class="mb-3">
             <label for="shopName" class="form-label">Mağaza Adı:</label>
-            <input type="text" id="shopName" name="ShopName" class="form-control" required />
+            <input type="text" id="shopName" name="ShopName" class="form-control" placeholder="Mağaza adını giriniz" required />
         </div>
         <div class="mb-3">
             <label for="employees" class="form-label">Çalışan Sayısı:</label>
-            <input type="number" id="employees" name="Employees" class="form-control" required />
+            <input type="number" id="employees" name="Employees" class="form-control" placeholder="Çalışan sayısını giriniz" min="0" required />
         </div>
         <div class="mb-3">
             <label for="address" class="form-label">Adres:</label>
-            <textarea id="address" name="Address" class="form-control" rows="3" required></textarea>
+            <textarea id="address" name="Address" class="form-control" rows="3" placeholder="Mağaza adresini giriniz" required></textarea>
         </div>
-        <h5 class="mt-4">Çalışma Saatleri</h5>
+        <h5 class="mt-4 text-secondary">Çalışma Saatleri</h5>
         @for (int i = 0; i < 7; i++)
         {
             <div class="mb-4">
-                <label class="form-label d-flex justify-content-between">
+                <label class="form-label d-flex justify-content-between align-items-center">
                     <span>@((DayOfWeek)i):</span>
                     <input type="checkbox" id="disable-@i" class="form-check-input" onchange="toggleDay(@i)">
                     <small>Bu günü devre dışı bırak</small>
@@ -37,9 +50,21 @@
                 </div>
             </div>
         }
-        <div class="mt-4">
-            <button type="submit" class="btn btn-primary">Kaydet</button>
-            <a asp-action="ManageShops" class="btn btn-secondary">Geri Git</a>
+        <div class="d-flex justify-content-between mt-4">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Kaydet
+            </button>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Ana Menü
+            </a>
         </div>
     </form>
 </div>
+
+<script>
+    function toggleDay(index) {
+        const dayContainer = document.getElementById(`day-${index}`);
+        const checkbox = document.getElementById(`disable-${index}`);
+        dayContainer.style.display = checkbox.checked ? 'none' : 'flex';
+    }
+</script>

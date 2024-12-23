@@ -11,10 +11,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
-
 </head>
 <body>
+    <div id="loading-animation" class="loading-overlay">
+        <div class="makas">
+            <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <!-- Makasın Sapları -->
+                <circle cx="35" cy="70" r="10" fill="black" />
+                <circle cx="65" cy="70" r="10" fill="black" />
+
+                <!-- Makasın Bıçakları -->
+                <path d="M35,70 L50,50 L65,70" stroke="black" stroke-width="4" fill="none" class="blade blade1" />
+                <path d="M35,70 L50,90 L65,70" stroke="black" stroke-width="4" fill="none" class="blade blade2" />
+            </svg>
+        </div>
+    </div>
+
     <header class="header">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
             <div class="container px-4 px-lg-5">
@@ -43,7 +55,7 @@
                                 </a>
                             </li>
                         }
-                        else if (Context.Session.GetString("EmployeeEmail") !=null) {}
+                        else if (Context.Session.GetString("EmployeeEmail") != null) { }
                         else
                         {
                             <li class="nav-item">

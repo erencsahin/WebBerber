@@ -4,10 +4,9 @@
     }
 
     .navbar-logo {
-        height: 30px; /* Küçük ekranlarda daha küçük logo */
+        height: 30px; 
     }
 }
-
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
@@ -33,7 +32,7 @@ html, body {
 }
 
 main {
-    flex: 1; /* Ana içerik alaný esnek büyür */
+    flex: 1; 
 }
 
 h1, h5 {
@@ -41,20 +40,20 @@ h1, h5 {
 }
 /*---------------NAVBAR START---------------*/
 .navbar-logo {
-    max-width: 90px; /* Logo geniþliðini sýnýrla */
-    height: auto; /* Yüksekliði orantýlý þekilde ayarla */
+    max-width: 90px; 
+    height: auto;
 }
 
 @media (max-width: 768px) {
     .navbar-logo {
-        max-width: 80px; /* Mobilde logo daha küçük */
+        max-width: 80px; 
     }
 }
 
 .nav-link {
     position: relative;
     transition: color 0.3s;
-    margin-right: 8px; /* Ýkon ile metin arasýndaki boþluk */
+    margin-right: 8px; 
 }
 
     .nav-link::after {
@@ -64,29 +63,29 @@ h1, h5 {
         height: 2px;
         bottom: 0;
         left: 50%;
-        background-color: #fff; /* Hover çizgisi rengi */
+        background-color: #fff;
         transition: all 0.3s ease;
         transform: translateX(-50%);
     }
 
     .nav-link:hover::after {
-        width: 100%; /* Çizgi geniþliði */
+        width: 100%;
     }
 
 .dropdown-menu {
-    background-color: #343a40; /* Koyu gri arka plan */
-    color: #fff; /* Beyaz yazý */
-    padding: 10px 0; /* Dropdown içeriklerine dikey boþluk */
-    min-width: 200px; /* Dropdown geniþliði */
+    background-color: #343a40; 
+    color: #fff; 
+    padding: 10px 0; 
+    min-width: 200px;
 }
 
 .dropdown-item {
     color: #ddd;
-    padding: 8px 20px; /* Dropdown öðelerine iç boþluk */
+    padding: 8px 20px;
 }
 
     .dropdown-item:hover {
-        background-color: #495057; /* Daha koyu hover efekti */
+        background-color: #495057;
         color: #fff;
     }
 
@@ -94,17 +93,433 @@ h1, h5 {
 .navbar {
     padding-top: 15px;
     padding-bottom: 15px;
-    font-size: 16px; /* Yazý boyutunu biraz büyütün */
+    font-size: 16px;
 }
 
 
-/* Navbar içindeki öðeler arasýnda boþluk */
 .navbar-nav .nav-item {
-    margin-left: 15px; /* Sol taraftan boþluk ekleyin */
+    margin-left: 15px; 
 }
 
 .navbar-nav .nav-link {
-    padding: 10px 15px; /* Daha geniþ týklama alaný */
+    padding: 10px 15px; 
+    @media (min-width: 768px) {
+        html {
+            font-size: 16px;
+        }
+
+        .navbar-logo {
+            height: 30px; 
+        }
+    }
+
+    .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+        box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    }
+
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+
+    body {
+        margin-bottom: 60px;
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        flex-direction: column;
+        padding-top: 70px;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+
+    main {
+        flex: 1; 
+    }
+
+    h1, h5 {
+        font-family: 'Montserrat', sans-serif;
+    }
+    /*---------------NAVBAR START---------------*/
+    .navbar-logo {
+        max-width: 90px; 
+        height: auto;
+    }
+
+    @media (max-width: 768px) {
+        .navbar-logo {
+            max-width: 80px; 
+        }
+    }
+
+    .nav-link {
+        position: relative;
+        transition: color 0.3s;
+        margin-right: 8px; 
+    }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #fff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+    .dropdown-menu {
+        background-color: #343a40; 
+        color: #fff; 
+        padding: 10px 0; 
+        min-width: 200px;
+    }
+
+    .dropdown-item {
+        color: #ddd;
+        padding: 8px 20px;
+    }
+
+        .dropdown-item:hover {
+            background-color: #495057;
+            color: #fff;
+        }
+
+
+    .navbar {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-size: 16px;
+    }
+
+
+    .navbar-nav .nav-item {
+        margin-left: 15px; 
+    }
+
+    .navbar-nav .nav-link {
+        padding: 10px 15px; 
+    }
+    /*---------------NAVBAR END---------------*/
+    main {
+        background-color: #f8f9fa; 
+        border: 1px solid #ddd; 
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 80px; 
+    }
+    /*---------------FOOTER START---------------*/
+    footer {
+        background-color: #212529; 
+        color: white; 
+        padding: 20px 0; 
+        text-align: center; 
+        position: relative;
+        z-index: 10;
+    }
+
+        footer h5 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        footer a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+            footer a:hover {
+                color: white;
+                text-decoration: underline;
+            }
+
+        footer .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+            footer .form-control:focus {
+                background-color: rgba(255, 255, 255, 0.2);
+                outline: none;
+                color: white;
+            }
+
+        footer button {
+            background-color: #dc3545;
+            border: none;
+        }
+
+            footer button:hover {
+                background-color: #bb2d3b;
+            }
+
+        footer .btn-social {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid white;
+            color: white;
+        }
+
+            footer .btn-social:hover {
+                background-color: white;
+                color: #212529;
+            }
+
+    /*---------------FOOTER END---------------*/
+    .btn-grayscale {
+        background-color: #6c757d; 
+        color: #fff; 
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-grayscale:hover {
+            background-color: #5a6268; 
+        }
+
+
+    .hero {
+        background: url('/photos/hero-bg.jpg') no-repeat center center/cover;
+        color: #fff;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+
+    .card i {
+        color: #0d6efd; 
+    }
+
+    .appointment {
+        background-color: #f8f9fa;
+        padding: 60px 0;
+    }
+
+    /*---------------ANA SAYFA SLIDER START---------------*/
+    .carousel-caption {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); 
+        background-color: rgba(0, 0, 0, 0.4); 
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    #carouselHero .carousel-item img {
+        height: 600px; 
+        object-fit: cover; 
+    }
+
+    .text-shadow {
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+    /*---------------ANA SAYFA SLIDER END---------------*/
+    /*---------------AI API START---------------*/
+    .bg-light {
+        background-color: #f8f9fa !important;
+    }
+
+    .shadow-sm {
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .bg-danger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ai-suggestions .d-flex {
+        transition: all 0.3s ease-in-out; 
+    }
+
+        .ai-suggestions .d-flex:hover {
+            transform: scale(1.05); 
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); 
+        }
+
+            .ai-suggestions .d-flex:hover .bg-danger {
+                background-color: #dc3545; 
+                transition: background-color 0.3s ease;
+            }
+
+            .ai-suggestions .d-flex:hover .text-white {
+                color: #fff !important; 
+            }
+
+            .ai-suggestions .d-flex:hover h5 {
+                color: #dc3545; 
+                transition: color 0.3s ease;
+            }
+    /*---------------AI API END---------------*/
+    /*---------------HIZMETLER START---------------*/
+    .service-card {
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 20px;
+        position: relative;
+        min-height: 400px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease; 
+    }
+
+        .service-card:hover {
+            transform: scale(1.05); 
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card .overlay {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6); 
+            z-index: 1;
+        }
+
+        .service-card h3, .service-card ul {
+            position: relative;
+            z-index: 2;
+        }
+    .service-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+    .icon-circle {
+        width: 60px;
+        height: 60px;
+        background: #212529;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    .advantage-card {
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    .custom-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%; 
+    }
+
+        .custom-card .card-body {
+            padding: 15px; 
+        }
+
+            .custom-card .card-body p:last-child {
+                margin-bottom: 0; 
+            }
+    /*---------------HIZMETLER END---------------*/
+
+    /*---------------SAYFA GECISI START---------------*/
+
+    .badge {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); 
+        border-radius: 12px; 
+        padding: 0.7em 1.2em;
+    }
+
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.8); 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1050; 
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+        .loading-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    .makas {
+        animation: rotate 2s infinite;
+    }
+
+    .blade1 {
+        animation: openClose 0.5s infinite ease-in-out;
+    }
+
+    .blade2 {
+        animation: openCloseReverse 0.5s infinite ease-in-out;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes openClose {
+        0%, 100% {
+            transform: rotate(0deg);
+        }
+
+        50% {
+            transform: rotate(30deg);
+        }
+    }
+
+    @keyframes openCloseReverse {
+        0%, 100% {
+            transform: rotate(0deg);
+        }
+
+        50% {
+            transform: rotate(-30deg);
+        }
+    }
+    /*---------------SAYFA GECISI END---------------*/
 }
 /*---------------NAVBAR END---------------*/
 main {
@@ -354,9 +769,80 @@ footer {
             margin-bottom: 0; /* Sürenin altýndaki boþluðu kaldýrýr */
         }
 /*---------------HIZMETLER END---------------*/
+
+/*---------------SAYFA GECISI START---------------*/
+
 .badge {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Hafif gölge */
     border-radius: 12px; /* Hafif yuvarlak köþeler */
     padding: 0.7em 1.2em;
 }
 
+/* Yüklenme animasyonu arka planý */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Yarý saydam beyaz arka plan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050; /* Navbar ve diðer elementlerin üzerinde */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+    /* Görünür olduðunda animasyonu göster */
+    .loading-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+.makas {
+    animation: rotate 2s infinite;
+}
+
+/* Makas dönerken açýl-kapan hareketi */
+.blade1 {
+    animation: openClose 0.5s infinite ease-in-out;
+}
+
+.blade2 {
+    animation: openCloseReverse 0.5s infinite ease-in-out;
+}
+
+/* Döndürme hareketi */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Açýl-kapan hareketi (býçak 1) */
+@keyframes openClose {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(30deg);
+    }
+}
+
+/* Açýl-kapan hareketi (býçak 2) */
+@keyframes openCloseReverse {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(-30deg);
+    }
+}
+/*---------------SAYFA GECISI END---------------*/

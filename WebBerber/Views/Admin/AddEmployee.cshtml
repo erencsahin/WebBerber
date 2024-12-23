@@ -1,11 +1,24 @@
 ﻿@{
-    ViewData["Title"] = "Admin Paneli";
+    ViewData["Title"] = "Çalışan Ekle";
     Layout = "_AdminLayout";
 }
 @model WebBerber.Models.Employee
 
 <div class="container mt-5">
-    <h2 class="mb-4 text-center">Çalışan Ekle</h2>
+    <h2 class="mb-4 text-center text-primary">Çalışan Ekle</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
 
     <form method="post" asp-action="AddEmployee" class="p-4 border rounded bg-light shadow-sm">
         <!-- Çalışan Bilgileri -->
@@ -22,7 +35,7 @@
             <input type="email" id="email" name="Email" class="form-control" placeholder="Çalışanın mailini giriniz" required />
         </div>
         <div class="mb-3">
-            <label for="password" class="form-label">Soyad:</label>
+            <label for="password" class="form-label">Şifre:</label>
             <input type="password" id="password" name="Password" class="form-control" placeholder="Çalışanın şifresini giriniz" required />
         </div>
 
@@ -30,6 +43,7 @@
         <div class="mb-3">
             <label for="shopId" class="form-label">Mağaza:</label>
             <select id="shopId" name="ShopId" class="form-select" required>
+                <option value="" disabled selected>Mağaza seçiniz</option>
                 @foreach (var shop in ViewBag.Shops)
                 {
                     <option value="@shop.Id">@shop.ShopName</option>
@@ -38,11 +52,11 @@
         </div>
 
         <!-- Çalışma Saatleri -->
-        <h5 class="mt-4">Çalışma Saatleri</h5>
+        <h5 class="mt-4 text-secondary">Çalışma Saatleri</h5>
         @for (int i = 0; i < 7; i++)
         {
             <div class="mb-4">
-                <label class="form-label d-flex justify-content-between">
+                <label class="form-label d-flex justify-content-between align-items-center">
                     <span>@((DayOfWeek)i):</span>
                     <input type="checkbox" id="disable-@i" class="form-check-input" onchange="toggleDay(@i)">
                     <small>Bu günü devre dışı bırak</small>
@@ -57,9 +71,13 @@
         }
 
         <!-- Kaydet ve Geri Butonları -->
-        <div class="mt-4">
-            <button type="submit" class="btn btn-primary">Kaydet</button>
-            <a asp-action="ManageEmployees" class="btn btn-secondary">Geri Git</a>
+        <div class="d-flex justify-content-between mt-4">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Kaydet
+            </button>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Ana Menü
+            </a>
         </div>
     </form>
 </div>
@@ -68,10 +86,6 @@
     function toggleDay(dayIndex) {
         const dayDiv = document.getElementById(`day-${dayIndex}`);
         const isDisabled = document.getElementById(`disable-${dayIndex}`).checked;
-        if (isDisabled) {
-            dayDiv.style.display = 'none';
-        } else {
-            dayDiv.style.display = 'flex';
-        }
+        dayDiv.style.display = isDisabled ? 'none' : 'flex';
     }
 </script>
