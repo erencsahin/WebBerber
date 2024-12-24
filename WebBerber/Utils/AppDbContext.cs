@@ -17,6 +17,7 @@ namespace WebBerber.Utils
         public DbSet<WorkingHour> WorkHours { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmployeeOperation> EmployeeOperations { get; set; }
+        public DbSet<Contact> ContactForms { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

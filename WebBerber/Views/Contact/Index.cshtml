@@ -1,0 +1,71 @@
+﻿@model WebBerber.Models.Contact
+
+<div class="container mt-5">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div class="row">
+        <!-- Sol Taraf: İletişim Bilgileri -->
+        <div class="col-md-6">
+            <div class="contact-info">
+                <h3>İletişim Bilgilerimiz</h3>
+                <p>Herhangi bir şikayetinizde aşağıdaki mail adresimizi kullanabilirsiniz.</p>
+                <p><strong>Email:</strong> info@kasap.com.tr</p>
+
+                <h5>Adres</h5>
+                <p> Sakarya Üniversitesi Bilgisayar ve Bilişim Bilimleri Fakültesi, 54187 Serdivan/Sakarya</p>
+
+                <h5>Hizmet Saatlerimiz</h5>
+                <p>Hafta İçi: 10:00 - 22:00</p>
+                <p>Hafta Sonu: 10:00 - 22:00</p>
+
+                <h5>Telefon</h5>
+                <p>0555 555 5555</p>
+            </div>
+        </div>
+
+        <!-- Sağ Taraf: İletişim Formu -->
+        <div class="col-md-6">
+            <div class="contact-form">
+                <h3>İletişim Formu</h3>
+                <form asp-controller="Contact" asp-action="SubmitContactForm" method="post">
+                    <div class="form-group">
+                        <label asp-for="Name">Adınız</label>
+                        <input class="form-control" asp-for="Name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Surname">Soyadınız</label>
+                        <input class="form-control" asp-for="Surname" />
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Email">E-mail Adresiniz</label>
+                        <input class="form-control" asp-for="Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Subject">Konu</label>
+                        <input class="form-control" asp-for="Subject" />
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Message">Mesajınız</label>
+                        <textarea class="form-control" asp-for="Message"></textarea>
+                        <span asp-validation-for="Message" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-danger mt-3">Gönder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

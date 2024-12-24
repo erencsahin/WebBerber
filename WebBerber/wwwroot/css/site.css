@@ -846,3 +846,64 @@ footer {
     }
 }
 /*---------------SAYFA GECISI END---------------*/
+
+/*---------------CONTACT  START---------------*/
+
+.contact-info, .contact-form {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+h5 {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+    border-radius: 5px;
+    padding: 10px;
+}
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        border-color: #e63946; 
+    }
+
+.contact-form .btn-danger {
+    background-color: #e63946;
+    border: none;
+    color: white;
+}
+
+    .contact-form .btn-danger:hover {
+        background-color: #d62828;
+    }
+
+.contact-info {
+    background-color: #ffffff;
+    border: 2px solid #e63946;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.text-danger {
+    font-size: 0.875em;
+    color: #e63946;
+}
+
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+/*---------------CONTACT END---------------*/
