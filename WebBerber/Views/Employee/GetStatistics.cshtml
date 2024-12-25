@@ -1,0 +1,87 @@
+﻿@model IEnumerable<dynamic>
+
+<div class="container mt-5">
+    <h2 class="text-center">Çalışan İstatistikleri</h2>
+
+    <h4 class="mt-4">Günlük Toplam Kazançlar (₺)</h4>
+    <canvas id="earningsChart" width="200" height="100"></canvas>
+
+    <h4 class="mt-4">Günlük Toplam İşlemler</h4>
+    <canvas id="operationsChart" width="200" height="100"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    //veriler.
+    var labels = @Html.Raw(Json.Serialize(Model.Select(m => m.Date.ToString("dd MMM yyyy"))));
+    var earnings = @Html.Raw(Json.Serialize(Model.Select(m => m.TotalEarnings)));
+    var operations = @Html.Raw(Json.Serialize(Model.Select(m => m.TotalOperations)));
+
+    // kazanc grafigi
+    const earningsCtx = document.getElementById('earningsChart').getContext('2d');
+    const earningsChart = new Chart(earningsCtx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Toplam Kazanç (₺)',
+                data: earnings,
+                backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Kazanç (₺)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Tarih'
+                    }
+                }
+            }
+        }
+    });
+
+    // islem grafigi
+    const operationsCtx = document.getElementById('operationsChart').getContext('2d');
+    const operationsChart = new Chart(operationsCtx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Toplam İşlemler',
+                data: operations,
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'İşlem Sayısı'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Tarih'
+                    }
+                }
+            }
+        }
+    });
+</script>

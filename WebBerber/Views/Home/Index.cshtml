@@ -1,7 +1,5 @@
-﻿<!-- Slider Section -->
-<section id="carouselHero" class="carousel slide" data-bs-ride="carousel" data-aos="fade-in">
+﻿<section id="carouselHero" class="carousel slide" data-bs-ride="carousel" data-aos="fade-in">
     <div class="carousel-inner">
-        <!-- Slide 1 -->
         <div class="carousel-item active">
             <img src="/photos/slide1.jpg" class="d-block w-100" alt="Slide 1">
             <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
@@ -11,7 +9,6 @@
             </div>
         </div>
 
-        <!-- Slide 2 -->
         <div class="carousel-item">
             <img src="/photos/slide2.png" class="d-block w-100" alt="Slide 2">
             <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
@@ -20,7 +17,6 @@
             </div>
         </div>
 
-        <!-- Slide 3 -->
         <div class="carousel-item">
             <img src="/photos/slide3.png" class="d-block w-100" alt="Slide 3">
             <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
@@ -29,7 +25,6 @@
             </div>
         </div>
 
-        <!-- Slide 4 -->
         <div class="carousel-item">
             <img src="/photos/slide4.png" class="d-block w-100" alt="Slide 4">
             <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
@@ -38,7 +33,6 @@
             </div>
         </div>
 
-        <!-- Slide 5 -->
         <div class="carousel-item">
             <img src="/photos/slide5.png" class="d-block w-100" alt="Slide 5">
             <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
@@ -49,7 +43,6 @@
 
     </div>
 
-    <!-- Carousel Controls -->
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselHero" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Önceki</span>
@@ -60,12 +53,10 @@
     </button>
 </section>
 
-<!-- Hizmetler ve Ücretler -->
 <section class="services py-5" data-aos="fade-up">
     <div class="container">
         <h2 class="text-center mb-5">Hizmetlerimiz ve Ücretlerimiz</h2>
         <div class="row">
-            <!-- Erkek Hizmetleri -->
             <div class="col-md-6" data-aos="fade-right">
                 <div class="service-card bg-dark text-white position-relative" style="background-image: url('/photos/hizmetler-erkek.jpg');">
                     <div class="overlay"></div>
@@ -81,7 +72,6 @@
                     </ul>
                 </div>
             </div>
-            <!-- Kadın Hizmetleri -->
             <div class="col-md-6" data-aos="fade-left">
                 <div class="service-card bg-dark text-white position-relative" style="background-image: url('/photos/hizmetler-kadin.jpg');">
                     <div class="overlay"></div>
@@ -101,13 +91,12 @@
     </div>
 </section>
 
-<!-- Yapay Zeka Önerileri Bölümü -->
 <section class="ai-suggestions py-5" data-aos="fade-up">
     <div class="container">
         <h2 class="text-center mb-4">Yapay Zekadan Öneriler Alın</h2>
         <p class="text-center mb-5">En uygun saç tasarımı için hemen deneyin!</p>
         <div class="row g-4">
-            <!-- Kart 1 -->
+
             <div class="col-md-4">
                 <div class="d-flex align-items-center bg-light rounded shadow-sm">
                     <div class="p-4 bg-danger text-white rounded-start">
@@ -119,7 +108,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Kart 2 -->
+
             <div class="col-md-4">
                 <div class="d-flex align-items-center bg-light rounded shadow-sm">
                     <div class="p-4 bg-danger text-white rounded-start">
@@ -131,7 +120,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Kart 3 -->
+
             <div class="col-md-4">
                 <div class="d-flex align-items-center bg-light rounded shadow-sm">
                     <div class="p-4 bg-danger text-white rounded-start">
@@ -144,7 +133,6 @@
                 </div>
             </div>
         </div>
-        <!-- Hemen Deneyin Butonu -->
         <div class="text-center mt-4">
             <a asp-controller="AIIntegration" asp-action="Index" class="btn btn-primary btn-lg">
                 Hemen Deneyin
@@ -152,20 +140,17 @@
         </div>
     </div>
 </section>
-<!-- Randevu Bölümü -->
 <section class="appointment text-center py-5" data-aos="fade-up">
     <div class="container">
         <h2 class="fw-bold">Randevunuzu Hemen Oluşturun</h2>
         @if (Context.Session.GetString("UserEmail") != null)
         {
-            <!-- Kullanıcı oturum açmışsa -->
             <a asp-controller="Customer" asp-action="ListShops" class="btn btn-success btn-lg" data-aos="fade-up" data-aos-delay="200">
                 Randevu Al
             </a>
         }
         else
         {
-            <!-- Kullanıcı oturum açmamışsa -->
             <a asp-controller="Login" asp-action="Index" class="btn btn-success btn-lg" data-aos="fade-up" data-aos-delay="200">
                 Oturum Aç
             </a>

@@ -6,40 +6,32 @@
     <div class="row justify-content-center w-100">
         <div class="col-md-6" data-aos="fade-up">
             <div class="card shadow-lg border-0">
-                <!-- Kart Başlığı -->
                 <div class="card-header bg-dark text-white text-center py-3">
                     <h3 class="fw-bold mb-0">Kayıt Ol</h3>
                 </div>
 
-                <!-- Kart İçeriği -->
                 <div class="card-body bg-light px-4 py-4">
                     <form method="post" asp-action="Index">
-                        <!-- Ad -->
                         <div class="mb-3">
                             <label for="firstName" class="form-label text-dark fw-bold">Ad</label>
                             <input type="text" name="FirstName" class="form-control rounded-pill shadow-sm" placeholder="Adınızı girin" required />
                         </div>
-                        <!-- Soyad -->
                         <div class="mb-3">
                             <label for="lastName" class="form-label text-dark fw-bold">Soyad</label>
                             <input type="text" name="LastName" class="form-control rounded-pill shadow-sm" placeholder="Soyadınızı girin" required />
                         </div>
-                        <!-- Telefon Numarası -->
                         <div class="mb-3">
                             <label for="phoneNumber" class="form-label text-dark fw-bold">Telefon Numarası</label>
                             <input type="text" name="PhoneNumber" class="form-control rounded-pill shadow-sm" placeholder="Telefon numaranızı girin" required />
                         </div>
-                        <!-- E-Posta -->
                         <div class="mb-3">
                             <label for="email" class="form-label text-dark fw-bold">E-posta</label>
                             <input type="email" name="Email" class="form-control rounded-pill shadow-sm" placeholder="E-posta adresinizi girin" required />
                         </div>
-                        <!-- Şifre -->
                         <div class="mb-3">
                             <label for="password" class="form-label text-dark fw-bold">Şifre</label>
                             <input type="password" name="Password" class="form-control rounded-pill shadow-sm" placeholder="Şifrenizi girin" required />
                         </div>
-                        <!-- Cinsiyet -->
                         <div class="mb-3">
                             <label for="gender" class="form-label text-dark fw-bold">Cinsiyet</label>
                             <select name="Gender" class="form-select rounded-pill shadow-sm" required>
@@ -47,11 +39,9 @@
                                 <option value="2">Kadın</option>
                             </select>
                         </div>
-                        <!-- Kayıt Ol Butonu -->
                         <button type="submit" class="btn btn-dark w-100 rounded-pill shadow-sm py-2">Kayıt Ol</button>
                     </form>
 
-                    <!-- Hata Mesajı -->
                     @if (ViewBag.ErrorMessage != null)
                     {
                         <div class="alert alert-danger mt-3">
@@ -59,7 +49,6 @@
                         </div>
                     }
 
-                    <!-- Başarı Mesajı -->
                     @if (TempData["SuccessMessage"] != null)
                     {
                         <div class="alert alert-success mt-3">

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using WebBerber.Filters;
 using WebBerber.Models;
@@ -62,12 +63,17 @@ namespace WebBerber.Controllers
         {
             if (ModelState.IsValid) 
             {
+                user.Password=Security.HashPassword(user.Password);
+
                 dbContext.Users.Add(user);
                 dbContext.SaveChanges();
+                TempData["SuccessMessage"] = "Kullanıcı başarıyla eklendi.";
                 return RedirectToAction("ManageUsers");
             }
+            TempData["ErrorMessage"] = "Kullanıcı eklenirken bir hata oluştu.";
             return View(user);
         }
+
         public IActionResult EditUser(int id)
         {
             var user = dbContext.Users.Find(id);
@@ -92,7 +98,6 @@ namespace WebBerber.Controllers
                     return RedirectToAction("ManageUsers");
                 }
 
-                // Güncelleme işlemi
                 existingUser.FirstName = user.FirstName;
                 existingUser.LastName = user.LastName;
                 existingUser.Email = user.Email;
@@ -200,6 +205,7 @@ namespace WebBerber.Controllers
 
             if (ModelState.IsValid)
             {
+                employee.Password=Security.HashPassword(employee.Password);
                 employee.WorkingHours = filteredWorkingHours;
                 dbContext.Employees.Add(employee);
                 dbContext.SaveChanges();
@@ -209,7 +215,7 @@ namespace WebBerber.Controllers
             ViewBag.Shops = dbContext.Shops.ToList();
             return View(employee);
         }
-        /*  //HATA VAR DÜZENLENECEK 
+        //HATA VAR DÜZENLENECEK 
         public IActionResult EditEmployee(int id)
         {
             var employee = dbContext.Employees
@@ -222,7 +228,6 @@ namespace WebBerber.Controllers
                 return RedirectToAction("ManageEmployees");
             }
 
-            ViewBag.Shops = dbContext.Shops.ToList();
             return View(employee);
         }
 
@@ -242,30 +247,44 @@ namespace WebBerber.Controllers
                     return RedirectToAction("ManageEmployees");
                 }
 
-                // Güncelleme işlemi
+                // Çalışan bilgilerini güncelle
                 existingEmployee.Name = employee.Name;
                 existingEmployee.Surname = employee.Surname;
                 existingEmployee.Email = employee.Email;
-                existingEmployee.Password = employee.Password;
-                existingEmployee.ShopId = employee.ShopId;
+                existingEmployee.Password= employee.Password;
 
-                // Çalışan çalışma saatlerini tek tek ekliyoruz
-                foreach (var workingHour in workingHours.Where(wh => wh.StartTime != TimeSpan.Zero && wh.EndTime != TimeSpan.Zero))
+                // Çalışma saatlerini güncelle
+                /*existingEmployee.WorkingHours.Clear();
+                foreach (var workingHour in workingHours)
                 {
                     existingEmployee.WorkingHours.Add(workingHour);
+                }*/
+
+                try
+                {
+                    dbContext.SaveChanges();
+                    TempData["SuccessMessage"] = "Çalışan başarıyla güncellendi.";
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"SaveChanges hatası: {ex.Message}");
+                    TempData["ErrorMessage"] = "Güncelleme sırasında bir hata oluştu.";
                 }
 
-                dbContext.SaveChanges();
-
-                TempData["SuccessMessage"] = "Çalışan başarıyla güncellendi.";
                 return RedirectToAction("ManageEmployees");
             }
 
-            ViewBag.Shops = dbContext.Shops.ToList();  // Dükkanları tekrar yükleyelim
+            // ModelState geçerli değilse
+            foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+            {
+                Console.WriteLine(error.ErrorMessage);
+            }
+
+            TempData["ErrorMessage"] = "Lütfen tüm alanları doğru şekilde doldurun.";
             return View(employee);
         }
 
-        */
+
 
         public IActionResult DeleteEmployee(int id)
         {
