@@ -8,19 +8,6 @@
 <div class="container mt-5">
     <h2 class="mb-4 text-center text-primary">Kullanıcı Yönetimi</h2>
 
-    @if (TempData["SuccessMessage"] != null)
-    {
-        <div class="alert alert-success">
-            @TempData["SuccessMessage"]
-        </div>
-    }
-    @if (TempData["ErrorMessage"] != null)
-    {
-        <div class="alert alert-danger">
-            @TempData["ErrorMessage"]
-        </div>
-    }
-
     <div class="d-flex justify-content-between mb-3">
         <a asp-action="AddUser" class="btn btn-success">
             <i class="fas fa-user-plus"></i> Yeni Kullanıcı Ekle

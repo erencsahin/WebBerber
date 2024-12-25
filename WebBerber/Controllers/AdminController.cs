@@ -68,6 +68,44 @@ namespace WebBerber.Controllers
             }
             return View(user);
         }
+        public IActionResult EditUser(int id)
+        {
+            var user = dbContext.Users.Find(id);
+            if (user == null)
+            {
+                TempData["ErrorMessage"] = "Kullanıcı bulunamadı.";
+                return RedirectToAction("ManageUsers");
+            }
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public IActionResult EditUser(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingUser = dbContext.Users.Find(user.Id);
+                if (existingUser == null)
+                {
+                    TempData["ErrorMessage"] = "Kullanıcı bulunamadı.";
+                    return RedirectToAction("ManageUsers");
+                }
+
+                // Güncelleme işlemi
+                existingUser.FirstName = user.FirstName;
+                existingUser.LastName = user.LastName;
+                existingUser.Email = user.Email;
+                existingUser.Role = user.Role;
+
+                dbContext.SaveChanges();
+
+                TempData["SuccessMessage"] = "Kullanıcı başarıyla güncellendi.";
+                return RedirectToAction("ManageUsers");
+            }
+
+            return View(user);
+        }
 
 
         public IActionResult DeleteUser(int id)
@@ -97,7 +135,44 @@ namespace WebBerber.Controllers
             }
             return View(shop);
         }
-        
+        public IActionResult EditShop(int shopId)
+        {
+            var shop = dbContext.Shops.Find(shopId);
+            if (shop == null)
+            {
+                TempData["ErrorMessage"] = "Dükkan bulunamadı.";
+                return RedirectToAction("ManageShops");
+            }
+
+            return View(shop);
+        }
+
+        [HttpPost]
+        public IActionResult EditShop(Shop shop)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingShop = dbContext.Shops.Find(shop.Id);
+                if (existingShop == null)
+                {
+                    TempData["ErrorMessage"] = "Dükkan bulunamadı.";
+                    return RedirectToAction("ManageShops");
+                }
+
+                // ShopName özelliğini kullanıyoruz
+                existingShop.ShopName = shop.ShopName;
+                existingShop.Address = shop.Address;
+
+                dbContext.SaveChanges();
+
+                TempData["SuccessMessage"] = "Dükkan başarıyla güncellendi.";
+                return RedirectToAction("ManageShops");
+            }
+
+            return View(shop);
+        }
+
+
         public IActionResult DeleteShop(int shopId)
         {
             var shop=dbContext.Shops.Find(shopId);
@@ -134,6 +209,63 @@ namespace WebBerber.Controllers
             ViewBag.Shops = dbContext.Shops.ToList();
             return View(employee);
         }
+        /*  //HATA VAR DÜZENLENECEK 
+        public IActionResult EditEmployee(int id)
+        {
+            var employee = dbContext.Employees
+                .Include(e => e.WorkingHours)
+                .FirstOrDefault(e => e.Id == id);
+
+            if (employee == null)
+            {
+                TempData["ErrorMessage"] = "Çalışan bulunamadı.";
+                return RedirectToAction("ManageEmployees");
+            }
+
+            ViewBag.Shops = dbContext.Shops.ToList();
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult EditEmployee(Employee employee, List<WorkingHour> workingHours)
+        {
+            if (ModelState.IsValid)
+            {
+                var existingEmployee = dbContext.Employees
+                    .Include(e => e.WorkingHours)
+                    .Include(e => e.Shop)
+                    .FirstOrDefault(e => e.Id == employee.Id);
+
+                if (existingEmployee == null)
+                {
+                    TempData["ErrorMessage"] = "Çalışan bulunamadı.";
+                    return RedirectToAction("ManageEmployees");
+                }
+
+                // Güncelleme işlemi
+                existingEmployee.Name = employee.Name;
+                existingEmployee.Surname = employee.Surname;
+                existingEmployee.Email = employee.Email;
+                existingEmployee.Password = employee.Password;
+                existingEmployee.ShopId = employee.ShopId;
+
+                // Çalışan çalışma saatlerini tek tek ekliyoruz
+                foreach (var workingHour in workingHours.Where(wh => wh.StartTime != TimeSpan.Zero && wh.EndTime != TimeSpan.Zero))
+                {
+                    existingEmployee.WorkingHours.Add(workingHour);
+                }
+
+                dbContext.SaveChanges();
+
+                TempData["SuccessMessage"] = "Çalışan başarıyla güncellendi.";
+                return RedirectToAction("ManageEmployees");
+            }
+
+            ViewBag.Shops = dbContext.Shops.ToList();  // Dükkanları tekrar yükleyelim
+            return View(employee);
+        }
+
+        */
 
         public IActionResult DeleteEmployee(int id)
         {

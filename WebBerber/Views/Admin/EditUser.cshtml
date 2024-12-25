@@ -1,0 +1,59 @@
+﻿@model WebBerber.Models.User
+
+@{
+    ViewData["Title"] = "Kullanıcı Düzenle";
+    Layout = "_AdminLayout";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center text-primary">Kullanıcı Düzenle</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+
+    <form asp-action="EditUser" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label asp-for="FirstName">Ad</label>
+            <input class="form-control" asp-for="FirstName" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="LastName">Soyad</label>
+            <input class="form-control" asp-for="LastName" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Email">E-posta</label>
+            <input class="form-control" asp-for="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Role">Rol</label>
+            <select class="form-control" asp-for="Role">
+                <option value="Admin">Admin</option>
+                <option value="ShopOwner">Dükkan Sahibi</option>
+                <option value="Customer">Müşteri</option>
+            </select>
+            <span asp-validation-for="Role" class="text-danger"></span>
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+    </form>
+</div>
