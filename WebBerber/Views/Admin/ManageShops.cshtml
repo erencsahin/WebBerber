@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<WebBerber.Models.Shop>
 
 @{
-    ViewData["Title"] = "Mağaza Yönetimi";
+    ViewData["Title"] = "Salon Yönetimi";
     Layout = "_AdminLayout";
 }
 
 <div class="container mt-5">
-    <h2 class="mb-4 text-center text-primary">Mağaza Yönetimi</h2>
+    <h2 class="mb-4 text-center text-primary">Salon Yönetimi</h2>
 
     @if (TempData["SuccessMessage"] != null)
     {
@@ -23,7 +23,7 @@
 
     <div class="d-flex justify-content-between mb-3">
         <a asp-action="AddShop" class="btn btn-success">
-            <i class="fas fa-store"></i> Yeni Mağaza Ekle
+            <i class="fas fa-store"></i> Yeni Salon Ekle
         </a>
         <a asp-action="Index" class="btn btn-secondary">
             <i class="fas fa-arrow-left"></i> Ana Menü
@@ -33,7 +33,7 @@
     @if (!Model.Any())
     {
         <div class="alert alert-warning text-center">
-            Henüz mağaza yok.
+            Henüz salon yok.
         </div>
     }
     else

@@ -1,21 +1,21 @@
 ﻿@model IEnumerable<WebBerber.Models.Shop>
 
 <div class="container mt-5">
-    <h2 class="text-center mb-4" data-aos="fade-up">Mağaza Listesi</h2>
+    <h2 class="text-center mb-4" data-aos="fade-up">Salon Listesi</h2>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         @foreach (var shop in Model)
         {
             <div class="col" data-aos="zoom-in" data-aos-delay="100">
                 <div class="card h-100 shadow-lg border-0">
-                    <!-- Mağaza İsmi -->
+                    <!-- Salon İsmi -->
                     <div class="card-header bg-dark text-white text-center py-3">
                         <h5 class="card-title fw-bold mb-0">@shop.ShopName</h5>
                     </div>
 
                     <!-- Temsili Resim -->
-                    <img src="/photos/kayahair.jpg" class="card-img-top" alt="Mağaza Fotoğrafı" style="object-fit: cover; height: 200px;" />
+                    <img src="/photos/kayahair.jpg" class="card-img-top" alt="Salon Fotoğrafı" style="object-fit: cover; height: 200px;" />
 
-                    <!-- Mağaza Detayları ve Randevu -->
+                    <!-- Salon Detayları ve Randevu -->
                     <div class="card-body text-center">
                         <p class="card-text text-muted">@shop.Address</p>
                         <a asp-action="SelectOperation" asp-route-shopId="@shop.Id" class="btn btn-dark rounded-pill mt-3 px-4">

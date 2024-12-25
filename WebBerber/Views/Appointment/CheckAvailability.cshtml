@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<DateTime>
 
-<div class="container mt-5">
+<div class="container mt-5 ">
     <!-- Tarih Seçimi -->
     <h3 class="text-center mb-4" data-aos="fade-up">Tarih Seçimi</h3>
     <form asp-action="SelectTime" asp-controller="Appointment" method="get">
@@ -8,8 +8,14 @@
             @for (int i = 0; i < 7; i++)
             {
                 var date = DateTime.Today.AddDays(i);
+                bool isSelected = ViewBag.SelectedDate == date.ToString("yyyy-MM-dd");
+                bool isToday = date.Date == DateTime.Today.Date; // Bugünü kontrol et
+                                                                 // Pazar günü kontrolü
+                bool isSunday = date.DayOfWeek == DayOfWeek.Sunday;
+
                 <button type="submit" name="selectedDate" value="@date.ToString("yyyy-MM-dd")"
-                        class="btn mx-2 mb-2 @(date == ViewBag.SelectedDate ? "btn-primary" : "btn-outline-secondary") rounded-pill shadow-sm">
+                        class="btn mx-2 mb-2 @(isSelected ? "btn-primary" : (isToday ? "btn-primary" : "btn-outline-secondary")) rounded-pill shadow-sm"
+                @(isSunday ? "disabled" : "")>
                     @date.ToString("dd MMM ddd")
                 </button>
             }
@@ -20,7 +26,7 @@
     </form>
 
     <!-- Saat Seçimi -->
-    <h4 class="text-center mt-4 mb-3" data-aos="fade-up">Saat Seçimi</h4>
+    <h3 class="text-center mt-4 mb-3" data-aos="fade-up">Saat Seçimi</h3>
     @if (Model != null && Model.Any())
     {
         <form asp-action="Summary" asp-controller="Appointment" method="post">
@@ -50,4 +56,5 @@
             Uygun saat bulunmamaktadır.
         </div>
     }
+
 </div>

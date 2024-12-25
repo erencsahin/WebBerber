@@ -1,12 +1,12 @@
 ﻿@model List<Shop> // Mağaza verileri taşınır
 @{
-    ViewData["Title"] = "Mağazalarımız";
+    ViewData["Title"] = "Salonlarımız";
 }
 
 <!-- Hero Section -->
 <section class="hero-section text-center py-5" style="background: linear-gradient(to bottom, #212529, #495057); color: white;">
     <div class="container">
-        <h1 class="display-4" data-aos="fade-down">Mağazalarımız</h1>
+        <h1 class="display-4" data-aos="fade-down">Salonlarımız</h1>
         <p class="lead mt-3" data-aos="fade-up">
             Sakarya’da hizmet veren kuaförümüz siz değerli müşterilerimize hizmet vermeye ve daha iyisi için çalışmaya devam ediyor.
         </p>
@@ -16,7 +16,7 @@
 <!-- Shops Section -->
 <section class="shops-section py-5 bg-light">
     <div class="container">
-        <h2 class="text-center mb-4" data-aos="fade-up">Mağazalarımız</h2>
+        <h2 class="text-center mb-4" data-aos="fade-up">Salonlarımız</h2>
         <div class="row">
             @foreach (var shop in Model)
             {

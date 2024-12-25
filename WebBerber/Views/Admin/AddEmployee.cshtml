@@ -39,11 +39,11 @@
             <input type="password" id="password" name="Password" class="form-control" placeholder="Çalışanın şifresini giriniz" required />
         </div>
 
-        <!-- Mağaza Seçimi -->
+        <!-- Salon Seçimi -->
         <div class="mb-3">
-            <label for="shopId" class="form-label">Mağaza:</label>
+            <label for="shopId" class="form-label">Salon:</label>
             <select id="shopId" name="ShopId" class="form-select" required>
-                <option value="" disabled selected>Mağaza seçiniz</option>
+                <option value="" disabled selected>Salon seçiniz</option>
                 @foreach (var shop in ViewBag.Shops)
                 {
                     <option value="@shop.Id">@shop.ShopName</option>

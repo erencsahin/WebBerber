@@ -1,11 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Mağaza Ekle";
+    ViewData["Title"] = "Salon Ekle";
     Layout = "_AdminLayout";
 }
 @model WebBerber.Models.Shop
 
 <div class="container mt-5">
-    <h2 class="mb-4 text-center text-primary">Mağaza Ekle</h2>
+    <h2 class="mb-4 text-center text-primary">Salon Ekle</h2>
 
     @if (TempData["SuccessMessage"] != null)
     {
@@ -22,8 +22,8 @@
 
     <form method="post" asp-action="AddShop" class="p-4 border rounded bg-light shadow-sm">
         <div class="mb-3">
-            <label for="shopName" class="form-label">Mağaza Adı:</label>
-            <input type="text" id="shopName" name="ShopName" class="form-control" placeholder="Mağaza adını giriniz" required />
+            <label for="shopName" class="form-label">Salon Adı:</label>
+            <input type="text" id="shopName" name="ShopName" class="form-control" placeholder="Salon adını giriniz" required />
         </div>
         <div class="mb-3">
             <label for="employees" class="form-label">Çalışan Sayısı:</label>
@@ -31,7 +31,7 @@
         </div>
         <div class="mb-3">
             <label for="address" class="form-label">Adres:</label>
-            <textarea id="address" name="Address" class="form-control" rows="3" placeholder="Mağaza adresini giriniz" required></textarea>
+            <textarea id="address" name="Address" class="form-control" rows="3" placeholder="Salon adresini giriniz" required></textarea>
         </div>
         <h5 class="mt-4 text-secondary">Çalışma Saatleri</h5>
         @for (int i = 0; i < 7; i++)
