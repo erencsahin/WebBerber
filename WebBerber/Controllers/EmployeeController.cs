@@ -26,7 +26,6 @@ namespace WebBerber.Controllers
             return View(pendingAppointments);
         }
 
-
         public IActionResult GetStatistics()
         {
             var employeeId = HttpContext.Session.GetInt32("EmployeeId");
@@ -56,13 +55,62 @@ namespace WebBerber.Controllers
 
 
 
+        public IActionResult Profile()
+        {
+            var employeeId = HttpContext.Session.GetInt32("EmployeeId");
+            if (employeeId == null || employeeId == 0)
+            {
+                TempData["ErrorMessage"] = "Çalışan kimliği alınamadı.";
+                return RedirectToAction("Index", "Login");
+            }
+
+            var allOperations = dbContext.Operations.ToList();
+
+            var employeeOperations = dbContext.EmployeeOperations
+                .Where(eo => eo.EmployeeId == employeeId)
+                .Select(eo => eo.OperationId)
+                .ToList();
+
+            ViewBag.EmployeeOperations = employeeOperations;
+
+            return View(allOperations);
+        }
+
+        [HttpPost]
+        public IActionResult AddOperation(int operationId)
+        {
+            var employeeId = HttpContext.Session.GetInt32("EmployeeId");
+            if (employeeId == null || employeeId == 0)
+            {
+                TempData["ErrorMessage"] = "Çalışan kimliği alınamadı.";
+                return RedirectToAction("Index", "Login");
+            }
+
+            var employeeOperation = new EmployeeOperation
+            {
+                EmployeeId = employeeId.Value,
+                OperationId = operationId
+            };
+
+            dbContext.EmployeeOperations.Add(employeeOperation);
+            dbContext.SaveChanges();
+
+            TempData["SuccessMessage"] = "Yeni bir kazanım başarıyla eklendi.";
+            return RedirectToAction("Profile");
+        }
+
+
+
+
+
+
         private int GetLoggedInEmployeeId()
         {
             var employeeId = HttpContext.Session.GetInt32("EmployeeId");
 
             if (employeeId == null)
             {
-                throw new Exception("Çalışan oturum açmamış.");
+                RedirectToAction("Login","LoginController");
             }
             return employeeId.Value;
         }

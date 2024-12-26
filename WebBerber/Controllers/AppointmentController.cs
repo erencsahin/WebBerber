@@ -18,18 +18,15 @@ namespace WebBerber.Controllers
 
         public IActionResult CheckAvailability(int employeeId, int shopId, int operationId)
         {
-            // İşlem süresi alınıyor
             var operationDuration = appDbContext.Operations
                 .Where(op => op.Id == operationId)
                 .Select(op => op.Duration)
                 .FirstOrDefault();
 
-            // Mevcut randevuları al
             var appointments = appDbContext.Appointments
-                .Where(a => a.EmployeeId == employeeId && a.StartTime.Date == DateTime.Today.Date) // Bugünün randevuları
+                .Where(a => a.EmployeeId == employeeId && a.StartTime.Date == DateTime.Today.Date)
                 .ToList();
 
-            // Uygun saat dilimlerini buluyoruz
             var availableTimes = GetAvailableTimesForDay(employeeId, DateTime.Today, operationDuration);
 
             ViewBag.ShopId = shopId;
@@ -41,46 +38,44 @@ namespace WebBerber.Controllers
 
         private IEnumerable<DateTime> GetAvailableTimesForDay(int employeeId, DateTime day, int duration)
         {
-            // İş gününün başlangıç ve bitiş saatlerini ayarlıyoruz.
-            var startHour = day.Date.AddHours(9); // Sabah 09:00
-            var endHour = day.Date.AddHours(19); // Akşam 19:00
+            var startHour = day.Date.AddHours(9);
+            var endHour = day.Date.AddHours(19);
 
-            // Tüm olası saat dilimlerini tutacağımız liste
-            var allTimes = new List<DateTime>();
-
-            while (startHour < endHour)
-            {
-                allTimes.Add(startHour);
-                startHour = startHour.AddMinutes(60); // Her saati ekliyoruz
-            }
-
-            // O günün mevcut randevularını alıyoruz
+            // Mevcut randevuları çek
             var existingAppointments = appDbContext.Appointments
                 .Where(a => a.EmployeeId == employeeId && a.StartTime.Date == day.Date)
-                .Select(a => a.StartTime)
+                .Select(a => new
+                {
+                    Start = a.StartTime,
+                    End = a.StartTime.AddMinutes(a.Duration)
+                })
                 .ToList();
 
-            // Saat dilimlerini filtreliyoruz
-            var availableTimes = allTimes.Where(t =>
+            var availableTimes = new List<DateTime>();
+
+            while (startHour.AddMinutes(duration) <= endHour)
             {
-                // Geçmiş saatleri engelle
-                if (t < DateTime.Now)
+                bool isConflict = existingAppointments.Any(a =>
+                    // Yeni randevunun başlangıcı mevcut bir randevunun içinde mi?
+                    (startHour >= a.Start && startHour < a.End) ||
+                    // Yeni randevunun bitişi mevcut bir randevunun içinde mi?
+                    (startHour.AddMinutes(duration) > a.Start && startHour.AddMinutes(duration) <= a.End) ||
+                    // Yeni randevu tamamen mevcut bir randevunun üstüne mi denk geliyor?
+                    (startHour <= a.Start && startHour.AddMinutes(duration) >= a.End));
+
+                // Çakışma yoksa, zamanı uygun olarak ekle
+                if (!isConflict)
                 {
-                    return false;
+                    availableTimes.Add(startHour);
                 }
 
-                // Randevu alınmışsa, işlem süresine göre uygun olanları filtrele
-                return !existingAppointments.Any(a => t < a.AddMinutes(duration) && a < t.AddMinutes(duration));
-            }).ToList();
-
-            // Pazar günü saatleri devre dışı bırakmak için ek kontrol
-            if (day.DayOfWeek == DayOfWeek.Sunday)
-            {
-                return new List<DateTime>(); // Pazar günü hiçbir saat seçilemez
+                // Bir sonraki kontrol için saat ilerlet
+                startHour = startHour.AddMinutes(30); // Her 30 dakikada bir kontrol
             }
 
             return availableTimes;
         }
+
 
 
         public IActionResult SelectTime(string selectedDate, int shopId, int operationId, int employeeId)
@@ -92,23 +87,19 @@ namespace WebBerber.Controllers
 
             DateTime selectedDay = DateTime.Parse(selectedDate);
 
-            // İşlem süresi alınıyor
             int operationDuration = appDbContext.Operations
                 .Where(o => o.Id == operationId)
                 .Select(o => o.Duration)
                 .FirstOrDefault();
 
-            // Mevcut randevular alınıyor
             var appointments = appDbContext.Appointments
                 .Where(a => a.EmployeeId == employeeId && a.StartTime.Date == selectedDay.Date)
                 .ToList();
 
-            // Uygun saat dilimlerini buluyoruz
             var availableTimes = GetAvailableTimesForDay(employeeId, selectedDay, operationDuration);
 
-            // Saat seçiminde geçmiş saatleri engelleme
             var now = DateTime.Now;
-            availableTimes = availableTimes.Where(time => time > now).ToList(); // Geçmiş saatler disable
+            availableTimes = availableTimes.Where(time => time > now).ToList();
 
             ViewBag.ShopId = shopId;
             ViewBag.OperationId = operationId;

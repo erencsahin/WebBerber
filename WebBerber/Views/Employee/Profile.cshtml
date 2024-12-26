@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebBerber.Models.Operation>
+
+<div class="container mt-5">
+    <h2 class="text-center">Çalışan Profili</h2>
+    <p>Yeni bir kazanım eklemek için aşağıdaki listeden seçim yapabilirsiniz.</p>
+
+    <h4>Mevcut Uzmanlıklar</h4>
+    <div class="mb-4">
+        @if (ViewBag.EmployeeOperations != null && ViewBag.EmployeeOperations.Count > 0)
+        {
+            <ul class="list-group">
+                @foreach (int operationId in ViewBag.EmployeeOperations)
+                {
+                    var operation = Model.FirstOrDefault(op => op.Id == operationId);
+                    if (operation != null)
+                    {
+                        <li class="list-group-item">
+                            @operation.OperationName
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="list-group-item text-danger">
+                            OperationId: @operationId - Hatalı ya da eksik!
+                        </li>
+                    }
+                }
+            </ul>
+        }
+        else
+        {
+            <p>Henüz uzmanlık bulunmamaktadır.</p>
+        }
+    </div>
+
+    <h4>Yeni Operasyon Ekle</h4>
+    <form method="post" asp-action="AddOperation">
+        <select name="operationId" class="form-select mb-3">
+            @foreach (var operation in Model)
+            {
+                <option value="@operation.Id">@operation.OperationName</option>
+            }
+        </select>
+        <button type="submit" class="btn btn-primary">Ekle</button>
+    </form>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success mt-3">@TempData["SuccessMessage"]</div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger mt-3">@TempData["ErrorMessage"]</div>
+    }
+</div>
