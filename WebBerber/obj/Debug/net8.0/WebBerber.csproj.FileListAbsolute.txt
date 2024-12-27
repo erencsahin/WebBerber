@@ -340,3 +340,4 @@ C:\Users\msi-nb\source\repos\WebBerber\WebBerber\obj\Debug\net8.0\refint\WebBerb
 C:\Users\msi-nb\source\repos\WebBerber\WebBerber\obj\Debug\net8.0\WebBerber.pdb
 C:\Users\msi-nb\source\repos\WebBerber\WebBerber\obj\Debug\net8.0\WebBerber.genruntimeconfig.cache
 C:\Users\msi-nb\source\repos\WebBerber\WebBerber\obj\Debug\net8.0\ref\WebBerber.dll
+C:\Users\msi-nb\source\repos\WebBerber\WebBerber\bin\Debug\net8.0\SixLabors.ImageSharp.dll

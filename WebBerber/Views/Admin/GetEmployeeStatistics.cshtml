@@ -1,0 +1,37 @@
+﻿@model IEnumerable<dynamic>
+
+<div class="container mt-5">
+    <h2 class="text-center text-primary">📋 Çalışan Performans İstatistikleri</h2>
+    <p class="text-center text-muted">Aşağıda çalışanların performans detaylarını inceleyebilirsiniz.</p>
+    <h4 class="text-center text-success">@ViewBag.ShopName</h4>
+
+    <div class="row mt-4">
+        @foreach (var employee in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="card-title mb-0">@employee.EmployeeName</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>🔧 Toplam İşlem:</strong> @employee.TotalOperations</p>
+                        <p><strong>💰 Toplam Kazanç:</strong> @employee.TotalEarnings ₺</p>
+                        <p><strong>🕒 Toplam Süre:</strong> @employee.TotalDuration dk</p>
+                        <h6 class="text-primary">📅 İşlem Detayları:</h6>
+                        <ul class="list-group list-group-flush">
+                            @foreach (var operation in employee.OperationDetails)
+                            {
+                                <li class="list-group-item">
+                                    <strong>İşlem Adı:</strong> @operation.OperationName <br />
+                                    <strong>Kazanç:</strong> @operation.Earnings ₺ <br />
+                                    <strong>Süre:</strong> @operation.TotalDuration dk <br />
+                                    <strong>Tarih:</strong> @operation.Date.ToString("dd MMM yyyy")
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

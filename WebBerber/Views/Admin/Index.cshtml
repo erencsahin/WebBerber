@@ -3,5 +3,30 @@
     Layout = "_AdminLayout";
 }
 
-<h1 class="mt-4">Admin Paneline Hoş Geldiniz!</h1>
-<p>Burada genel bilgileri görebilirsiniz. ÇALIŞAN İZLEME EKRANI EKLENECEK.</p>
+@model IEnumerable<dynamic>
+
+<div class="container mt-5">
+    <h2 class="text-center text-primary">📊 Dükkan Performans İstatistikleri</h2>
+    <p class="text-center text-muted">Aşağıda her dükkanın performans detaylarını inceleyebilirsiniz.</p>
+
+    <div class="row mt-4">
+        @foreach (var shop in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">@shop.ShopName</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>👥 Toplam Çalışan:</strong> @shop.TotalEmployees</p>
+                        <p><strong>🔧 Toplam İşlem:</strong> @shop.TotalOperations</p>
+                        <p><strong>💰 Toplam Kazanç:</strong> @shop.TotalEarnings ₺</p>
+                        <a asp-controller="Admin" asp-action="GetEmployeeStatistics" asp-route-shopId="@shop.ShopId" class="btn btn-outline-primary btn-sm">
+                            Çalışan Performansı Görüntüle
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,11 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using RestSharp;
+using SixLabors.ImageSharp.Processing;
+using SixLabors.ImageSharp;
 
 namespace WebBerber.Controllers
 {
     public class AIIntegrationController : Controller
     {
+
+        private byte[] ResizeImage(byte[] imageBytes, int width, int height)
+        {
+            using var inputStream = new MemoryStream(imageBytes);
+            using var outputStream = new MemoryStream();
+            using var image = Image.Load(inputStream);
+
+            // Resim boyutunu ayarlama
+            image.Mutate(x => x.Resize(new ResizeOptions
+            {
+                Mode = ResizeMode.Max,
+                Size = new Size(width, height)
+            }));
+
+            image.SaveAsJpeg(outputStream);
+            return outputStream.ToArray();
+        }
+
+
         [HttpPost]
         public IActionResult ProcessImage(IFormFile uploadedImage, string style)
         {
@@ -21,13 +41,15 @@ namespace WebBerber.Controllers
                 uploadedImage.CopyTo(memoryStream);
                 var imageBytes = memoryStream.ToArray();
 
+                imageBytes = ResizeImage(imageBytes, 800, 800);
+
                 var client = new RestClient("https://hairstyle-changer.p.rapidapi.com/huoshan/facebody/hairstyle");
                 var request = new RestRequest
                 {
                     Method = Method.Post
                 };
 
-                request.AddHeader("x-rapidapi-key", "d6596d8235mshe915138a344bd48p16c234jsnd0ab891dabcd");
+                request.AddHeader("x-rapidapi-key", "ac90719073mshe178b61798780c4p1290d3jsn77591b59ca62");
                 request.AddHeader("x-rapidapi-host", "hairstyle-changer.p.rapidapi.com");
                 request.AddHeader("Content-Type", "multipart/form-data");
 

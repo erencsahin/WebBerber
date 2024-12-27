@@ -13,6 +13,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "9.0.0",
           "Newtonsoft.Json": "13.0.3",
           "RestSharp": "112.1.0",
+          "SixLabors.ImageSharp": "3.1.6",
           "System.Diagnostics.Tools": "4.3.0"
         },
         "runtime": {
@@ -762,6 +763,14 @@
           }
         }
       },
+      "SixLabors.ImageSharp/3.1.6": {
+        "runtime": {
+          "lib/net6.0/SixLabors.ImageSharp.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.1.6.0"
+          }
+        }
+      },
       "System.ClientModel/1.0.0": {
         "dependencies": {
           "System.Memory.Data": "1.0.2",
@@ -1400,6 +1409,13 @@
       "sha512": "sha512-bOUGNZqhhv/QeCXHTKEUil846yBjwWXpzPKjO67kFvaAOoF361z7jLY5BMnuZ6WD2WQRA750sNMcK7MSPCQ5Mg==",
       "path": "restsharp/112.1.0",
       "hashPath": "restsharp.112.1.0.nupkg.sha512"
+    },
+    "SixLabors.ImageSharp/3.1.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dHQ5jugF9v+5/LCVHCWVzaaIL6WOehqJy6eju/0VFYFPEj2WtqkGPoEV9EVQP83dHsdoqYaTuWpZdwAd37UwfA==",
+      "path": "sixlabors.imagesharp/3.1.6",
+      "hashPath": "sixlabors.imagesharp.3.1.6.nupkg.sha512"
     },
     "System.ClientModel/1.0.0": {
       "type": "package",

@@ -18,8 +18,28 @@ namespace WebBerber.Controllers
 
         public IActionResult Index()
         {
-            return View(); 
+            var shops = dbContext.Shops
+                .Include(s => s.EmployeesList)
+                .ToList();
+
+            var shopStatistics = shops.Select(shop => new
+            {
+                ShopId = shop.Id,
+                ShopName = shop.ShopName,
+                TotalEmployees = shop.EmployeesList.Count,
+                TotalOperations = shop.EmployeesList
+                    .SelectMany(e => dbContext.Appointments
+                        .Where(a => a.EmployeeId == e.Id && a.IsApproved))
+                    .Count(),
+                TotalEarnings = shop.EmployeesList
+                    .SelectMany(e => dbContext.Appointments
+                        .Where(a => a.EmployeeId == e.Id && a.IsApproved))
+                    .Sum(a => a.Price)
+            }).ToList();
+
+            return View(shopStatistics);
         }
+
 
 
         public IActionResult ManageUsers()
@@ -64,7 +84,7 @@ namespace WebBerber.Controllers
             if (ModelState.IsValid) 
             {
                 user.Password=Security.HashPassword(user.Password);
-
+                
                 dbContext.Users.Add(user);
                 dbContext.SaveChanges();
                 TempData["SuccessMessage"] = "Kullanıcı başarıyla eklendi.";
@@ -180,7 +200,7 @@ namespace WebBerber.Controllers
 
         public IActionResult DeleteShop(int shopId)
         {
-            var shop=dbContext.Shops.Find(shopId);
+            var shop = dbContext.Shops.Find(shopId);
             if (shop != null)
             {
                 dbContext.Shops.Remove(shop);
@@ -301,10 +321,72 @@ namespace WebBerber.Controllers
             return RedirectToAction("ManageEmployee");
         }
 
+        public IActionResult GetShopsStatistics()
+        {
+            var shops = dbContext.Shops
+                .Include(s => s.EmployeesList)
+                .ToList();
+
+            var shopStatistics = shops.Select(shop => new
+            {
+                ShopId = shop.Id,
+                ShopName = shop.ShopName,
+                TotalEmployees = shop.EmployeesList.Count,
+                TotalOperations = shop.EmployeesList
+                    .SelectMany(e => dbContext.Appointments
+                        .Where(a => a.EmployeeId == e.Id && a.IsApproved))
+                    .Count(),
+                TotalEarnings = shop.EmployeesList
+                    .SelectMany(e => dbContext.Appointments
+                        .Where(a => a.EmployeeId == e.Id && a.IsApproved))
+                    .Sum(a => a.Price)
+            }).ToList();
+
+            return View(shopStatistics);
+        }
+
+        public IActionResult GetEmployeeStatistics(int shopId)
+        {
+            var employees = dbContext.Employees
+                .Where(e => e.ShopId == shopId)
+                .ToList();
+
+            var employeeStatistics = employees.Select(employee => new
+            {
+                EmployeeId = employee.Id,
+                EmployeeName = $"{employee.Name} {employee.Surname}",
+                TotalOperations = dbContext.Appointments
+                    .Where(a => a.EmployeeId == employee.Id && a.IsApproved)
+                    .Count(),
+                TotalEarnings = dbContext.Appointments
+                    .Where(a => a.EmployeeId == employee.Id && a.IsApproved)
+                    .Sum(a => a.Price),
+                TotalDuration = dbContext.Appointments
+                    .Where(a => a.EmployeeId == employee.Id && a.IsApproved)
+                    .Sum(a => a.Duration),
+                OperationDetails = dbContext.Appointments
+                    .Where(a => a.EmployeeId == employee.Id && a.IsApproved)
+                    .GroupBy(a => new { a.OperationId, a.StartTime.Date })
+                    .Select(g => new
+                    {
+                        OperationName = g.First().Operation.OperationName,
+                        Earnings = g.Sum(a => a.Price),
+                        TotalDuration = g.Sum(a => a.Duration),
+                        Date = g.Key.Date
+                    }).ToList()
+            }).ToList();
+
+            ViewBag.ShopName = dbContext.Shops.FirstOrDefault(s => s.Id == shopId)?.ShopName;
+            return View(employeeStatistics);
+        }
+
+
 
         public IActionResult Logout()
         {
             return RedirectToAction("Index","Login");
         }
+
+
     }
 }
