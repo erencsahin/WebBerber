@@ -91,15 +91,18 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                                     <li>
-                                        <a class="dropdown-item" asp-controller="Employee" asp-action="Profile">
-                                            <i class="fas fa-user"></i> Profilim
-                                        </a>
-                                        <a class="dropdown-item" asp-controller="Employee" asp-action="GetStatistics">
-                                            <i class="fas fa-sign-out-alt"></i> Performansım
-                                        </a>
-                                        <a class="dropdown-item" asp-controller="Employee" asp-action="PendingAppointments">
-                                            <i class="fas fa-sign-out-alt"></i> Randevular
-                                        </a>
+                                        @if (Context.Session.GetString("UserEmail")==null && Context.Session.GetString("EmployeeEmail")!=null) 
+                                        {
+                                            <a class="dropdown-item" asp-controller="Employee" asp-action="Profile">
+                                                <i class="fas fa-user"></i> Profilim
+                                            </a>
+                                            <a class="dropdown-item" asp-controller="Employee" asp-action="GetStatistics">
+                                                <i class="fas fa-sign-out-alt"></i> Performansım
+                                            </a>
+                                            <a class="dropdown-item" asp-controller="Employee" asp-action="PendingAppointments">
+                                                <i class="fas fa-sign-out-alt"></i> Randevular
+                                            </a>
+                                        }
                                         <a class="dropdown-item" asp-controller="Login" asp-action="Logout">
                                             <i class="fas fa-sign-out-alt"></i> Çıkış Yap
                                         </a>
