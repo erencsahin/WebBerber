@@ -27,7 +27,6 @@ namespace WebBerber.Controllers
 
             var hashedPass=Security.HashPassword(password);
 
-
             var user = appDbContext.Users.FirstOrDefault(x => x.Email == email && x.Password == hashedPass);
             var employee=appDbContext.Employees.FirstOrDefault(e=>e.Email==email && e.Password==hashedPass);
             if (user != null)
@@ -43,6 +42,7 @@ namespace WebBerber.Controllers
                         return RedirectToAction("Index", "Home");
                 }
             }
+
             if (employee!=null)
             {
                 HttpContext.Session.SetString("EmployeeEmail", employee.Email);

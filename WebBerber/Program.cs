@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using WebBerber.Api.Abstract;
+using WebBerber.Api.Concrete;
 using WebBerber.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,7 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

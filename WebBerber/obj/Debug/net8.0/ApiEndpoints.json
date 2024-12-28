@@ -1,1 +1,80 @@
-[]
+[
+  {
+    "ContainingType": "WebBerber.Api.Concrete.AppointmentApiController",
+    "Method": "GetAllAppointments",
+    "RelativePath": "api/AppointmentApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebBerber.Api.Concrete.AppointmentApiController",
+    "Method": "GetAppointmentById",
+    "RelativePath": "api/AppointmentApi/{appointmentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "appointmentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebBerber.Api.Concrete.ShopApiController",
+    "Method": "GetAllShops",
+    "RelativePath": "api/ShopApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebBerber.Api.Concrete.ShopApiController",
+    "Method": "GetShopById",
+    "RelativePath": "api/ShopApi/{shopId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "shopId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebBerber.Api.Concrete.UserApiController",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/UserApi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebBerber.Api.Concrete.UserApiController",
+    "Method": "GetUserById",
+    "RelativePath": "api/UserApi/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
